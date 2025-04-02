@@ -1,7 +1,7 @@
 from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
 from crawl4ai.deep_crawling import BestFirstCrawlingStrategy, BFSDeepCrawlStrategy
 from crawl4ai.extraction_strategy import LLMExtractionStrategy, JsonXPathExtractionStrategy
-from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy
+from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy, WebScrapingStrategy
 from crawl4ai import AsyncWebCrawler, CacheMode
 from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig, LLMConfig
 from crawl4ai.deep_crawling.filters import (
@@ -10,6 +10,24 @@ from crawl4ai.deep_crawling.filters import (
     DomainFilter,
     ContentTypeFilter
 )
+
+from enum import Enum
+from typing import Annotated, Union, List
+from datetime import datetime
+from pathlib import Path
+
+from pydantic import BaseModel, Field, AfterValidator
+from langchain_huggingface import HuggingFacePipeline, HuggingFaceEndpoint
+
+from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+
 from aiofiles import open as aio_open
 import aiohttp
 import xml.etree.ElementTree as ET
@@ -21,11 +39,30 @@ import logging.config
 from asyncio import Semaphore
 import re
 
+import pandas as pd
+from docling.document_converter import DocumentConverter
+
 # cargamos configuacion de logging
 logging.config.fileConfig('crawler/logconfig.conf')
 
 # creamos logger
 logger = logging.getLogger(__name__)
+
+# cargamos variables de entorno
+if os.path.exists(".env"):
+    from dotenv import load_dotenv
+    load_dotenv(".env")
+
+class Convocatoria(BaseModel):
+    presupesto_total: Annotated[
+        str,
+        Field(pattern=r"\d{1,3}(?:\.\d{3})*,\d{2} ?€"), 
+        AfterValidator(lambda x: int(x[:-5].replace(".", ""))),
+    ]
+    finalidad: str
+    fecha_inicio: datetime
+    fecha_final: datetime
+
 
 async def write_log(log_file="crawler/logger.txt", result=None, regex: str = None):
     async with aio_open(log_file, "a", encoding="utf-8") as f:
@@ -133,7 +170,7 @@ async def turismoGob():
         ## Only include specific content types
         ContentTypeFilter(allowed_types=["aspx"])
     ])
-    deep_crawl_strategy = BestFirstCrawlingStrategy(
+    deep_crawl_strategy = BFSDeepCrawlStrategy(
         max_depth=2,
         include_external=False,
         logger=logger,
@@ -202,88 +239,97 @@ async def turismoGob():
             logger.error(f"Error: {e}")
 
 
-async def test():
+async def SNPSAP():
+    pdf_filename = f"listado{datetime.today().day}_{datetime.today().month}_{datetime.today().year}.pdf" 
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
         URLS = dict(json.load(urlsfile))
-    URLS = URLS["turismoGob"]    
+    base_url = URLS["SNPSAP"]
+    if pdf_filename not in os.listdir("./data/pdfs"):
 
-    filter_chain = FilterChain([
-        # Only follow URLs with specific patterns
-        URLPatternFilter(patterns=[
-           r"^https://www\.mintur\.gob\.es/PortalAyudas/(?!.*Paginas)[\w\-]+",
-        ]),
+        # Configure Firefox options for automatic PDF downloading
+        firefox_options = Options()
+        firefox_options.set_preference("browser.download.folderList", 2)  # Use custom directory
+        firefox_options.set_preference("browser.download.dir", os.path.join(os.getcwd(), "data/pdf"))  # Change this path
+        firefox_options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")  # Auto-save PDFs
+        firefox_options.set_preference("pdfjs.disabled", True)  # Disable PDF preview in browser
+    
+        driver = webdriver.Firefox(options=firefox_options)
 
-        ## Only include specific content types
-        ContentTypeFilter(allowed_types=["aspx"])
-    ])
-    deep_crawl_strategy = BestFirstCrawlingStrategy(
-        max_depth=2,
-        include_external=False,
-        logger=logger,
-        filter_chain=filter_chain
-    )
-    schema = {
-        "name": "Convocatoria",
-        "baseSelector": "//div[@class='interior-container home-ayuda']",    # Repeated elements
-        "fields": [
-            {
-                "name": "convocatoria",
-                "selector": ".//h1",
-                'type': "text"
-            },
-            {
-                "name": "fecha_publicación",
-                "selector": ".//dl[@class='datos-ayuda']/dd[0]",
-                'type': "text"
-            },
-            {
-                "name": "plazos",
-                "selector": ".//dl[@class='datos-ayuda']/dd[1]",
-                "type": "text"
-            },
-            {
-                "name": "entidad",
-                "selector": "//div[@class='lista-gestion']/h2",
-                'type': "text"
-            },
+        # Open the target webpage
+        driver.get(url)
 
-        ]
-    }
-    extraction_strategy = JsonXPathExtractionStrategy(schema=schema, logger=logger, verbose=True)
-    browser_config = BrowserConfig(
-        verbose=True,
-        accept_downloads=True,
-        java_script_enabled=True,
-        ignore_https_errors=True,
-    )
-    load_more_js = [
-        "window.scrollTo(0, document.body.scrollHeight);",
-        # The "More" link at page bottom
-        "document.querySelector('a[href=\"javascript:void(0)\"]')?.click();"  
-    ]    
-    async with AsyncWebCrawler(config=browser_config) as crawler:
-        #if not isinstance(convocatorias, list): # a instancia es una url
+        # Wait until a PDF link appears (Modify XPath if necessary)
         try:
-            run_config = CrawlerRunConfig(
-                deep_crawl_strategy=deep_crawl_strategy,
-                scraping_strategy=LXMLWebScrapingStrategy(logger=logger),
-                extraction_strategy=extraction_strategy,
-                #cache_mode=CacheMode.ENABLED,
-                #js_code=load_more_js,
-                #wait_for="""js:(() => {
-                #    return document.querySelectorAll('div.listado-consulta ul li').length > 10;
-                #})""",
-                # Mark that we do not re-navigate, but run JS in the same session:
-                #js_only=True,
-                #session_id="hn_session"
+            pdf_link = WebDriverWait(driver, 15).until(
+                EC.presence_of_element_located((By.XPATH, "//a[@class='mat-focus-indicator mat-icon-button mat-button-base']"))
             )
-            result1 = await crawler.arun(url=URLS, config=run_config) 
-            print(result1[0].extracted_content)
-            logger.info("Informacion cargada")
-            await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
-        except Exception as e:
-            logger.error(f"Error: {e}")
 
-if __name__ == "__main__":
-    asyncio.run(test())
+            # Click the link to start the download
+            pdf_link.click()
+
+            print("PDF download initiated successfully!")
+
+            # Wait a few seconds for the file to download
+            time.sleep(10)
+
+        except Exception as e:
+            print("Error: PDF link not found.", str(e))
+    else:
+        input_doc_path = Path(os.path.join('downloads', pdf_filename))
+        doc_converter = DocumentConverter()
+        conv_res = doc_converter.convert(input_doc_path)
+        df = pd.DataFrame()
+        for table_ix, table in enumerate(conv_res.document.tables):
+            table_df: pd.DataFrame = table.export_to_dataframe()
+            df = pd.concat([df, table_df], ignore_index=True, axis=0)
+        df["links"] = base_url + df["Código BDNS"]
+        print(df.head())
+        schema = {
+            "name": "Convocatoria",
+            "baseSelector": "//app-convocatoria",    # Repeated elements
+            "fields": [
+                {
+                    "name": "presupuesto",
+                    "selector": "//*[@id='print']/div[2]/div[5]/div[2]",
+                    'type': "text"
+                },
+                {
+                    "name": "fecha_inicio",
+                    "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[3]/div[2]",
+                    'type': "text"
+                },
+                {
+                    "name": "fecha_final",
+                    "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[4]/div[2]",
+                    "type": "text"
+                },
+                {
+                    "name": "finalidad",
+                    "selector": "//*[@id='print']/div[4]/div[4]/div[2]",
+                    'type': "text"
+                }
+            ]
+        }
+        extraction_strategy = JsonXPathExtractionStrategy(schema=schema, logger=logger, verbose=True)
+        run_config = CrawlerRunConfig(
+            scraping_strategy=WebScrapingStrategy(logger=logger),
+            extraction_strategy=extraction_strategy,
+        )
+        browser_config = BrowserConfig(
+             verbose=True,
+             accept_downloads=True,
+             ignore_https_errors=True,
+        )
+        async with AsyncWebCrawler(config=browser_config) as crawler:
+            #if not isinstance(convocatorias, list): # a instancia es una url
+            for url in df["links"]:
+                try:
+                    result = await crawler.arun(url="https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatorias/824642", config=run_config) 
+                    if result.success:
+                        data = json.loads(result.extracted_content)
+                        async with aio_open(LOG_FILE, "a", encoding="utf-8") as f:
+                            await f.write(json.dumps(data, indent=4))
+                    #await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
+                except Exception as e:
+                    logger.error(f"Error: {e}")

@@ -174,3 +174,4 @@ cython_debug/
 .pypirc
 
 *crawler/logger.txt
+data/pdfs/*
