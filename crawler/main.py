@@ -1,5 +1,5 @@
 from crawl4ai.deep_crawling.scorers import KeywordRelevanceScorer
-from crawl4ai.deep_crawling import BestFirstCrawlingStrategy, BFSDeepCrawlStrategy
+from crawl4ai.deep_crawling import BestFirstCrawlingStrategy, BFSDeepCrawlStrategy, DFSDeepCrawlStrategy
 from crawl4ai.extraction_strategy import LLMExtractionStrategy, JsonXPathExtractionStrategy
 from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy, WebScrapingStrategy
 from crawl4ai import AsyncWebCrawler, CacheMode
@@ -15,6 +15,7 @@ from enum import Enum
 from typing import Annotated, Union, List
 from datetime import datetime
 from pathlib import Path
+import urllib
 
 from pydantic import BaseModel, Field, AfterValidator
 from langchain_huggingface import HuggingFacePipeline, HuggingFaceEndpoint
@@ -25,6 +26,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import requests
+from bs4 import BeautifulSoup
 import time
 
 
@@ -93,7 +96,7 @@ async def cienciaGob():
         # Only include specific content types
         ContentTypeFilter(allowed_types=["html"])
     ])
-    deep_crawl_strategy = BestFirstCrawlingStrategy(
+    deep_crawl_strategy = BFSDeepCrawlStrategy(
         max_depth=1,
         include_external=True,
         logger=logger,
@@ -121,9 +124,13 @@ async def cienciaGob():
             {
                 "name": "entidad",
                 "selector": "//p[@class='organoInstructor']/span",
-                'type': "text"
+                "type": "text"
             },
-
+            {
+                "name": "descripcion",
+                "selector": ".//div[2]/div[2]/div[2]/p",
+                "type": "text"
+            },
         ]
     }
     extraction_strategy = JsonXPathExtractionStrategy(schema=schema, logger=logger, verbose=True)
@@ -165,20 +172,21 @@ async def turismoGob():
         # Only follow URLs with specific patterns
         URLPatternFilter(patterns=[
            r"^https://www\.mintur\.gob\.es/PortalAyudas/(?!.*Paginas)[\w\-]+",
+           r"^https://www\.mintur\.gob\.es/PortalAyudas/[\w\-]+/DescripcionGeneral/Paginas/Index.aspx"
         ]),
 
         ## Only include specific content types
         ContentTypeFilter(allowed_types=["aspx"])
     ])
-    deep_crawl_strategy = BFSDeepCrawlStrategy(
-        max_depth=2,
+    deep_crawl_strategy = DFSDeepCrawlStrategy(
+        max_depth=1,
         include_external=False,
         logger=logger,
         filter_chain=filter_chain
     )
     schema = {
         "name": "Convocatoria",
-        "baseSelector": "//div[@class='interior-container home-ayuda']",    # Repeated elements
+        "baseSelector": "//div[contains(@class, 'interior-container')]",
         "fields": [
             {
                 "name": "convocatoria",
@@ -187,20 +195,19 @@ async def turismoGob():
             },
             {
                 "name": "fecha_publicación",
-                "selector": ".//dl[@class='datos-ayuda']/dd[0]",
+                "selector": ".//dl[@class='datos-ayuda']/dd[1]",
                 'type': "text"
             },
             {
                 "name": "plazos",
-                "selector": ".//dl[@class='datos-ayuda']/dd[1]",
+                "selector": ".//dl[@class='datos-ayuda']/dd[2]",
                 "type": "text"
             },
             {
                 "name": "entidad",
                 "selector": "//div[@class='lista-gestion']/h2",
-                'type': "text"
-            },
-
+                "type": "text"
+            }
         ]
     }
     extraction_strategy = JsonXPathExtractionStrategy(schema=schema, logger=logger, verbose=True)
@@ -231,8 +238,15 @@ async def turismoGob():
                 #js_only=True,
                 #session_id="hn_session"
             )
-            result1 = await crawler.arun(url=URLS, config=run_config) 
-            print(result1[0].extracted_content)
+            result1 = await crawler.arun(url=URLS, config=run_config)
+            contenido = [{**json.loads(res.extracted_content)[0], "url": res.url} for res in result1[1:]]
+            for entrada in contenido:
+                r = requests.get(os.path.join(entrada["url"], "DescripcionGeneral/Paginas/Index.aspx"))
+                if r.status_code != 200:
+                    r = requests.get(os.path.join(entrada["url"], "DescripcionGeneral/Paginas/descripcion.aspx"))
+                pool = BeautifulSoup(r.content, 'html.parser')
+                descripcion = " ".join([p.get_text(strip=True) for p in pool.select(".col-contenido p")])
+                entrada["descripcion"] = descripcion
             logger.info("Informacion cargada")
             await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
         except Exception as e:
@@ -333,3 +347,6 @@ async def SNPSAP():
                     #await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
                 except Exception as e:
                     logger.error(f"Error: {e}")
+
+if __name__ == '__main__':
+    asyncio.run(turismoGob())
