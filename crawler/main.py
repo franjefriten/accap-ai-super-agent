@@ -43,6 +43,7 @@ from asyncio import Semaphore
 import re
 
 import pandas as pd
+import numpy as np
 from docling.document_converter import DocumentConverter
 
 # cargamos configuacion de logging
@@ -102,6 +103,7 @@ async def cienciaGob():
         logger=logger,
         filter_chain=filter_chain
     )
+    # TODO: extraer presupuesto
     schema = {
         "name": "Convocatoria",
         "baseSelector": "//div[@id='convocatoriasEmpleoActivas']",    # Repeated elements
@@ -140,6 +142,7 @@ async def cienciaGob():
         java_script_enabled=True,
         ignore_https_errors=True,
     )
+    contenido = []
     async with AsyncWebCrawler(config=browser_config) as crawler:
         #if not isinstance(convocatorias, list): # a instancia es una url
         i = 1
@@ -152,14 +155,17 @@ async def cienciaGob():
                     cache_mode=CacheMode.BYPASS,
                 )
                 result = await crawler.arun(url=URLS+str(i), config=run_config)
-                if not len(result) > 1:
+                if i > 1: #not len(result) > 1:
                     logger.info("Busqueda finalizada")
                     break
                 logger.info("Cargando siguiente pagina")
                 #await write_log(LOG_FILE, result, regex=r"^https://www.ciencia.gob.es/Convocatorias/*")
+                contenido = [{**json.loads(res.extracted_content)[0], "url": res.url} for res in result]
                 i+=1  
             except Exception as e:
                 logger.error(f"Error: {e}")
+
+    return contenido
 
 
 async def turismoGob():
@@ -251,6 +257,8 @@ async def turismoGob():
             await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
         except Exception as e:
             logger.error(f"Error: {e}")
+    
+    return contenido
 
 
 async def SNPSAP():
@@ -298,6 +306,7 @@ async def SNPSAP():
             table_df: pd.DataFrame = table.export_to_dataframe()
             df = pd.concat([df, table_df], ignore_index=True, axis=0)
         df["links"] = base_url + df["Código BDNS"]
+        df[["presupuesto", "fecha_inicio", "fecha_final", "finalidad"]] = np.nan
         print(df.head())
         schema = {
             "name": "Convocatoria",
@@ -337,16 +346,14 @@ async def SNPSAP():
         )
         async with AsyncWebCrawler(config=browser_config) as crawler:
             #if not isinstance(convocatorias, list): # a instancia es una url
-            for url in df["links"]:
+            for i, url in enumerate(df["links"]):
                 try:
                     result = await crawler.arun(url="https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatorias/824642", config=run_config) 
                     if result.success:
-                        data = json.loads(result.extracted_content)
+                        data = dict(json.loads(result.extracted_content))
+                        df.iloc[i, data.keys()] = data.values()
                         async with aio_open(LOG_FILE, "a", encoding="utf-8") as f:
                             await f.write(json.dumps(data, indent=4))
                     #await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
                 except Exception as e:
                     logger.error(f"Error: {e}")
-
-if __name__ == '__main__':
-    asyncio.run(turismoGob())
