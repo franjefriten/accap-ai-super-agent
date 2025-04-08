@@ -45,7 +45,7 @@ USER appuser
 COPY . .
 
 # Expose the port that the application listens on.
-EXPOSE 5000
+EXPOSE 8000
 
 # Run the application.
-CMD gunicorn '.venv.lib.python3.12.site-packages.httpx._transports.wsgi' --bind=0.0.0.0:5000
+CMD gunicorn '.venv.lib.python3.12.site-packages.httpx._transports.wsgi' --bind=0.0.0.0:8000
