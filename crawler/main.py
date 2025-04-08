@@ -352,8 +352,10 @@ async def SNPSAP():
                     if result.success:
                         data = dict(json.loads(result.extracted_content))
                         df.iloc[i, data.keys()] = data.values()
-                        async with aio_open(LOG_FILE, "a", encoding="utf-8") as f:
-                            await f.write(json.dumps(data, indent=4))
+                        #async with aio_open(LOG_FILE, "a", encoding="utf-8") as f:
+                        #    await f.write(json.dumps(data, indent=4))
                     #await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
                 except Exception as e:
                     logger.error(f"Error: {e}")
+    
+    return df.to_dict(orient="records")
