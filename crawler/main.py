@@ -78,6 +78,7 @@ async def write_log(log_file="crawler/logger.txt", result=None, regex: str = Non
     
 
 async def cienciaGob():
+    
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
         URLS = dict(json.load(urlsfile))
@@ -114,7 +115,7 @@ async def cienciaGob():
                 'type': "text"
             },
             {
-                "name": "fecha_publicación",
+                "name": "fecha_publicacion",
                 "selector": ".//p[@class='fecha']/span",
                 'type': "text"
             },
@@ -160,7 +161,7 @@ async def cienciaGob():
                     break
                 logger.info("Cargando siguiente pagina")
                 #await write_log(LOG_FILE, result, regex=r"^https://www.ciencia.gob.es/Convocatorias/*")
-                contenido = [{**json.loads(res.extracted_content)[0], "url": res.url} for res in result]
+                contenido = [{**json.loads(res.extracted_content)[0], "url": res.url} for res in result if res.extracted_content != "[]"]
                 i+=1  
             except Exception as e:
                 logger.error(f"Error: {e}")
@@ -211,7 +212,7 @@ async def turismoGob():
             },
             {
                 "name": "entidad",
-                "selector": "//div[@class='lista-gestion']/h2",
+                "selector": ".//div[@class='lista-gestion']/h2",
                 "type": "text"
             }
         ]
@@ -257,7 +258,7 @@ async def turismoGob():
             await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
         except Exception as e:
             logger.error(f"Error: {e}")
-    
+
     return contenido
 
 
@@ -359,3 +360,8 @@ async def SNPSAP():
                     logger.error(f"Error: {e}")
     
     return df.to_dict(orient="records")
+
+if __name__ == "__main__":
+    # asyncio.run(cienciaGob())
+    # asyncio.run(turismoGob())
+    asyncio.run(cienciaGob())
