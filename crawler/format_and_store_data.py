@@ -1,20 +1,84 @@
-from aiofiles import open as aio_open
-import aiohttp
-import xml.etree.ElementTree as ET
 import asyncio
-import os
-import json
-import logging
-import logging.config
-from asyncio import Semaphore
-import re
+import re, os
 from datetime import datetime
 
 import pandas as pd
 import numpy as np
+
 from main import turismoGob, cienciaGob, SNPSAP
 
-# TESTEAR MAÑANA
+from sqlalchemy import Column, Integer, String, DateTime, Float
+from sqlalchemy import inspect
+from sqlalchemy.orm import Mapped, DeclarativeBase
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from pgvector.sqlalchemy import Vector
+
+from dotenv import load_dotenv
+load_dotenv()
+
+## AZURE IMPORTS
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.textanalytics import TextAnalyticsClient
+
+
+class Base(DeclarativeBase):
+    """Base class for SQLAlchemy models."""
+    pass
+
+class CallData(Base):
+    __tablename__: str = "call_data"
+
+    id: Mapped[int] = Column(Integer, primary_key=True)
+    nombre: Mapped[str] = Column(String(255), nullable=False)
+    entidad: Mapped[str] = Column(String(255), nullable=True)
+    localidad: Mapped[str] = Column(String(255), nullable=True)
+    fecha_publicacion: Mapped[DateTime] = Column(DateTime, nullable=True)
+    fecha_inicio: Mapped[DateTime] = Column(DateTime, nullable=True)
+    fecha_final: Mapped[DateTime] = Column(DateTime, nullable=True)
+    presupuesto: Mapped[float] = Column(Float, nullable=True)
+    url: Mapped[str] = Column(String(255), nullable=False)
+    keywords: Vector = Vector(dim=300)
+    
+
+    def __repr__(self):
+        return f"""
+        <CallData(id={self.id}, titulo={self.nombre}, entidad_convocante={self.entidad}, 
+        fecha_inicio={self.fecha_inicio}, fecha_final={self.fecha_final}, presupuesto={self.presupuesto}, 
+        descripcion={self.descripcion}, url={self.url})>
+        """
+    @classmethod
+    def init_table(cls, engine):
+        """Initialize the table in the database."""
+        if not inspect(engine).has_table(cls.__tablename__):
+            cls.metadata.create_all(engine)
+            print(f"Table {cls.__tablename__} created.")
+        else:
+            print(f"Table {cls.__tablename__} already exists.")
+
+
+def extract_key_words_azure(contenido):
+    """Emplea Azure AI Services para sacar palabras claves con api y endpoint de azure.
+    
+    Keyword arguments:
+    argument -- description
+    Return: return_description
+    """
+    endpoint = os.environ["AZURE_AI_SERVICES_ENDPOINT"]
+    key = os.environ["AZURE_AI_SERVICES_API_KEY"]
+
+    text_analytics_client = TextAnalyticsClient(endpoint=endpoint, credential=AzureKeyCredential(key))
+    articles = [entry["descripcion"] for entry in contenido]
+
+    result = text_analytics_client.extract_key_phrases(articles)
+    for idx, doc in enumerate(result):
+        contenido[idx]["keywords"] = doc.key_phrases
+    
+    print("Palabras claves extraidas de Azure AI Services")
+
+    return None
+
+
 
 def format_and_store_cienciaGob_data():
     """
@@ -23,7 +87,7 @@ def format_and_store_cienciaGob_data():
     def extract_dates(entry):
         pat = r"\d{1,2}\/\d{2}\/\d{2}"
         fechas = re.findall(pat, entry["plazos"])
-        if len(fechas) == 2:
+        if len(fechas) >= 2:
             entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y").strftime("%d/%m/%Y")
             entry["fecha_final"] = datetime.strptime(fechas[1], "%d/%m/%y").strftime("%d/%m/%Y")
             entry.pop("plazos")
@@ -61,6 +125,7 @@ def format_and_store_cienciaGob_data():
             entry["fecha_publicacion"] = datetime.strptime(aux_date, "%m/%Y").strftime("%d/%m/%Y")
         return entry
 
+
     # contenido = [
         # {'convocatoria': 'Distinción Ciudad de la Ciencia y la Innovación 2024', 'fecha_publicacion': 'julio 2024', 'plazos': 'Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/09/24\n\t                    -\n\t                    Fin: \n\t                    28/10/24', 'entidad': 'Secretaría General de Innovación', 'descripcion': 'La distinción «Ciudad de la Ciencia y la Innovación» se otorga a las ciudades que se distinguen en el apoyo a la innovación en sus territorios, definiendo políticas, potenciando estructuras, instituciones y empresas locales con un fuerte componente científico, tecnológico e innovador.', 'url': 'https://www.ciencia.gob.es/Convocatorias/2024/DCCI2024.html'},
         # {'convocatoria': 'Ayudas para la realización de estudios de máster en Estados Unidos de América. Curso 2025-2026', 'fecha_publicacion': 'enero 2025', 'plazos': 'Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/01/25\n\t                    -\n\t                    Fin: \n\t                    6/02/25', 'entidad': 'Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda', 'descripcion': 'Esta convocatoria tiene por finalidad la concesión de ayudas para la realización de estudios de máster en universidades e instituciones de educación superior, acreditadas para impartir dichos estudios en Estados Unidos. Y cuenta con la participación de la Comisión Fulbright, tanto en la convocatoria y selección de las personas beneficiarias como durante el período de disfrute de las ayudas, garantizando a las personas beneficiarias el apoyo de dicha institución durante la realización de sus estudios.', 'url': 'https://www.ciencia.gob.es/Convocatorias/2025/Master_EEUU_25_26.html'},
@@ -86,6 +151,9 @@ def format_and_store_cienciaGob_data():
             contenido
         )
     )
+    contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
+    extract_key_words_azure(contenido)
+    send_to_db(contenido)
     return contenido
 
 
@@ -101,23 +169,23 @@ def format_and_store_turismoGob_data():
         entry.pop("plazos")
         return entry
         
-    contenido = turismoGob()
+    contenido = asyncio.run(turismoGob())
     contenido = list(
         map(
             extract_dates,
             contenido
         )
     )
-    ## TODO: Save to PostgreSQL
-    ## TODO: get main words, nltk
-    ## TODO: use language model to get vector transform
+    contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
+    extract_key_words_azure(contenido)
+    send_to_db(contenido)
 
 def format_and_store_SNPSAP_data():
     # El dataset tiene columnas:
     # Código BDNS, Mecanismo de Recuperación y Resiliencia, Administración, Departamento, Órgano, Fecha de Registro,
     # Título, Título Cooficial
     # presupuesto, fecha_inicio, fecha_final, finalidad
-    df = SNPSAP()
+    df: pd.DataFrame = asyncio.run(SNPSAP())
     df = df[["Adminitración", "Departamento", "Fecha de Registro", "Título", "presupuesto", "fecha_inicio", "fecha_final", "finalidad"]]
     df = df.rename(columns={
         "Adminitración": "localidad",
@@ -126,10 +194,45 @@ def format_and_store_SNPSAP_data():
         "Título": "convocatoria",
     })
     df["presupuesto"] = df["presupuesto"].map(lambda string: int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")))
-    ## TODO: Save to PostgreSQL
-    ## TODO: get main words, nltk
-    ## TODO: use language model to get vector transform
+    df.to_dict(orient="records")
+    pass
+
+
+def send_to_db(contenido):
+    """Función general para guardar los datos en la base de datos.
+    Se conecta a la base de datos PostgreSQL y guarda los datos extraídos y formateados.
+    Se utiliza SQLAlchemy para la conexión y manipulación de la base de datos.
+    
+    Keyword arguments:
+    argument -- description
+    Return: return_description
+    """
+    
+    engine = create_engine(
+        f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@{os.getenv("POSTGRES_HOST")}:{os.getenv("POSTGRES_PORT")}/{os.getenv("POSTGRES_DB")}"
+    )
+    Session = sessionmaker(bind=engine)
+    print(engine)
+    CallData.init_table(engine)
+    with Session() as session:
+        # Assuming `contenido` is a list of dictionaries with the data to be inserted
+        for entry in contenido:
+            call_data = CallData(
+                nombre=entry["convocatoria"],
+                entidad=entry["entidad"],
+                fecha_publicaciom=entry["fecha_publicacion"],
+                fecha_inicio=entry["fecha_inicio"],
+                fecha_final=entry["fecha_final"],
+                presupuesto=entry["presupuesto"],
+                keywords=entry["keywords"],
+                localidad=entry["localidad"],
+                url=entry["url"],
+            )
+            session.add(call_data)
+        session.commit()
+    
+    return None
 
 
 if __name__ == "__main__":
-    print(format_and_store_cienciaGob_data())
+    print(format_and_store_SNPSAP_data())

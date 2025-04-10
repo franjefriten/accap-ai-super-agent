@@ -131,7 +131,7 @@ async def cienciaGob():
             },
             {
                 "name": "descripcion",
-                "selector": ".//div[2]/div[2]/div[2]/p",
+                "selector": ".//div[@class='seccion-acordeon container-fluid'][1]/div[2]/p",
                 "type": "text"
             },
         ]
@@ -255,7 +255,7 @@ async def turismoGob():
                 descripcion = " ".join([p.get_text(strip=True) for p in pool.select(".col-contenido p")])
                 entrada["descripcion"] = descripcion
             logger.info("Informacion cargada")
-            await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
+            #await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
         except Exception as e:
             logger.error(f"Error: {e}")
 
