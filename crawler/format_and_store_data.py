@@ -32,12 +32,14 @@ class CallData(Base):
     id: Mapped[int] = Column(Integer, primary_key=True)
     nombre: Mapped[str] = Column(String(255), nullable=False)
     entidad: Mapped[str] = Column(String(255), nullable=True)
+    localidad: Mapped[str] = Column(String(255), nullable=True)
     fecha_publicacion: Mapped[DateTime] = Column(DateTime, nullable=True)
     fecha_inicio: Mapped[DateTime] = Column(DateTime, nullable=True)
     fecha_final: Mapped[DateTime] = Column(DateTime, nullable=True)
     presupuesto: Mapped[float] = Column(Float, nullable=True)
-    keywords: Vector = Vector(dim=300)
     url: Mapped[str] = Column(String(255), nullable=False)
+    keywords: Vector = Vector(dim=300)
+    
 
     def __repr__(self):
         return f"""
@@ -62,8 +64,8 @@ def extract_key_words_azure(contenido):
     argument -- description
     Return: return_description
     """
-    endpoint = os.environ["AZURE_LANGUAGE_ENDPOINT"]
-    key = os.environ["AZURE_LANGUAGE_KEY"]
+    endpoint = os.environ["AZURE_AI_SERVICES_ENDPOINT"]
+    key = os.environ["AZURE_AI_SERVICES_API_KEY"]
 
     text_analytics_client = TextAnalyticsClient(endpoint=endpoint, credential=AzureKeyCredential(key))
     articles = [entry["descripcion"] for entry in contenido]
@@ -72,7 +74,7 @@ def extract_key_words_azure(contenido):
     for idx, doc in enumerate(result):
         contenido[idx]["keywords"] = doc.key_phrases
     
-    send_to_db(contenido)
+    print("Palabras claves extraidas de Azure AI Services")
 
     return None
 
@@ -85,7 +87,7 @@ def format_and_store_cienciaGob_data():
     def extract_dates(entry):
         pat = r"\d{1,2}\/\d{2}\/\d{2}"
         fechas = re.findall(pat, entry["plazos"])
-        if len(fechas) == 2:
+        if len(fechas) >= 2:
             entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y").strftime("%d/%m/%Y")
             entry["fecha_final"] = datetime.strptime(fechas[1], "%d/%m/%y").strftime("%d/%m/%Y")
             entry.pop("plazos")
@@ -149,7 +151,9 @@ def format_and_store_cienciaGob_data():
             contenido
         )
     )
+    contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
     extract_key_words_azure(contenido)
+    send_to_db(contenido)
     return contenido
 
 
@@ -165,23 +169,23 @@ def format_and_store_turismoGob_data():
         entry.pop("plazos")
         return entry
         
-    contenido = turismoGob()
+    contenido = asyncio.run(turismoGob())
     contenido = list(
         map(
             extract_dates,
             contenido
         )
     )
-    ## TODO: Save to PostgreSQL
-    ## TODO: get main words, nltk
-    ## TODO: use language model to get vector transform
+    contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
+    extract_key_words_azure(contenido)
+    send_to_db(contenido)
 
 def format_and_store_SNPSAP_data():
     # El dataset tiene columnas:
     # Código BDNS, Mecanismo de Recuperación y Resiliencia, Administración, Departamento, Órgano, Fecha de Registro,
     # Título, Título Cooficial
     # presupuesto, fecha_inicio, fecha_final, finalidad
-    df = SNPSAP()
+    df: pd.DataFrame = asyncio.run(SNPSAP())
     df = df[["Adminitración", "Departamento", "Fecha de Registro", "Título", "presupuesto", "fecha_inicio", "fecha_final", "finalidad"]]
     df = df.rename(columns={
         "Adminitración": "localidad",
@@ -190,9 +194,8 @@ def format_and_store_SNPSAP_data():
         "Título": "convocatoria",
     })
     df["presupuesto"] = df["presupuesto"].map(lambda string: int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")))
-    ## TODO: Save to PostgreSQL
-    ## TODO: get main words, nltk
-    ## TODO: use language model to get vector transform
+    df.to_dict(orient="records")
+    pass
 
 
 def send_to_db(contenido):
@@ -206,9 +209,10 @@ def send_to_db(contenido):
     """
     
     engine = create_engine(
-        f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@localhost:{os.getenv("POSTGRES_PORT")}/{os.getenv("POSTGRES_DB")}",
+        f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@{os.getenv("POSTGRES_HOST")}:{os.getenv("POSTGRES_PORT")}/{os.getenv("POSTGRES_DB")}"
     )
     Session = sessionmaker(bind=engine)
+    print(engine)
     CallData.init_table(engine)
     with Session() as session:
         # Assuming `contenido` is a list of dictionaries with the data to be inserted
@@ -220,7 +224,8 @@ def send_to_db(contenido):
                 fecha_inicio=entry["fecha_inicio"],
                 fecha_final=entry["fecha_final"],
                 presupuesto=entry["presupuesto"],
-                descripcion=entry["descripcion"],
+                keywords=entry["keywords"],
+                localidad=entry["localidad"],
                 url=entry["url"],
             )
             session.add(call_data)
@@ -230,4 +235,4 @@ def send_to_db(contenido):
 
 
 if __name__ == "__main__":
-    print(format_and_store_cienciaGob_data())
+    print(format_and_store_SNPSAP_data())

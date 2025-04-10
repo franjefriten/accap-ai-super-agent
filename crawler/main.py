@@ -114,7 +114,7 @@ async def cienciaGob():
                 'type': "text"
             },
             {
-                "name": "fecha_publicación",
+                "name": "fecha_publicacion",
                 "selector": ".//p[@class='fecha']/span",
                 'type': "text"
             },
@@ -130,7 +130,7 @@ async def cienciaGob():
             },
             {
                 "name": "descripcion",
-                "selector": ".//div[2]/div[2]/div[2]/p",
+                "selector": ".//div[@class='seccion-acordeon container-fluid'][1]/div[2]/p",
                 "type": "text"
             },
         ]
@@ -160,7 +160,7 @@ async def cienciaGob():
                     break
                 logger.info("Cargando siguiente pagina")
                 #await write_log(LOG_FILE, result, regex=r"^https://www.ciencia.gob.es/Convocatorias/*")
-                contenido = [{**json.loads(res.extracted_content)[0], "url": res.url} for res in result if res.extracted_content != '']
+                contenido = [{**json.loads(res.extracted_content)[0], "url": res.url} for res in result if res.extracted_content != "[]"]
                 i+=1  
             except Exception as e:
                 logger.error(f"Error: {e}")
@@ -254,7 +254,7 @@ async def turismoGob():
                 descripcion = " ".join([p.get_text(strip=True) for p in pool.select(".col-contenido p")])
                 entrada["descripcion"] = descripcion
             logger.info("Informacion cargada")
-            await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
+            #await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
         except Exception as e:
             logger.error(f"Error: {e}")
     
