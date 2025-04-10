@@ -160,7 +160,7 @@ async def cienciaGob():
                     break
                 logger.info("Cargando siguiente pagina")
                 #await write_log(LOG_FILE, result, regex=r"^https://www.ciencia.gob.es/Convocatorias/*")
-                contenido = [{**json.loads(res.extracted_content)[0], "url": res.url} for res in result]
+                contenido = [{**json.loads(res.extracted_content)[0], "url": res.url} for res in result if res.extracted_content != '']
                 i+=1  
             except Exception as e:
                 logger.error(f"Error: {e}")
