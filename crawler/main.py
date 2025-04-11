@@ -263,24 +263,27 @@ async def turismoGob():
 
 
 async def SNPSAP():
-    pdf_filename = f"listado{datetime.today().day}_{datetime.today().month}_{datetime.today().year}.pdf" 
+    pdf_filename = f"listado{datetime.today().month}_{datetime.today().day}_{datetime.today().year}.pdf" 
     LOG_FILE = "crawler/logger.txt"
+    
     with open("crawler/urls.json", "rb") as urlsfile:
         URLS = dict(json.load(urlsfile))
     base_url = URLS["SNPSAP"]
-    if pdf_filename not in os.listdir("./data/pdfs"):
+
+    if pdf_filename not in os.listdir("./downloads/pdf"):
 
         # Configure Firefox options for automatic PDF downloading
         firefox_options = Options()
         firefox_options.set_preference("browser.download.folderList", 2)  # Use custom directory
-        firefox_options.set_preference("browser.download.dir", os.path.join(os.getcwd(), "data/pdf"))  # Change this path
+        firefox_options.set_preference("browser.download.dir", os.path.join(os.getcwd(), "downloads/pdf"))  # Change this path
         firefox_options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")  # Auto-save PDFs
         firefox_options.set_preference("pdfjs.disabled", True)  # Disable PDF preview in browser
+        firefox_options.set_preference("headless", True)
     
         driver = webdriver.Firefox(options=firefox_options)
 
         # Open the target webpage
-        driver.get(url)
+        driver.get(base_url)
 
         # Wait until a PDF link appears (Modify XPath if necessary)
         try:
@@ -298,70 +301,75 @@ async def SNPSAP():
 
         except Exception as e:
             print("Error: PDF link not found.", str(e))
-    else:
-        input_doc_path = Path(os.path.join('downloads', pdf_filename))
-        doc_converter = DocumentConverter()
-        conv_res = doc_converter.convert(input_doc_path)
-        df = pd.DataFrame()
-        for table_ix, table in enumerate(conv_res.document.tables):
-            table_df: pd.DataFrame = table.export_to_dataframe()
-            df = pd.concat([df, table_df], ignore_index=True, axis=0)
-        df["links"] = base_url + df["Código BDNS"]
-        df[["presupuesto", "fecha_inicio", "fecha_final", "finalidad"]] = np.nan
-        print(df.head())
-        schema = {
-            "name": "Convocatoria",
-            "baseSelector": "//app-convocatoria",    # Repeated elements
-            "fields": [
-                {
-                    "name": "presupuesto",
-                    "selector": "//*[@id='print']/div[2]/div[5]/div[2]",
-                    'type': "text"
-                },
-                {
-                    "name": "fecha_inicio",
-                    "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[3]/div[2]",
-                    'type': "text"
-                },
-                {
-                    "name": "fecha_final",
-                    "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[4]/div[2]",
-                    "type": "text"
-                },
-                {
-                    "name": "finalidad",
-                    "selector": "//*[@id='print']/div[4]/div[4]/div[2]",
-                    'type': "text"
-                }
-            ]
-        }
-        extraction_strategy = JsonXPathExtractionStrategy(schema=schema, logger=logger, verbose=True)
-        run_config = CrawlerRunConfig(
-            scraping_strategy=WebScrapingStrategy(logger=logger),
-            extraction_strategy=extraction_strategy,
-        )
-        browser_config = BrowserConfig(
-             verbose=True,
-             accept_downloads=True,
-             ignore_https_errors=True,
-        )
-        async with AsyncWebCrawler(config=browser_config) as crawler:
-            #if not isinstance(convocatorias, list): # a instancia es una url
-            for i, url in enumerate(df["links"]):
-                try:
-                    result = await crawler.arun(url="https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatorias/824642", config=run_config) 
-                    if result.success:
-                        data = dict(json.loads(result.extracted_content))
-                        df.iloc[i, data.keys()] = data.values()
-                        #async with aio_open(LOG_FILE, "a", encoding="utf-8") as f:
-                        #    await f.write(json.dumps(data, indent=4))
-                    #await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
-                except Exception as e:
-                    logger.error(f"Error: {e}")
     
-    return df.to_dict(orient="records")
+    input_doc_path = Path(os.path.join('downloads/pdf', pdf_filename))
+    doc_converter = DocumentConverter()
+    conv_res = doc_converter.convert(input_doc_path)
+    df = pd.DataFrame()
+    for table_ix, table in enumerate(conv_res.document.tables):
+        table_df: pd.DataFrame = table.export_to_dataframe()
+        df = pd.concat([df, table_df], ignore_index=True, axis=0)
+        logging.info(f"Data extraída de tabla {table_ix}")
+    df["url"] = list(map(lambda x: os.path.join(base_url, x), df["Código BDNS"]))
+    df[["presupuesto", "fecha_inicio", "fecha_final", "finalidad"]] = pd.DataFrame(
+        data=[],
+        columns=["presupuesto", "fecha_inicio", "fecha_final", "finalidad"],
+        dtype=str
+    )
+    schema = {
+        "name": "Convocatoria",
+        "baseSelector": "//app-convocatoria",    # Repeated elements
+        "fields": [
+            {
+                "name": "presupuesto",
+                "selector": "//*[@id='print']/div[2]/div[5]/div[2]",
+                'type': "text"
+            },
+            {
+                "name": "fecha_inicio",
+                "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[3]/div[2]",
+                'type': "text"
+            },
+            {
+                "name": "fecha_final",
+                "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[4]/div[2]",
+                "type": "text"
+            },
+            {
+                "name": "finalidad",
+                "selector": "//*[@id='print']/div[4]/div[4]/div[2]",
+                'type': "text"
+            }
+        ]
+    }
+    extraction_strategy = JsonXPathExtractionStrategy(schema=schema, logger=logger, verbose=True)
+    run_config = CrawlerRunConfig(
+        scraping_strategy=WebScrapingStrategy(logger=logger),
+        extraction_strategy=extraction_strategy,
+    )
+    browser_config = BrowserConfig(
+         verbose=True,
+         accept_downloads=True,
+         ignore_https_errors=True,
+    )
+    async with AsyncWebCrawler(config=browser_config) as crawler:
+        #if not isinstance(convocatorias, list): # a instancia es una url
+        for i, url in enumerate(df["url"]):
+            try:
+                result = await crawler.arun(url=url, config=run_config) 
+                if result.success:
+                    data = dict(json.loads(result.extracted_content)[0])
+                    df.loc[i, data.keys()] = data.values()
+                    #async with aio_open(LOG_FILE, "a", encoding="utf-8") as f:
+                    #    await f.write(json.dumps(data, indent=4))
+                #await write_log(LOG_FILE, result1, regex=r"^https://www.mintur.gob.es/PortalAyudas/[\w]+/Paginas/Index.aspx")
+            except Exception as e:
+                logger.error(f"Error: {e}")
+    
+    return df
+
 
 if __name__ == "__main__":
-    # asyncio.run(cienciaGob())
-    # asyncio.run(turismoGob())
-    asyncio.run(cienciaGob())
+    df = asyncio.run(SNPSAP())
+    print(df.head())
+    print(df.info())

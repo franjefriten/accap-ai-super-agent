@@ -7,13 +7,6 @@ import numpy as np
 
 from main import turismoGob, cienciaGob, SNPSAP
 
-from sqlalchemy import Column, Integer, String, DateTime, Float
-from sqlalchemy import inspect
-from sqlalchemy.orm import Mapped, DeclarativeBase
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
-from pgvector.sqlalchemy import Vector
-
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -22,39 +15,39 @@ from azure.core.credentials import AzureKeyCredential
 from azure.ai.textanalytics import TextAnalyticsClient
 
 
-class Base(DeclarativeBase):
-    """Base class for SQLAlchemy models."""
-    pass
-
-class CallData(Base):
-    __tablename__: str = "call_data"
-
-    id: Mapped[int] = Column(Integer, primary_key=True)
-    nombre: Mapped[str] = Column(String(255), nullable=False)
-    entidad: Mapped[str] = Column(String(255), nullable=True)
-    localidad: Mapped[str] = Column(String(255), nullable=True)
-    fecha_publicacion: Mapped[DateTime] = Column(DateTime, nullable=True)
-    fecha_inicio: Mapped[DateTime] = Column(DateTime, nullable=True)
-    fecha_final: Mapped[DateTime] = Column(DateTime, nullable=True)
-    presupuesto: Mapped[float] = Column(Float, nullable=True)
-    url: Mapped[str] = Column(String(255), nullable=False)
-    keywords: Vector = Vector(dim=300)
-    
-
-    def __repr__(self):
-        return f"""
-        <CallData(id={self.id}, titulo={self.nombre}, entidad_convocante={self.entidad}, 
-        fecha_inicio={self.fecha_inicio}, fecha_final={self.fecha_final}, presupuesto={self.presupuesto}, 
-        descripcion={self.descripcion}, url={self.url})>
-        """
-    @classmethod
-    def init_table(cls, engine):
-        """Initialize the table in the database."""
-        if not inspect(engine).has_table(cls.__tablename__):
-            cls.metadata.create_all(engine)
-            print(f"Table {cls.__tablename__} created.")
-        else:
-            print(f"Table {cls.__tablename__} already exists.")
+# class Base(DeclarativeBase):
+    # """Base class for SQLAlchemy models."""
+    # pass
+# 
+# class CallData(Base):
+    # __tablename__: str = "call_data"
+# 
+    # id: Mapped[int] = Column(Integer, primary_key=True)
+    # nombre: Mapped[str] = Column(String(255), nullable=False)
+    # entidad: Mapped[str] = Column(String(255), nullable=True)
+    # localidad: Mapped[str] = Column(String(255), nullable=True)
+    # fecha_publicacion: Mapped[DateTime] = Column(DateTime, nullable=True)
+    # fecha_inicio: Mapped[DateTime] = Column(DateTime, nullable=True)
+    # fecha_final: Mapped[DateTime] = Column(DateTime, nullable=True)
+    # presupuesto: Mapped[float] = Column(Float, nullable=True)
+    # url: Mapped[str] = Column(String(255), nullable=False)
+    # keywords: Vector = Vector(dim=300)
+    # 
+# 
+    # def __repr__(self):
+        # return f"""
+        # <CallData(id={self.id}, titulo={self.nombre}, entidad_convocante={self.entidad}, 
+        # fecha_inicio={self.fecha_inicio}, fecha_final={self.fecha_final}, presupuesto={self.presupuesto}, 
+        # descripcion={self.descripcion}, url={self.url})>
+        # """
+    # @classmethod
+    # def init_table(cls, engine):
+        # """Initialize the table in the database."""
+        # if not inspect(engine).has_table(cls.__tablename__):
+            # cls.metadata.create_all(engine)
+            # print(f"Table {cls.__tablename__} created.")
+        # else:
+            # print(f"Table {cls.__tablename__} already exists.")
 
 
 def extract_key_words_azure(contenido):
@@ -76,7 +69,7 @@ def extract_key_words_azure(contenido):
     
     print("Palabras claves extraidas de Azure AI Services")
 
-    return None
+    return contenido
 
 
 
@@ -153,7 +146,6 @@ def format_and_store_cienciaGob_data():
     )
     contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
     extract_key_words_azure(contenido)
-    send_to_db(contenido)
     return contenido
 
 
@@ -177,8 +169,8 @@ def format_and_store_turismoGob_data():
         )
     )
     contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
-    extract_key_words_azure(contenido)
-    send_to_db(contenido)
+    contenido = extract_key_words_azure(contenido)
+    return contenido
 
 def format_and_store_SNPSAP_data():
     # El dataset tiene columnas:
@@ -186,53 +178,21 @@ def format_and_store_SNPSAP_data():
     # Título, Título Cooficial
     # presupuesto, fecha_inicio, fecha_final, finalidad
     df: pd.DataFrame = asyncio.run(SNPSAP())
-    df = df[["Adminitración", "Departamento", "Fecha de Registro", "Título", "presupuesto", "fecha_inicio", "fecha_final", "finalidad"]]
+    df = df[["Administración", "Departamento", "Fecha de registro", "Título", "presupuesto", "fecha_inicio", "fecha_final", "finalidad"]]
     df = df.rename(columns={
         "Adminitración": "localidad",
         "Departamento": "entidad",
         "Fecha de Registro": "fecha_publicacion",
         "Título": "convocatoria",
+        "descripcion": "keywords"
     })
-    df["presupuesto"] = df["presupuesto"].map(lambda string: int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")))
-    df.to_dict(orient="records")
-    pass
-
-
-def send_to_db(contenido):
-    """Función general para guardar los datos en la base de datos.
-    Se conecta a la base de datos PostgreSQL y guarda los datos extraídos y formateados.
-    Se utiliza SQLAlchemy para la conexión y manipulación de la base de datos.
+    df["presupuesto"] = df["presupuesto"].map(lambda string: int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")) if type(string) is not float else None)
+    df = df[["convocatoria", "presupuesto", "localidad", "entidad", "fecha_publicacion", "fecha_inicio", "fecha_final", "keywords", "url"]]
+    return df.to_dict(orient="records")
     
-    Keyword arguments:
-    argument -- description
-    Return: return_description
-    """
-    
-    engine = create_engine(
-        f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@{os.getenv("POSTGRES_HOST")}:{os.getenv("POSTGRES_PORT")}/{os.getenv("POSTGRES_DB")}"
-    )
-    Session = sessionmaker(bind=engine)
-    print(engine)
-    CallData.init_table(engine)
-    with Session() as session:
-        # Assuming `contenido` is a list of dictionaries with the data to be inserted
-        for entry in contenido:
-            call_data = CallData(
-                nombre=entry["convocatoria"],
-                entidad=entry["entidad"],
-                fecha_publicaciom=entry["fecha_publicacion"],
-                fecha_inicio=entry["fecha_inicio"],
-                fecha_final=entry["fecha_final"],
-                presupuesto=entry["presupuesto"],
-                keywords=entry["keywords"],
-                localidad=entry["localidad"],
-                url=entry["url"],
-            )
-            session.add(call_data)
-        session.commit()
-    
-    return None
 
 
 if __name__ == "__main__":
-    print(format_and_store_SNPSAP_data())
+    df = format_and_store_SNPSAP_data()
+    print(df.head())
+    print(df.info())
