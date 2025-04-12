@@ -2,7 +2,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 import os
 from db_utils.db_schema import CallData
-from crawler.format_data import *
+from crawler.get_and_format_data import *
 
 
 def send_to_db(contenido):
@@ -36,5 +36,14 @@ def send_to_db(contenido):
             )
             session.add(call_data)
         session.commit()
+        print("Content stored")
     
     return None
+
+
+def fetch_all_data_and_store_in_db():
+    contenido_cienciaGob = get_and_format_cienciaGob_data()
+    contenido_turismoGob = get_and_format_turismoGob_data()
+    contenido_SNPSAP = get_and_format_SNPSAP_data()
+    contenido = {**contenido_cienciaGob, **contenido_turismoGob, **contenido_SNPSAP}
+    send_to_db(contenido=contenido)
