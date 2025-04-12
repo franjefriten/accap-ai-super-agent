@@ -2,7 +2,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 import os
 from db_utils.db_schema import CallData
-from crawler.format_and_store_data import *
+from crawler.format_data import *
 
 
 def send_to_db(contenido):
