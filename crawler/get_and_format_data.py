@@ -5,7 +5,7 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 
-from main import turismoGob, cienciaGob, SNPSAP
+from crawler.main import turismoGob, cienciaGob, SNPSAP
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -62,7 +62,7 @@ def extract_key_words_azure(contenido):
     endpoint = os.environ["AZURE_AI_SERVICES_ENDPOINT"]
     key = os.environ["AZURE_AI_SERVICES_API_KEY"]
 
-    text_analytics_client = TextAnalyticsClient(endpoint=endpoint, credential=AzureKeyCredential(key))
+    text_analytics_client = TextAnalyticsClient(endpoint=endpoint, credential=AzureKeyCredential(key), default_language='es')
     articles = [entry["descripcion"] for entry in contenido]
 
     result = text_analytics_client.extract_key_phrases(articles)
@@ -74,9 +74,9 @@ def extract_key_words_azure(contenido):
     return contenido
 
 
-def embbed_key_words(contenido: dict):
-    model = SentenceTransformer("models/all-MiniLM-L6-v2")
-    contenido = [{k: (model.encode(sentences=v) if k == "keywords" else v) for k, v in contenido.items()}]
+def embbed_key_words(contenido: list[dict]):
+    model = SentenceTransformer("jaimevera1107/all-MiniLM-L6-v2-similarity-es")
+    contenido = [{k: (np.mean(model.encode(sentences=v), axis=0) if k == "keywords" else v) for k, v in entry.items()} for entry in contenido]
     return contenido
 
 
@@ -88,13 +88,13 @@ def get_and_format_cienciaGob_data():
         pat = r"\d{1,2}\/\d{2}\/\d{2}"
         fechas = re.findall(pat, entry["plazos"])
         if len(fechas) >= 2:
-            entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y").strftime("%d/%m/%Y")
-            entry["fecha_final"] = datetime.strptime(fechas[1], "%d/%m/%y").strftime("%d/%m/%Y")
+            entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y")
+            entry["fecha_final"] = datetime.strptime(fechas[1], "%d/%m/%y")
             entry.pop("plazos")
             return entry
         elif len(fechas) == 1:
-            entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y").strftime("%d/%m/%Y")
-            entry["fecha_final"] = datetime.strptime(fechas[0], "%d/%m/%y").strftime("%d/%m/%Y")
+            entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y")
+            entry["fecha_final"] = datetime.strptime(fechas[0], "%d/%m/%y")
             entry.pop("plazos")
             return entry
         else:
@@ -122,7 +122,7 @@ def get_and_format_cienciaGob_data():
             aux_date = entry["fecha_publicacion"].split(" ")
             aux_date[0] = str(mes_a_num[aux_date[0]])
             aux_date = "/".join(aux_date)
-            entry["fecha_publicacion"] = datetime.strptime(aux_date, "%m/%Y").strftime("%d/%m/%Y")
+            entry["fecha_publicacion"] = datetime.strptime(aux_date, "%m/%Y")
         return entry
 
 
@@ -164,8 +164,8 @@ def get_and_format_turismoGob_data():
     def extract_dates(entry):
         pat = r"\d{1,2}\/\d{2}\/\d{2}"
         fechas = re.findall(pat, entry["plazos"])
-        entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y").strftime("%d/%m/%Y")
-        entry["fecha_final"] = datetime.strptime(fechas[1], "%d/%m/%y").strftime("%d/%m/%Y")
+        entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y")
+        entry["fecha_final"] = datetime.strptime(fechas[1], "%d/%m/%y")
         entry.pop("plazos")
         return entry
         
@@ -197,6 +197,9 @@ def get_and_format_SNPSAP_data():
     })
     df["presupuesto"] = df["presupuesto"].map(lambda string: int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")) if type(string) is not float else None)
     df = df[["convocatoria", "presupuesto", "localidad", "entidad", "fecha_publicacion", "fecha_inicio", "fecha_final", "keywords", "url"]]
+    df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%y", errors="cource")
+    df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%y", errors="cource")
+    df["fecha_inicio"] = pd.to_datetime(df["fecha_publicacion"], format="%d/%m/%y", errors="coerce")
     contenido = df.to_dict(orient="records")
     contenido = extract_key_words_azure(contenido)
     contenido = embbed_key_words(contenido=contenido)

@@ -11,7 +11,7 @@ services:
   
   db:
     container_name: postgres
-    image: postgres:latest
+    image: ankane/pgvector:latest 
     # The `restart` policy ensures that the container is restarted if it stops
     # unexpectedly. This is useful for production environments.
     restart: always
