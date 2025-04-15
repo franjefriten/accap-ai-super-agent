@@ -176,7 +176,7 @@ def get_and_format_turismoGob_data():
             contenido
         )
     )
-    contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
+    contenido = [{**entry, "localidad": None, "presupuesto": None} for entry in contenido]
     contenido = extract_key_words_azure(contenido)
     contenido = embbed_key_words(contenido=contenido)
     return contenido
@@ -187,20 +187,21 @@ def get_and_format_SNPSAP_data():
     # Título, Título Cooficial
     # presupuesto, fecha_inicio, fecha_final, finalidad
     df: pd.DataFrame = asyncio.run(SNPSAP())
-    df = df[["Administración", "Departamento", "Fecha de registro", "Título", "presupuesto", "fecha_inicio", "fecha_final", "finalidad"]]
+    print(df.columns)
+    df = df[["Administración", "Departamento", "Fecha de registro", "Título", "presupuesto", "fecha_inicio", "fecha_final", "finalidad", "url"]]
     df = df.rename(columns={
-        "Adminitración": "localidad",
+        "Administración": "localidad",
         "Departamento": "entidad",
-        "Fecha de Registro": "fecha_publicacion",
+        "Fecha de registro": "fecha_publicacion",
         "Título": "convocatoria",
-        "descripcion": "keywords"
+        "finalidad": "descripcion"
     })
     df["presupuesto"] = df["presupuesto"].map(lambda string: int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")) if type(string) is not float else None)
-    df = df[["convocatoria", "presupuesto", "localidad", "entidad", "fecha_publicacion", "fecha_inicio", "fecha_final", "keywords", "url"]]
-    df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%y", errors="cource")
-    df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%y", errors="cource")
+    df = df[["convocatoria", "presupuesto", "localidad", "entidad", "fecha_publicacion", "fecha_inicio", "fecha_final", "descripcion", "url"]]
+    df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%y", errors="coerce")
+    df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%y", errors="coerce")
     df["fecha_inicio"] = pd.to_datetime(df["fecha_publicacion"], format="%d/%m/%y", errors="coerce")
-    contenido = df.to_dict(orient="records")
+    contenido = df.iloc[20:30].to_dict(orient="records") # Limitados por el alcance de Azure AI
     contenido = extract_key_words_azure(contenido)
     contenido = embbed_key_words(contenido=contenido)
     return contenido

@@ -86,70 +86,70 @@ def fetch_all_data_and_store_in_db(source: str):
             print("SNPSAP contenido volcado")
 
 
-# class QueryReasoner:
-#     def __init__(self):
-#         self.llm = ToolCallingAgent(model="deepseek-r1-distill-qwen-1.5B")
+class QueryReasoner:
+    def __init__(self):
+        self.llm = ToolCallingAgent(model="deepseek-r1-distill-qwen-1.5B")
         
-#     async def analyze_query(self, user_query: str):
-#         """Decide between SQL or vector search"""
-#         prompt = f"""
-#         Analyze this database query and choose the best approach:
-#         Query: "{user_query}"
+    async def analyze_query(self, user_query: str):
+        """Decide between SQL or vector search"""
+        prompt = f"""
+        Analyze this database query and choose the best approach:
+        Query: "{user_query}"
         
-#         Options:
-#         1. SQL - For exact matches (dates, names, exact budgets)
-#         2. VECTOR - For semantic similarity (e.g., "science grants", "education funding")
+        Options:
+        1. SQL - For exact matches (dates, names, exact budgets)
+        2. VECTOR - For semantic similarity (e.g., "science grants", "education funding")
         
-#         Respond with either "SQL" or "VECTOR".
-#         """
+        Respond with either "SQL" or "VECTOR".
+        """
         
-#         decision = await self.llm.generate(prompt)
-#         return decision.strip().upper()
+        decision = await self.llm.generate(prompt)
+        return decision.strip().upper()
 
 
-# class HybridSearch:
-#     def __init__(self):
-#         self.reasoner = QueryReasoner()
-#         self.Session = sessionmaker(bind=engine)
+class HybridSearch:
+    def __init__(self):
+        self.reasoner = QueryReasoner()
+        self.Session = sessionmaker(bind=engine)
         
-#     async def search(self, user_query: str, top_k: int = 5):
-#         # Step 1: Reason about query type
-#         search_type = await self.reasoner.analyze_query(user_query)
+    async def search(self, user_query: str, top_k: int = 5):
+        # Step 1: Reason about query type
+        search_type = await self.reasoner.analyze_query(user_query)
         
-#         with self.Session() as session:
-#             if search_type == "SQL":
-#                 # Traditional SQL search
-#                 query = self._build_sql_query(user_query)
-#                 results = session.execute(query).fetchall()
-#             else:
-#                 # Vector similarity search
-#                 query_embedding = await self._get_embedding(user_query)
-#                 results = self._vector_search(session, query_embedding, top_k)
+        with self.Session() as session:
+            if search_type == "SQL":
+                # Traditional SQL search
+                query = self._build_sql_query(user_query)
+                results = session.execute(query).fetchall()
+            else:
+                # Vector similarity search
+                query_embedding = await self._get_embedding(user_query)
+                results = self._vector_search(session, query_embedding, top_k)
                 
-#         return results
+        return results
     
-#     async def _get_embedding(self, text: str) -> list[float]:
-#         """Use your DeepSeek model to generate embeddings"""
-#         # Implement your embedding generation here
-#         return [0.1, 0.2, ...]  # 300-dim vector
+    async def _get_embedding(self, text: str) -> list[float]:
+        """Use your DeepSeek model to generate embeddings"""
+        # Implement your embedding generation here
+        return [0.1, 0.2, ...]  # 300-dim vector
     
-#     def _vector_search(self, session, query_embedding: list[float], top_k: int):
-#         """Cosine similarity search using pgvector"""
-#         return session.execute(
-#             text("""
-#             SELECT id, nombre, entidad, 
-#                   1 - (keywords <=> :embedding) as similarity
-#             FROM call_data
-#             ORDER BY similarity DESC
-#             LIMIT :top_k
-#             """), 
-#             {"embedding": query_embedding, "top_k": top_k}
-#         ).fetchall()
+    def _vector_search(self, session, query_embedding: list[float], top_k: int):
+        """Cosine similarity search using pgvector"""
+        return session.execute(
+            text("""
+            SELECT id, nombre, entidad, 
+                  1 - (keywords <=> :embedding) as similarity
+            FROM call_data
+            ORDER BY similarity DESC
+            LIMIT :top_k
+            """), 
+            {"embedding": query_embedding, "top_k": top_k}
+        ).fetchall()
     
-#     def _build_sql_query(self, natural_query: str) -> str:
-#         """Convert natural language to SQL (simplified)"""
-#         # Use your LLM to generate SQL here
-#         return text("SELECT * FROM call_data WHERE nombre LIKE '%grant%'")
+    def _build_sql_query(self, natural_query: str) -> str:
+        """Convert natural language to SQL (simplified)"""
+        # Use your LLM to generate SQL here
+        return text("SELECT * FROM call_data WHERE nombre LIKE '%grant%'")
 
 if __name__ == "__main__":
-    fetch_all_data_and_store_in_db(source="turismoGob")
+    fetch_all_data_and_store_in_db(source="cienciaGob")
