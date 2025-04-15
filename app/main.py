@@ -11,6 +11,7 @@ import numpy as np
 
 from db_utils.db_schema import CallData
 from crawler.get_and_format_data import *
+from models.agente_rag import *
 
 from smolagents import tool, CodeAgent, ToolCallingAgent
 from smolagents import HfApiModel
@@ -86,70 +87,42 @@ def fetch_all_data_and_store_in_db(source: str):
             print("SNPSAP contenido volcado")
 
 
-class QueryReasoner:
-    def __init__(self):
-        self.llm = ToolCallingAgent(model="deepseek-r1-distill-qwen-1.5B")
-        
-    async def analyze_query(self, user_query: str):
-        """Decide between SQL or vector search"""
-        prompt = f"""
-        Analyze this database query and choose the best approach:
-        Query: "{user_query}"
-        
-        Options:
-        1. SQL - For exact matches (dates, names, exact budgets)
-        2. VECTOR - For semantic similarity (e.g., "science grants", "education funding")
-        
-        Respond with either "SQL" or "VECTOR".
+def query_the_rag_agent():
+    print(
         """
-        
-        decision = await self.llm.generate(prompt)
-        return decision.strip().upper()
+        ¡Hola! Soy ACCAP, tu Asistente para Consultas de Convocatorias y Ayudas Públicas.
+        Tengo en mi una base de datos de varias consultas con esta información.
+        - nombre: nombre oficial de la convocatoria
+        - entidad: entidad que organiza la convocatoria
+        - fecha_publicacion: fecha de publicacion de la convocatoria
+        - fecha_inicio: fecha de inicio del período de aplicabilidad de la convocatoria
+        - fecha_final: fecha final del período de aplicabilidad de la convocatoria
+        - presupuesto: monto económico que ofrece la convocatoria
+        - localidad: localidad donde se concede la ayuda
+        - url: enlace para más información
+        Por favor, mantente fiel a la estructura de arriba y emplea los nombres como
+        están redactados. En caso de que no sea capaz de hayar alguna, realizaré una búsqueda semántica
+        con el mensaje de tu consulta y te mostraré las que creo que más se aproximan a lo que pides.
+        Si quieres salir, solo escribe 'exit'
+        """
+    )
+    query = input()
+    agente = CodeAgent(
+        tools=[
+            PerformSemanticSearchQuerying(),
+            PerformStandardSQLQuerying()
+        ],
+        model=HfApiModel(
+            model_id="deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
+            token=os.getenv("HUGGING_FACE_TOKEN")
+        )
+    )
+    while query.lower() != "exit":
+        agente.run(
+            query,
+            additional_args={'uri': URI_TO_DB}
+        )
 
-
-class HybridSearch:
-    def __init__(self):
-        self.reasoner = QueryReasoner()
-        self.Session = sessionmaker(bind=engine)
-        
-    async def search(self, user_query: str, top_k: int = 5):
-        # Step 1: Reason about query type
-        search_type = await self.reasoner.analyze_query(user_query)
-        
-        with self.Session() as session:
-            if search_type == "SQL":
-                # Traditional SQL search
-                query = self._build_sql_query(user_query)
-                results = session.execute(query).fetchall()
-            else:
-                # Vector similarity search
-                query_embedding = await self._get_embedding(user_query)
-                results = self._vector_search(session, query_embedding, top_k)
-                
-        return results
-    
-    async def _get_embedding(self, text: str) -> list[float]:
-        """Use your DeepSeek model to generate embeddings"""
-        # Implement your embedding generation here
-        return [0.1, 0.2, ...]  # 300-dim vector
-    
-    def _vector_search(self, session, query_embedding: list[float], top_k: int):
-        """Cosine similarity search using pgvector"""
-        return session.execute(
-            text("""
-            SELECT id, nombre, entidad, 
-                  1 - (keywords <=> :embedding) as similarity
-            FROM call_data
-            ORDER BY similarity DESC
-            LIMIT :top_k
-            """), 
-            {"embedding": query_embedding, "top_k": top_k}
-        ).fetchall()
-    
-    def _build_sql_query(self, natural_query: str) -> str:
-        """Convert natural language to SQL (simplified)"""
-        # Use your LLM to generate SQL here
-        return text("SELECT * FROM call_data WHERE nombre LIKE '%grant%'")
 
 if __name__ == "__main__":
-    fetch_all_data_and_store_in_db(source="cienciaGob")
+    query_the_rag_agent()
