@@ -1,7 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime, Float, inspect
-from sqlalchemy.orm import Mapped, DeclarativeBase, sessionmaker, declarative_base
+from sqlalchemy import Column, Integer, String, DateTime, Float, inspect, Null
+from sqlalchemy.orm import Mapped, DeclarativeBase
 from pgvector.sqlalchemy import Vector
-from sqlalchemy.dialects.postgresql import ARRAY
 
 class Base(DeclarativeBase):
     """Base class for SQLAlchemy models."""
@@ -11,13 +10,13 @@ class CallData(Base):
     __tablename__ = "call_data"
 
     id: Mapped[int] = Column(Integer, primary_key=True)
-    nombre: Mapped[str] = Column(String(255), nullable=False, default=None)
-    entidad: Mapped[str] = Column(String(255), nullable=True, default=None)
-    fecha_publicacion: Mapped[DateTime] = Column(DateTime, nullable=True, default=None)
-    fecha_inicio: Mapped[DateTime] = Column(DateTime, nullable=True, default=None)
-    fecha_final: Mapped[DateTime] = Column(DateTime, nullable=True, default=None)
-    presupuesto: Mapped[float] = Column(Float, nullable=True, default=None)
-    localidad: Mapped[str] = Column(String(255), nullable=True, default=None)
+    nombre: Mapped[str] = Column(String(255), nullable=False, default=Null)
+    entidad: Mapped[str] = Column(String(255), nullable=True, default=Null)
+    fecha_publicacion: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)
+    fecha_inicio: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)
+    fecha_final: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)
+    presupuesto: Mapped[float] = Column(Float, nullable=True, default=Null)
+    localidad: Mapped[str] = Column(String(255), nullable=True, default=Null)
     keywords: Mapped[list[float]] = Column(Vector(dim=384))
     url: Mapped[str] = Column(String(255), nullable=False)
 
