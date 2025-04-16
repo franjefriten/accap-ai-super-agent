@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, text
 from smolagents import Tool
 from sentence_transformers import SentenceTransformer
 import numpy as np
+import os
 
 # class QueryReasoner:
 #     def __init__(self):
@@ -100,16 +101,16 @@ class PerformStandardSQLQuerying(Tool):
         "query": {
             "type": "string",
             "description": "The query to perform. This should be correct SQL."
-        },
-        "uri": {
-            "type": "string",
-            "description": "path to the database"
         }
     }
     output_type = "string"
 
 
-    def forward(self, query: str, uri: str):
+    def forward(
+        self,
+        query: str,
+    ):
+        uri: str = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@localhost:5432/{os.getenv("POSTGRES_DB")}",
         output = "Estas son las entradas que más se pueden ajustar a tu consulta:"
         engine = create_engine(uri)
         Session = sessionmaker(bind=engine)
@@ -153,15 +154,15 @@ class PerformSemanticSearchQuerying(Tool):
             "type": "array",
             "description": "python list of strings that contains the main keywords og the user query"
         },
-        "uri": {
-            "type": "string",
-            "description": "path to the database"
-        }
     }
     output_type = "string"
 
 
-    def forward(self, uri: str, keywords: list[str]):
+    def forward(
+        self,
+        keywords: list[str],
+    ):
+        uri: str = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@localhost:5432/{os.getenv("POSTGRES_DB")}",
         output = "Estas son las entradas que más se pueden ajustar a tu consulta:"
         engine = create_engine(uri)
         Session = sessionmaker(bind=engine)

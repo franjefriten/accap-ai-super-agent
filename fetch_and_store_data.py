@@ -1,5 +1,5 @@
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 import os
 from db_utils.db_schema import CallData
 from crawler.get_and_format_data import *
@@ -47,3 +47,19 @@ def fetch_all_data_and_store_in_db():
     contenido_SNPSAP = get_and_format_SNPSAP_data()
     contenido = {**contenido_cienciaGob, **contenido_turismoGob, **contenido_SNPSAP}
     send_to_db(contenido=contenido)
+
+def query_db():
+
+    engine = create_engine(
+        f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@localhost:5432/{os.getenv("POSTGRES_DB")}"
+    )
+    Session = sessionmaker(bind=engine)
+    CallData.init_table(engine)
+    with Session() as session:
+        result = session.execute(
+            text(
+                "SELECT fecha_publicacion FROM call_data;"
+            )
+        )
+        print()
+    

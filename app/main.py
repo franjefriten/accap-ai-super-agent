@@ -8,6 +8,8 @@ import os
 from datetime import datetime
 import time
 import numpy as np
+import base64
+import logging
 
 from db_utils.db_schema import CallData
 from crawler.get_and_format_data import *
@@ -15,6 +17,13 @@ from models.agente_rag import *
 
 from smolagents import tool, CodeAgent, ToolCallingAgent
 from smolagents import HfApiModel
+from transformers import AutoModelForCausalLM
+
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider  
+
+from sentence_transformers import SentenceTransformer  
+from transformers.utils import logging as transfomers_logging 
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -87,7 +96,7 @@ def fetch_all_data_and_store_in_db(source: str):
             print("SNPSAP contenido volcado")
 
 
-def query_the_rag_agent():
+def query_the_huggingface_rag_agent():
     print(
         """
         ¡Hola! Soy ACCAP, tu Asistente para Consultas de Convocatorias y Ayudas Públicas.
@@ -120,9 +129,125 @@ def query_the_rag_agent():
     while query.lower() != "exit":
         agente.run(
             query,
-            additional_args={'uri': URI_TO_DB}
         )
 
 
+def query_the_azure_rag_agent():
+    endpoint = os.getenv("AZURE_AI_AGENT_ENDPOINT")
+    api_key = os.getenv("AZURE_AI_AGENT_API_KEY") 
+    client = AzureOpenAI(  
+        azure_endpoint=endpoint,  
+        api_key=api_key,  
+        api_version="2025-01-01-preview",
+    )
+    print(
+        """
+        ¡Hola! Soy ACCAP, tu Asistente para Consultas de Convocatorias y Ayudas Públicas.
+        Tengo en mi una base de datos de varias consultas con esta información.
+        - nombre: nombre oficial de la convocatoria
+        - entidad: entidad que organiza la convocatoria
+        - fecha_publicacion: fecha de publicacion de la convocatoria
+        - fecha_inicio: fecha de inicio del período de aplicabilidad de la convocatoria
+        - fecha_final: fecha final del período de aplicabilidad de la convocatoria
+        - presupuesto: monto económico que ofrece la convocatoria
+        - localidad: localidad donde se concede la ayuda
+        - url: enlace para más información
+        Por favor, mantente fiel a la estructura de arriba y emplea los nombres como
+        están redactados. En caso de que no sea capaz de hayar alguna, realizaré una búsqueda semántica
+        con el mensaje de tu consulta y te mostraré las que creo que más se aproximan a lo que pides.
+        Si quieres salir, solo escribe 'exit'
+        """
+    )
+    query = input()
+    chat_prompt = [
+        {
+            "role": "system",
+            "content": [
+                {
+                    "type": "text",
+                    "text": 
+                        """Este es un asistente que debe, dada una consulta humana 
+                        y un esquema de tabla de base de datos PostgreSQL, ser capaz de decidir si
+                            1- Convertir el texto a humano a lenguaje SQL para realizar la consulta. En este caso, solo debe devolver el código solicitado como texto plano.
+                            2- Obtener las palabras claves para realizar búsqueda semántica. En este caso, solo debe devolver una cadena de texto con las palabras separadas por comas.
+                        El esquema de base de datos es el siguiente:
+                        table_name: call_data
+                                - id: INTEGER PRIMARY KEY
+                                - nombre: VARCHAR(255) NOT NULLABLE
+                                - entidad: VARCHAR(255)
+                                - fecha_publicacion: DATETIME
+                                - fecha_inicio: DATETIME
+                                - fecha_final: DATETIME
+                                - presupuesto: FLOAT
+                                - localidad: VARCHAR(255)
+                                - url: VARCHAR(255) NOT NULLABLE
+                                - keywords: VECTOR(384)
+                        Solo se debe proveer una de las opciones consideradas
+                        A continuación, el usuario te ofrece su consulta:
+
+                        """ + query
+                }
+            ]
+        }
+    ]
+    # Incluir el resultado de voz si la voz está habilitada  
+    messages = chat_prompt  
+        
+    # Generar finalización  
+    logging.getLogger("openai").setLevel(logging.WARNING)
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("httpcore").setLevel(logging.WARNING)
+    logging.getLogger("azure").setLevel(logging.WARNING)
+    logging.getLogger("transformers").setLevel(logging.WARNING)
+    transfomers_logging.disable_progress_bar()
+    transfomers_logging.set_verbosity_warning()
+    logging.getLogger("urllib3").setLevel(logging.WARNING)
+
+    completion = client.chat.completions.create(  
+        model="gpt-4o-mini",
+        messages=messages,
+        max_tokens=800,  
+        temperature=0.7,  
+        top_p=0.95,  
+        frequency_penalty=0,  
+        presence_penalty=0,
+        stop=None,
+        stream=False  
+    )
+    mensaje = completion.choices[0].message.content
+    if 'sql' in mensaje or "SELECT" in mensaje:
+        query = re.sub(r"```sql\s*|```", "", mensaje).strip()
+        engine = create_engine(URI_TO_DB)
+        Session = sessionmaker(bind=engine)
+        with Session() as session:
+            result = session.execute(text(query)).fetchall()
+
+    else:
+        model = SentenceTransformer("jaimevera1107/all-MiniLM-L6-v2-similarity-es")
+        embedding: np.ndarray = np.mean(model.encode(sentences=query.split(","), show_progress_bar=False), axis=0)
+        engine = create_engine(URI_TO_DB)
+        Session = sessionmaker(bind=engine)
+        with Session() as session:
+            result = session.execute(
+                text("""
+                SELECT *, 
+                      1 - (keywords <=> CAST(:embedding AS vector(384))) as similarity
+                FROM call_data
+                ORDER BY similarity DESC
+                LIMIT 5
+                """), 
+                {"embedding": embedding.tolist()}
+            ).fetchall()
+    print(
+        """
+        ¡Por supuesto! Aquí tienes todos los resultados que he encontrado
+        que se pueden ajustar a tu solicitud.
+        """
+    )
+    df = pd.DataFrame([dict(row._mapping) for row in result])
+    print(df.info())
+    print(df.columns)
+    print(df.head())
+
 if __name__ == "__main__":
-    query_the_rag_agent()
+    query_the_azure_rag_agent()
