@@ -59,8 +59,8 @@ def extract_key_words_azure(contenido):
     argument -- description
     Return: return_description
     """
-    endpoint = os.environ["AZURE_AI_SERVICES_ENDPOINT"]
-    key = os.environ["AZURE_AI_SERVICES_API_KEY"]
+    endpoint = os.environ["AZURE_AI_LANGUAGE_ENDPOINT"]
+    key = os.environ["AZURE_AI_LANGUAGE_API_KEY"]
 
     text_analytics_client = TextAnalyticsClient(endpoint=endpoint, credential=AzureKeyCredential(key), default_language='es')
     articles = [entry["descripcion"] for entry in contenido]
