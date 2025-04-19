@@ -15,9 +15,6 @@ from db_utils.db_schema import CallData
 from crawler.get_and_format_data import *
 from models.agente_rag import *
 
-from smolagents import CodeAgent
-from smolagents import HfApiModel
-
 from openai import AzureOpenAI
 
 from sentence_transformers import SentenceTransformer  
@@ -27,7 +24,7 @@ import streamlit as st
 
 from dotenv import load_dotenv
 load_dotenv()
-URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@localhost:5432/{os.getenv("POSTGRES_DB")}"
+URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@db:5432/{os.getenv("POSTGRES_DB")}"
 
 
 @st.cache_resource

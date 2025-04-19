@@ -11,14 +11,7 @@ from crawl4ai.deep_crawling.filters import (
     ContentTypeFilter
 )
 
-from enum import Enum
-from typing import Annotated, Union, List
-from datetime import datetime
 from pathlib import Path
-import urllib
-
-from pydantic import BaseModel, Field, AfterValidator
-from langchain_huggingface import HuggingFacePipeline, HuggingFaceEndpoint
 
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
@@ -33,13 +26,11 @@ import time
 
 from aiofiles import open as aio_open
 import aiohttp
-import xml.etree.ElementTree as ET
 import asyncio
 import os
 import json
 import logging
 import logging.config
-from asyncio import Semaphore
 import re
 
 import pandas as pd
@@ -56,17 +47,6 @@ logger = logging.getLogger(__name__)
 if os.path.exists(".env"):
     from dotenv import load_dotenv
     load_dotenv(".env")
-
-class Convocatoria(BaseModel):
-    presupesto_total: Annotated[
-        str,
-        Field(pattern=r"\d{1,3}(?:\.\d{3})*,\d{2} ?€"), 
-        AfterValidator(lambda x: int(x[:-5].replace(".", ""))),
-    ]
-    finalidad: str
-    fecha_inicio: datetime
-    fecha_final: datetime
-
 
 async def write_log(log_file="crawler/logger.txt", result=None, regex: str = None):
     async with aio_open(log_file, "a", encoding="utf-8") as f:
