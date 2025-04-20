@@ -66,7 +66,7 @@ async def cienciaGob():
     filter_chain = FilterChain([
         # Only follow URLs with specific patterns
         URLPatternFilter(patterns=[
-            r"^https://www\.ciencia\.gob\.es/Convocatorias/",
+            r"^https://www\.aei\.gob\.es/convocatorias/buscador-convocatorias",
         ]),
 
         # Only crawl specific domains
@@ -86,33 +86,57 @@ async def cienciaGob():
     # TODO: extraer presupuesto
     schema = {
         "name": "Convocatoria",
-        "baseSelector": "//div[@id='convocatoriasEmpleoActivas']",    # Repeated elements
+        "baseSelector": "//div[@role='main']",    # Repeated elements
         "fields": [
             {
                 "name": "convocatoria",
-                "selector": ".//h1",
-                'type': "text"
-            },
-            {
-                "name": "fecha_publicacion",
-                "selector": ".//p[@class='fecha']/span",
-                'type': "text"
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[1]/td/div",
+                'type': "text",
+                "default": ""
             },
             {
                 "name": "plazos",
-                "selector": ".//p[@class='plazos']",
-                "type": "text"
+                "selector": ".//table[@class='table-striped table table-bordered ']/table/tbody/tr[6]/td",
+                "type": "text",
+                "default": ""
             },
             {
                 "name": "entidad",
-                "selector": "//p[@class='organoInstructor']/span",
-                "type": "text"
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[11]/td/",
+                "type": "text",
+                "default": ""
             },
             {
                 "name": "descripcion",
-                "selector": ".//div[@class='seccion-acordeon container-fluid'][1]/div[2]/p",
-                "type": "text"
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[7]/td/div/p[1]",
+                "type": "text",
+                "default": ""
             },
+            {
+                "name": "tipo",
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[13]/td/",
+                "type": "text",
+                "default": ""
+            },
+            {
+                "name": "presupuesto",
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[9]/td/",
+                "type": "text",
+                "default": ""
+            },
+            {
+                "name": "beneficiario",
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[10]/td/",
+                "type": "text",
+                "default": ""
+            },
+            {
+                "name": "bases",
+                "selector": "//aside[@role='complementary']/div/div/div/div/ul/li[1]/a",
+                "type": "attribute",
+                "attribute": "href",
+                "default": ""
+            }
         ]
     }
     extraction_strategy = JsonXPathExtractionStrategy(schema=schema, logger=logger, verbose=True)
@@ -177,22 +201,26 @@ async def turismoGob():
             {
                 "name": "convocatoria",
                 "selector": ".//h1",
-                'type': "text"
+                'type': "text",
+                "default": ""        
             },
             {
                 "name": "fecha_publicación",
                 "selector": ".//dl[@class='datos-ayuda']/dd[1]",
-                'type': "text"
+                'type': "text",
+                "default": ""        
             },
             {
                 "name": "plazos",
                 "selector": ".//dl[@class='datos-ayuda']/dd[2]",
-                "type": "text"
+                "type": "text",
+                "default": ""        
             },
             {
                 "name": "entidad",
                 "selector": ".//div[@class='lista-gestion']/h2",
-                "type": "text"
+                "type": "text",
+                "default": ""        
             }
         ]
     }
@@ -302,22 +330,45 @@ async def SNPSAP():
             {
                 "name": "presupuesto",
                 "selector": "//*[@id='print']/div[2]/div[5]/div[2]",
-                'type': "text"
+                'type': "text",
+                "default": ""        
             },
             {
                 "name": "fecha_inicio",
                 "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[3]/div[2]",
-                'type': "text"
+                'type': "text",
+                "default": ""        
             },
             {
                 "name": "fecha_final",
                 "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[4]/div[2]",
-                "type": "text"
+                "type": "text",
+                "default": ""        
             },
             {
                 "name": "finalidad",
                 "selector": "//*[@id='print']/div[4]/div[4]/div[2]",
-                'type': "text"
+                'type': "text",
+                "default": ""        
+            },
+            {
+                "name": "localidad",
+                "selector": "//*[@id='print']/div[4]/div[3]/div[2]/div",
+                "type": "text",
+                "default": ""        
+            },
+            {
+                "name": "tipo",
+                "selector": "//*[@id='print']/div[2]",
+                "type": "text",
+                "default": ""        
+            },
+            {
+                "name": "bases",
+                "selector": "//*[@id='print']/div[5]/div[2]/div[2]/a",
+                "type": "attribute",
+                "attribute": "href",
+                "default": ""                
             }
         ]
     }

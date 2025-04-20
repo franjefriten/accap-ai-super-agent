@@ -190,7 +190,6 @@ def get_and_format_SNPSAP_data():
     print(df.columns)
     df = df[["Administración", "Departamento", "Fecha de registro", "Título", "presupuesto", "fecha_inicio", "fecha_final", "finalidad", "url"]]
     df = df.rename(columns={
-        "Administración": "localidad",
         "Departamento": "entidad",
         "Fecha de registro": "fecha_publicacion",
         "Título": "convocatoria",
