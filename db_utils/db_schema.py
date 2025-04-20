@@ -17,6 +17,9 @@ class CallData(Base):
     fecha_final: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)
     presupuesto: Mapped[float] = Column(Float, nullable=True, default=Null)
     localidad: Mapped[str] = Column(String(255), nullable=True, default=Null)
+    beneficiario: Mapped[str] = Column(String(255), nullable=True, default=Null)
+    tipo: Mapped[str] = Column(String(255), nullable=True, default=Null)
+    bases: Mapped[str] = Column(String(255), nullable=True, default=Null)
     keywords: Mapped[list[float]] = Column(Vector(dim=384))
     url: Mapped[str] = Column(String(255), nullable=False)
 
