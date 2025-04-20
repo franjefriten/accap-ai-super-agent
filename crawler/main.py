@@ -17,9 +17,6 @@ from datetime import datetime
 from pathlib import Path
 import urllib
 
-from pydantic import BaseModel, Field, AfterValidator
-from langchain_huggingface import HuggingFacePipeline, HuggingFaceEndpoint
-
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
@@ -29,7 +26,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import requests
 from bs4 import BeautifulSoup
 import time
-
 
 from aiofiles import open as aio_open
 import aiohttp
@@ -56,16 +52,6 @@ logger = logging.getLogger(__name__)
 if os.path.exists(".env"):
     from dotenv import load_dotenv
     load_dotenv(".env")
-
-class Convocatoria(BaseModel):
-    presupesto_total: Annotated[
-        str,
-        Field(pattern=r"\d{1,3}(?:\.\d{3})*,\d{2} ?€"), 
-        AfterValidator(lambda x: int(x[:-5].replace(".", ""))),
-    ]
-    finalidad: str
-    fecha_inicio: datetime
-    fecha_final: datetime
 
 
 async def write_log(log_file="crawler/logger.txt", result=None, regex: str = None):

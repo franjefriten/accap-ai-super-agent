@@ -15,9 +15,6 @@ from db_utils.db_schema import CallData
 from crawler.get_and_format_data import *
 from models.agente_rag import *
 
-from smolagents import CodeAgent
-from smolagents import HfApiModel
-
 from openai import AzureOpenAI
 
 from sentence_transformers import SentenceTransformer  
