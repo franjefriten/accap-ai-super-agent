@@ -19,6 +19,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -66,7 +67,7 @@ async def cienciaGob():
     filter_chain = FilterChain([
         # Only follow URLs with specific patterns
         URLPatternFilter(patterns=[
-            r"^https://www\.aei\.gob\.es/convocatorias/buscador-convocatorias",
+            r"^https://www\.ciencia\.gob\.es/Convocatorias/",
         ]),
 
         # Only crawl specific domains
@@ -169,6 +170,244 @@ async def cienciaGob():
             except Exception as e:
                 logger.error(f"Error: {e}")
 
+    return contenido
+
+
+async def AEI():
+    
+    LOG_FILE = "crawler/logger.txt"
+    with open("crawler/urls.json", "rb") as urlsfile:
+        URLS = dict(json.load(urlsfile))
+    URLS = URLS["AEI"][:-1]
+    
+    filter_chain = FilterChain([
+        # Only follow URLs with specific patterns
+        URLPatternFilter(patterns=[
+            r"^https://www\.aei\.gob\.es/convocatorias/buscador\-convocatorias/[\w\-]+",
+        ]),
+
+        # Only crawl specific domains
+        # DomainFilter(
+            # allowed_domains=["https://www.pap.hacienda.gob.es"],
+        # ),
+
+        # Only include specific content types
+        # ContentTypeFilter(allowed_types=["html"])
+    ])
+    deep_crawl_strategy = BFSDeepCrawlStrategy(
+        max_depth=2,
+        include_external=False,
+        logger=logger,
+        filter_chain=filter_chain
+    )
+    # TODO: extraer presupuesto
+    schema = {
+        "name": "Convocatoria",
+        "baseSelector": "//div[@role='main']",    # Repeated elements
+        "fields": [
+            {
+                "name": "convocatoria",
+                "selector": ".//h1",
+                'type': "text",
+                "default": ""
+            },
+            {
+                "name": "plazos",
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[5]/td",
+                "type": "text",
+                "default": ""
+            },
+            {
+                "name": "entidad",
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[10]/td",
+                "type": "text",
+                "default": ""
+            },
+            {
+                "name": "descripcion",
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[6]/td/div/p[1]",
+                "type": "text",
+                "default": ""
+            },
+            {
+                "name": "tipo",
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[12]/td",
+                "type": "text",
+                "default": ""
+            },
+            {
+                "name": "presupuesto",
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[8]/td",
+                "type": "text",
+                "default": ""
+            },
+            {
+                "name": "beneficiario",
+                "selector": ".//table[@class='table-striped table table-bordered ']/tbody/tr[9]/td",
+                "type": "text",
+                "default": ""
+            },
+            {
+                "name": "bases",
+                "selector": "//aside[@role='complementary']/div/div/div/div/ul/li[1]/a",
+                "type": "attribute",
+                "attribute": "href",
+                "default": ""
+            }
+        ]
+    }
+    extraction_strategy = JsonXPathExtractionStrategy(schema=schema, logger=logger, verbose=True)
+    browser_config = BrowserConfig(
+        verbose=True,
+        accept_downloads=True,
+        java_script_enabled=True,
+        ignore_https_errors=True
+    )
+    contenido = []
+    async with AsyncWebCrawler(config=browser_config) as crawler:
+        #if not isinstance(convocatorias, list): # a instancia es una url
+        load_more_js = [
+            "window.scrollTo(0, document.body.scrollHeight);",
+            # The "More" link at page bottom
+            "document.querySelector('a.page-link')?.click();"  
+        ]
+        session_id = "hn_session"
+        for i in range(3):
+            run_config = CrawlerRunConfig(
+                deep_crawl_strategy=deep_crawl_strategy,
+                scraping_strategy=LXMLWebScrapingStrategy(logger=logger),
+                extraction_strategy=extraction_strategy,
+                session_id=session_id,
+                wait_for="""js:() => {
+                    return document.readyState === 'complete'
+                }""",
+                wait_until="load",
+                page_timeout=10000
+            )
+            result = await crawler.arun(url=URLS, config=run_config)
+            contenido.append([{**json.loads(res.extracted_content)[0], "url": os.path.join(URLS, res.url)} for res in result[1:] if res.extracted_content is not None])
+            if i == 3: #not len(result) > 1:
+                logger.info("Busqueda finalizada")
+                break
+            logger.info("Cargando siguiente pagina")
+            #await write_log(LOG_FILE, result, regex=r"^https://www.ciencia.gob.es/Convocatorias/*")
+            next_page_conf = CrawlerRunConfig(
+                js_code=load_more_js,
+                wait_for="""js:() => {
+                    return document.querySelectorAll('div.item-list ul li').length > 10;
+                }""",
+                # Mark that we do not re-navigate, but run JS in the same session:
+                js_only=True,
+                session_id=session_id
+            )
+            # Re-use the same crawler session
+            result2 = await crawler.arun(
+                url=URLS,  # same URL but continuing session
+                config=next_page_conf
+            )
+
+    return contenido
+
+
+def AEI_selenium():
+    LOG_FILE = "crawler/logger.txt"
+    with open("crawler/urls.json", "rb") as urlsfile:
+        URLS = dict(json.load(urlsfile))
+    url = URLS["AEI"]
+
+    contenido = []
+
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')  # Run in headless mode
+    options.add_argument('--disable-gpu')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
+
+    driver = webdriver.Chrome(options=options)
+    wait = WebDriverWait(driver, 20)
+    driver.get(url=url)
+
+    for page in range(3):
+        
+        wait.until(EC.presence_of_element_located((By.XPATH, '//div[contains(@class, "item-list")]//li')))
+
+        # Get all call links on current page
+        call_elements = driver.find_elements(By.XPATH, '//div[contains(@class, "item-list")]//li//a[contains(@href, "convocatorias")]')
+        call_urls = [elem.get_attribute('href') for elem in call_elements]
+
+        for call_url in call_urls:
+            print(f"Scraping: {call_url}")
+
+            driver.execute_script("window.open('');")
+            driver.switch_to.window(driver.window_handles[1])
+            driver.get(call_url)
+
+            try:
+                # Wait for main content to load
+                wait.until(EC.presence_of_element_located((By.XPATH, '//div[@role="main"]')))
+
+                call_data = {
+                    'convocatoria': driver.find_elements(By.XPATH, '//h1')[1].text,
+                    'url': call_url,
+                    'descripcion': '',
+                    'plazos': '',
+                    'presupuesto': '',
+                    'entidad': '',
+                    'beneficiario': '',
+                    'tipo': '',
+                    'bases': ''
+                }
+
+                # Extract data from tables
+                table = driver.find_element(By.XPATH, '//table[contains(@class, "table-striped")]')
+                rows = table.find_elements(By.TAG_NAME, 'tr')
+                for row in rows:
+                    try:
+                        header = row.find_element(By.TAG_NAME, 'th').text.strip()
+                        cell = row.find_element(By.TAG_NAME, 'td').text.strip()
+
+                        if 'Descripción general' in header:
+                            call_data['descripcion'] = cell.split(r"\n")[0]
+                        elif 'Plazos de solicitud' in header or 'fecha' in header:
+                            call_data['plazos'] = cell
+                        elif 'Presupuesto' in header:
+                            call_data['presupuesto'] = cell
+                        elif 'Órgano Instructor' in header:
+                            call_data['entidad'] = cell
+                        elif 'Beneficiarios' in header:
+                            call_data['beneficiario'] = cell
+                        elif 'Tipo de financiación' in header:
+                            call_data['tipo'] = cell
+                    except:
+                        continue
+                        
+                try:
+                    docs_section = driver.find_element(By.XPATH, '//aside[@role="complementary"]//ul')
+                    documents = docs_section.find_elements(By.TAG_NAME, 'a')
+                    for doc in documents:
+                        call_data['bases'] = doc.get_attribute('href')
+                    contenido.append(call_data)
+                except NoSuchElementException:
+                    pass
+
+            except Exception as e:
+                print(f"Error scraping {call_url}: {str(e)}")
+            finally:
+                driver.close()
+                driver.switch_to.window(driver.window_handles[0])
+                time.sleep(2)  # Be polite
+        # Try to go to next page
+        try:
+            next_btn = driver.find_element(By.XPATH, '//a[contains(@class, "page-link") and contains(text(), "Siguiente")]')
+            if 'disabled' in next_btn.get_attribute('class'):
+                break
+            next_btn.click()
+            time.sleep(3)  # Wait for page load
+        except NoSuchElementException:
+            break
+
+    driver.quit()
     return contenido
 
 
@@ -318,9 +557,9 @@ async def SNPSAP():
         df = pd.concat([df, table_df], ignore_index=True, axis=0)
         logging.info(f"Data extraída de tabla {table_ix}")
     df["url"] = list(map(lambda x: os.path.join(base_url, x), df["Código BDNS"]))
-    df[["presupuesto", "fecha_inicio", "fecha_final", "finalidad"]] = pd.DataFrame(
+    df[["presupuesto", "fecha_inicio", "fecha_final", "finalidad", "localidad", "tipo", "bases", "beneficiario"]] = pd.DataFrame(
         data=[],
-        columns=["presupuesto", "fecha_inicio", "fecha_final", "finalidad"],
+        columns=["presupuesto", "fecha_inicio", "fecha_final", "finalidad", "localidad", "tipo", "bases", "beneficiario"],
         dtype=str
     )
     schema = {
@@ -337,13 +576,13 @@ async def SNPSAP():
                 "name": "fecha_inicio",
                 "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[3]/div[2]",
                 'type': "text",
-                "default": ""        
+                "default": "01/01/1900"        
             },
             {
                 "name": "fecha_final",
                 "selector": "//*[@id='cdk-accordion-child-1']/div/div[1]/div[2]/div[4]/div[2]",
                 "type": "text",
-                "default": ""        
+                "default": "01/01/1900"        
             },
             {
                 "name": "finalidad",
@@ -368,6 +607,12 @@ async def SNPSAP():
                 "selector": "//*[@id='print']/div[5]/div[2]/div[2]/a",
                 "type": "attribute",
                 "attribute": "href",
+                "default": ""                
+            },
+            {
+                "name": "beneficiario",
+                "selector": "//*[@id='print']/div[4]/div[1]/div[2]/div[1]",
+                "type": "text",
                 "default": ""                
             }
         ]
@@ -400,6 +645,4 @@ async def SNPSAP():
 
 
 if __name__ == "__main__":
-    df = asyncio.run(SNPSAP())
-    print(df.head())
-    print(df.info())
+    print(asyncio.run(AEI()))

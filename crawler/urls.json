@@ -9,7 +9,8 @@
         "https://www.exteriores.gob.es/es/ServiciosAlCiudadano/TablonDeAnuncios/Paginas/DetalleAnuncioTablon.aspx?bbn=Subvenciones%202025%20de%20la%20Secretar%C3%ADa%20de%20Estado%20para%20la%20Uni%C3%B3n%20Europea", 
         "https://www.exteriores.gob.es/es/ServiciosAlCiudadano/TablonDeAnuncios/Paginas/DetalleAnuncioTablon.aspx?bbn=Convocatoria%20para%20la%20concesi%C3%B3n%20de%20subvenciones%20correspondientes%20al%20a%C3%B1o%202025%20para%20la%20realizaci%C3%B3n%20de%20actividades%20dirigidas%20a%20la%20divulgaci%C3%B3n,%20promoci%C3%B3n%20y%20protecci%C3%B3n%20de%20los%20Derechos%20Humanos" 
     ],
-    "cienciaGob": "https://www.aei.gob.es/convocatorias/buscador-convocatorias",
+    "AEI": "https://www.aei.gob.es/convocatorias/buscador-convocatorias",
+    "cienciaGob": "https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=1",
     "culturaGob": "https://www.cultura.gob.es/servicios-al-ciudadano/catalogo/becas-ayudas-y-subvenciones.html",
     "consumoGob": "https://www.dsca.gob.es/es/agenda-2030/subvenciones",
     "educacionGob": "https://www.educacionfpydeportes.gob.es/servicios-al-ciudadano/becas-ayudas.html",

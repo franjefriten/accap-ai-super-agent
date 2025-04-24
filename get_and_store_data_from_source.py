@@ -4,12 +4,11 @@ from crawler.get_and_format_data import *
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from sqlalchemy import text
-from pgvector.psycopg import register_vector
-from sqlalchemy import event
+
 
 from dotenv import load_dotenv
 load_dotenv()
-URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@db:5432/{os.getenv("POSTGRES_DB")}"
+URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@localhost:5432/{os.getenv("POSTGRES_DB")}"
 
 
 def send_to_db(contenido: list[dict]):
@@ -24,16 +23,6 @@ def send_to_db(contenido: list[dict]):
     
     engine = create_engine(URI_TO_DB)
     Session = sessionmaker(bind=engine)
-
-    @event.listens_for(engine, "connect")
-    def setup_vector(dbapi_connection, _):
-        # 1. Create extension FIRST
-        with dbapi_connection.cursor() as cursor:
-            cursor.execute("CREATE EXTENSION IF NOT EXISTS vector")
-            dbapi_connection.commit()  # Commit within the same connection
-
-        # 2. THEN register
-        register_vector(dbapi_connection)
 
     CallData.init_table(engine)
 
@@ -53,6 +42,9 @@ def send_to_db(contenido: list[dict]):
                 presupuesto=entry.get("presupuesto", None),
                 keywords=entry.get("keywords", None),
                 localidad=entry.get("localidad", None),
+                beneficiario=entry.get("beneficiario", None),
+                tipo=entry.get("tipo", None),
+                bases=entry.get("bases", None),
                 url=entry.get("url", None),
             )
             session.add(call_data)
@@ -76,8 +68,12 @@ def fetch_all_data_and_store_in_db(source: str):
             contenido_SNPSAP = get_and_format_SNPSAP_data()
             send_to_db(contenido_SNPSAP)
             print("SNPSAP contenido volcado")
+        case "AEI":
+            contenido_AEI = get_and_format_AEI_data()
+            send_to_db(contenido_AEI)
+            print("AEI contenido volcado")
 
 
 if __name__ == "__main__":
-    source = input("Fuente (cienciaGob, turismoGob, SNPSAP): \n")
+    source = input("Fuente (cienciaGob, turismoGob, SNPSAP, AEI): \n")
     fetch_all_data_and_store_in_db(source)

@@ -181,13 +181,56 @@ if query := st.chat_input("Haz tu consulta"):
             engine = create_engine(URI_TO_DB)
             Session = sessionmaker(bind=engine)
             with Session() as session:
-                result = session.execute(
+                session.execute(
                     text("""
-                    SELECT *, 
-                        1 - (keywords <=> CAST(:embedding AS vector(384))) as similarity
-                    FROM call_data
-                    ORDER BY similarity DESC
-                    LIMIT 5
+                    CREATE OR REPLACE FUNCTION compute_similarity(keywords vector[], embeddings vector[]) 
+                    RETURNS FLOAT AS $$
+                    DECLARE
+                        total_distance FLOAT := 0;
+                        pair_count INTEGER := 0;
+                        u vector;
+                        v vector;
+                    BEGIN
+                        FOREACH u IN ARRAY keywords LOOP
+                            FOREACH v IN ARRAY embeddings LOOP
+                                total_distance := total_distance + (u <=> v);
+                                pair_count := pair_count + 1;
+                            END LOOP;
+                        END LOOP;
+
+                        IF pair_count = 0 THEN
+                            RETURN 0.0;
+                        END IF;
+
+                        -- Return average similarity (1 - average distance)
+                        RETURN 1 - (total_distance / pair_count);
+                    END;
+                    $$ LANGUAGE plpgsql;
+                    """
+                ))
+
+                result = session.execute(
+                    text("""      
+                    WITH similarity_table AS (
+                        SELECT 
+                            id,
+                            compute_similarity(
+                                keywords, 
+                                ARRAY[CAST(:embedding AS vector(384))]  -- Wrap single vector in array
+                            ) AS similarity
+                        FROM 
+                            call_data
+                    )
+                    SELECT 
+                        cd.*,
+                        st.similarity
+                    FROM 
+                        call_data cd
+                    JOIN 
+                        similarity_table st ON cd.id = st.id
+                    ORDER BY
+                        st.similarity DESC  -- Higher similarity first
+                    LIMIT 10;
                     """), 
                     {"embedding": embedding.tolist()}
                 ).fetchall()
