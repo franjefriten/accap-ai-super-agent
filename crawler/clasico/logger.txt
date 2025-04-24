@@ -1,0 +1,2102 @@
+https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=1https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Ayudas para contratos para la formación de doctores y doctoras en empresas y otras entidades (Doctorados Industriales) 2024-2",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    el plazo termina a las 14.00 hora peninsular española:\n\t                    Comienzo: \n\t                    21/01/25\n\t                    -\n\t                    Fin: \n\t                    6/03/25",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Certificado BIOPYME 2025",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "febrero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/03/25\n\t                    -\n\t                    Fin: \n\t                    31/03/25"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Colaboración Internacional PCI 2025-1",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "marzo 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo comienza el 19-03-2025 y termina el 01-04-2025 a las 14:00 hora peninsular española:\n\t                    Comienzo: \n\t                    19/03/25\n\t                    -\n\t                    Fin: \n\t                    1/04/25",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Subvenciones para estudiantes universitarios afectados por la DANA",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades",
+        "fecha_publicación": "noviembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/12/24\n\t                    -\n\t                    Fin: \n\t                    30/12/24",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Infraestructuras Científicas y Técnicas Singulares (ICTS) 2022",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "mayo 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    20/05/22\n\t                    -\n\t                    Fin: \n\t                    2/06/22",
+        "entidad": "Subdirección General de Grandes Instalaciones Científico-Técnicas (Secretaría General de Investigación)"
+    }
+][
+    {
+        "convocatoria": "Subvenciones para financiar medidas de apoyo institucional a los sindicatos del ámbito universitario 2024",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    13/01/25\n\t                    -\n\t                    Fin: \n\t                    31/01/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Ayudas para la preparación y gestión de proyectos europeos y facilitar la atracción de talento internacional 2025",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "marzo 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza el 10 de abril a las 14:00 horas:\n\t                    Comienzo: \n\t                    20/03/25\n\t                    -\n\t                    Fin: \n\t                    10/04/25",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para la realización de estudios de máster en Estados Unidos de América. Curso 2025-2026",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/01/25\n\t                    -\n\t                    Fin: \n\t                    6/02/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Distinción Ciudad de la Ciencia y la Innovación 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "julio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/09/24\n\t                    -\n\t                    Fin: \n\t                    28/10/24",
+        "entidad": "Secretaría General de Innovación"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Innovación y de Diseño 2025",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "marzo 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    desde las 00:00 horas del día 07/03/2025  hasta las 15:00 horas del 24/04/2025 :\n\t                    Comienzo: \n\t                    7/03/25\n\t                    -\n\t                    Fin: \n\t                    24/04/25",
+        "entidad": "Subdirección General de Políticas de Innovación"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=2https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Proyectos en Colaboración Público-Privada 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    el plazo termina a las 14.00 (hora peninsular española):\n\t                    Comienzo: \n\t                    15/01/25\n\t                    -\n\t                    Fin: \n\t                    5/02/25",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Evaluación de propuestas para la nueva Hoja de Ruta ESFRI 2026",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/01/25\n\t                    -\n\t                    Fin: \n\t                    21/02/25",
+        "entidad": "Subdirección General de Consorcios, Organismos e Infraestructuras Científicas Internacionales."
+    }
+][
+    {
+        "convocatoria": "Ayudas complementarias de movilidad destinadas a beneficiarios del programa de formación del profesorado universitario (FPU) 2025",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/01/25\n\t                    -\n\t                    Fin: \n\t                    14/02/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda, de la Secretaría General de Universidades del Ministerio de Ciencia, Innovación y Universidades"
+    }
+][
+    {
+        "convocatoria": "Formación de Profesorado Universitario 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/01/23\n\t                    -\n\t                    Fin: \n\t                    15/02/23",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Ayudas para estancias de movilidad en el extranjero José Castillejo para jóvenes doctores 2024",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/01/25\n\t                    -\n\t                    Fin: \n\t                    6/02/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda."
+    }
+][
+    {
+        "convocatoria": "Estancias de personal docente y/o investigador senior en centros extranjeros 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/01/25\n\t                    -\n\t                    Fin: \n\t                    6/02/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda."
+    }
+][
+    {
+        "convocatoria": "Formación de Profesorado Universitario 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/01/25\n\t                    -\n\t                    Fin: \n\t                    14/02/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Ayudas Beatriz Galindo para la atracción del talento investigador 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    10/01/25\n\t                    -\n\t                    Fin: \n\t                    8/02/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda de la Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Subvenciones a asociaciones juveniles y a federaciones y confederaciones de estudiantes y de egresados cuyo ámbito de actuación sea la universidad 2023",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    26/12/23\n\t                    -\n\t                    Fin: \n\t                    9/01/24",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda, de la Secretaría General de Universidades del Ministerio de Ciencia, Innovación y Universidades"
+    }
+][
+    {
+        "convocatoria": "Evaluación por méritos investigadores o de transferencia de conocimiento. Quinquenios 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "diciembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    13/01/25\n\t                    -\n\t                    Fin: \n\t                    13/02/25",
+        "entidad": "Comisión Evaluadora del Desempeño de la Actividad Científico-Tecnológica (CEDACT)"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=3https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Proyecto Importante de Interés Común Europeo de Salud (Med4Cure)",
+        "puesto": "Centro para el Desarrollo Tecnológico y la Innovación (CDTI)",
+        "fecha_publicación": "diciembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo terminará a las 12:00 (hora peninsular española):\n\t                    Comienzo: \n\t                    17/12/24\n\t                    -\n\t                    Fin: \n\t                    23/01/25",
+        "entidad": "Dirección General del CDTI"
+    }
+][
+    {
+        "convocatoria": "Contratos Juan de la Cierva 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Para personas participantes el plazo terminará a las 14:00 hora peninsular española):\n\t                    Comienzo: \n\t                    17/12/24\n\t                    -\n\t                    Fin: \n\t                    17/01/25\n\t                    |\n\t                    Para Centros, el plazo terminará a las 14:00 hora peninsular española:\n\t                    Comienzo: \n\t                    17/12/24\n\t                    -\n\t                    Fin: \n\t                    24/01/25",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Colaboración Internacional PCI 2024-3",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "noviembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo comienza el 23-01-2025 y termina el 31-01-2025 a las 14:00 hora peninsular española:\n\t                    Comienzo: \n\t                    23/01/25\n\t                    -\n\t                    Fin: \n\t                    31/01/25",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para precios públicos de las matriculas en programas de doctorado 2023-2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    21/01/25\n\t                    -\n\t                    Fin: \n\t                    30/01/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Subvenciones a asociaciones juveniles y a federaciones y confederaciones de estudiantes y de egresados cuyo ámbito de actuación sea la universidad 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    2/01/25\n\t                    -\n\t                    Fin: \n\t                    23/01/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Generación de Conocimiento 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza a las 14:00 hora peninsular:\n\t                    Comienzo: \n\t                    9/01/25\n\t                    -\n\t                    Fin: \n\t                    31/01/25",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Certamen Universitario Arquímedes 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "enero 2025",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    7/01/25\n\t                    -\n\t                    Fin: \n\t                    3/02/25",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda, de la Secretaría General de Universidades del Ministerio de Ciencia, Innovación y Universidades"
+    }
+][
+    {
+        "convocatoria": "Contratos Torres Quevedo 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    el plazo termina a las 14.00 hora peninsular española:\n\t                    Comienzo: \n\t                    18/12/24\n\t                    -\n\t                    Fin: \n\t                    28/01/25",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+]https://www.ciencia.gob.es/Convocatorias/FEDER2021-2027/ESFRI.htmlhttps://www.ciencia.gob.es/Convocatorias/FEDER2021-2027/FID42024.htmlhttps://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=4https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Convocatoria correspondiente al año 2025 de Concesión de subvenciones de la Acción Estratégica en Salud 2024-2027",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "enero 2025",
+        "entidad": "Subdirección General de Evaluación y Fomento de la Investigación. ISCIII"
+    }
+][
+    {
+        "convocatoria": "Contratos Ramón y Cajal 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    el plazo termina a las 14.00 hora peninsular española:\n\t                    Comienzo: \n\t                    16/12/24\n\t                    -\n\t                    Fin: \n\t                    21/01/25",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Investigación y Premios Nacionales de Investigación para Jóvenes 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "junio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    12/06/24\n\t                    -\n\t                    Fin: \n\t                    4/07/24"
+    }
+][
+    {
+        "convocatoria": "Ayudas para Personal Técnico de I+D+i (PTA) 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "noviembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Centros (el plazo finaliza a las 14:00 hora peninsular española):\n\t                    Comienzo: \n\t                    12/11/24\n\t                    -\n\t                    Fin: \n\t                    10/12/24\n\t                    |\n\t                    Personas Participantes (el plazo finaliza a las 14:00 hora peninsular española):\n\t                    Comienzo: \n\t                    12/11/24\n\t                    -\n\t                    Fin: \n\t                    29/11/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Agentes Locales de Innovación",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "octubre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    11/10/24\n\t                    -\n\t                    Fin: \n\t                    24/10/24",
+        "entidad": "Subdirección General de Fomento de la Innovación"
+    }
+][
+    {
+        "convocatoria": "Financiación de planes de investigación en cooperación en el área de la inteligencia artificial desarrollados por grupos de investigación interdisciplinares 2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "julio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    13/07/23\n\t                    -\n\t                    Fin: \n\t                    15/09/23",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Fin de Carrera de Educación Universitaria 2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "noviembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    9/11/23\n\t                    -\n\t                    Fin: \n\t                    11/12/23",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Formación de Profesorado Universitario 2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/01/24\n\t                    -\n\t                    Fin: \n\t                    15/02/24",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Ayudas para estancias de movilidad en el extranjero José Castillejo para jóvenes doctores 2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "enero 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/01/24\n\t                    -\n\t                    Fin: \n\t                    7/02/24",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda."
+    }
+][
+    {
+        "convocatoria": "Evaluación de la actividad investigadora. Sexenios de Investigación 2024",
+        "puesto": "Agencia Nacional de Evaluación de la Calidad y Acreditación (ANECA)",
+        "fecha_publicación": "diciembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    13/01/25\n\t                    -\n\t                    Fin: \n\t                    3/02/24",
+        "entidad": "Comisión Nacional Evaluadora de la Actividad Investigadora (CNEAI)"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=5https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Ayudas complementarias de movilidad destinadas a beneficiarios del programa de formación del profesorado universitario (FPU) 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    22/12/23\n\t                    -\n\t                    Fin: \n\t                    25/01/24",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda, de la Secretaría General de Universidades del Ministerio de Ciencia, Innovación y Universidades"
+    }
+][
+    {
+        "convocatoria": "Ayudas a la movilidad para estancias breves y traslados temporales de beneficiarios FPU 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "noviembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    14/01/22\n\t                    -\n\t                    Fin: \n\t                    14/02/22",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "XXXV Certamen Jóvenes Investigadores 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "mayo 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza el 24 de mayo a las 14:00 horas:\n\t                    Comienzo: \n\t                    10/05/24\n\t                    -\n\t                    Fin: \n\t                    24/05/24",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Formación de Profesorado Universitario 2021",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "noviembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    22/11/21\n\t                    -\n\t                    Fin: \n\t                    17/12/21",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Estancias de personal docente y/o investigador senior en centros extranjeros 2023",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "octubre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/01/24\n\t                    -\n\t                    Fin: \n\t                    7/02/24",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Ayudas Beatriz Galindo para la atracción del talento investigador 2023",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/12/23\n\t                    -\n\t                    Fin: \n\t                    28/01/24",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Colaboración Internacional PCI2024-2",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "septiembre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    24/09/24\n\t                    -\n\t                    Fin: \n\t                    7/10/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Fin de Carrera de Educación Universitaria 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "octubre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/10/24\n\t                    -\n\t                    Fin: \n\t                    27/11/24",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Innovación y de Diseño 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "junio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    desde las 00:00 horas del día 09 de junio de 2024 hasta las 15:00 horas del 4 de julio de 2024:\n\t                    Comienzo: \n\t                    9/06/24\n\t                    -\n\t                    Fin: \n\t                    4/07/24",
+        "entidad": "Subdirección General de Políticas de Innovación"
+    }
+][
+    {
+        "convocatoria": "Plataformas Tecnológicas 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo de solicitudes terminará el día 07 de noviembre de 2024 a las 14:00 (hora peninsular):\n\t                    Comienzo: \n\t                    18/10/24\n\t                    -\n\t                    Fin: \n\t                    7/11/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa de la Agencia Estatal de Investigación"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=6https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Proyectos de Investigación orientados a la Implantación de la Medicina Personalizada de Precisión",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "julio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo termina a las 15:00 horas del 5 de septiembre de 2024:\n\t                    Comienzo: \n\t                    18/07/24\n\t                    -\n\t                    Fin: \n\t                    5/09/24",
+        "entidad": "Subdirección General de Evaluación y Fomento de la Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de investigación en enfermedades raras",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "julio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo termina a las 15:00 horas del 05 de septiembre de 2024 (hora peninsular española):\n\t                    Comienzo: \n\t                    18/07/24\n\t                    -\n\t                    Fin: \n\t                    5/09/24",
+        "entidad": "Subdirección General de Evaluación y Fomento de la Investigación"
+    }
+][
+    {
+        "convocatoria": "Consolidación Investigadora 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza el 23 de julio a las 14:00 (hora peninsular española):\n\t                    Comienzo: \n\t                    3/07/24\n\t                    -\n\t                    Fin: \n\t                    23/07/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Incorporación de talento consolidado \"Programa ATRAE\" 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza el 24 de julio a las 14:00:\n\t                    Comienzo: \n\t                    2/07/24\n\t                    -\n\t                    Fin: \n\t                    24/07/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para precios públicos de las matrículas en programas de doctorado 2022-2023",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MCIU)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    18/12/23\n\t                    -\n\t                    Fin: \n\t                    22/12/23",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Misiones de Ciencia e Innovación 2024",
+        "puesto": "Centro para el Desarrollo Tecnológico y la Innovación (CDTI)",
+        "fecha_publicación": "julio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza el 6 de septiembre a las 12:00 horas:\n\t                    Comienzo: \n\t                    10/07/24\n\t                    -\n\t                    Fin: \n\t                    6/09/24",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+][
+    {
+        "convocatoria": "Redes de investigación 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza el 10 de julio a las 14:00 horas:\n\t                    Comienzo: \n\t                    12/06/24\n\t                    -\n\t                    Fin: \n\t                    10/07/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa de la Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Renovación de la Distinción Ciudades de la Ciencia y la Innovación 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "marzo 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/04/24\n\t                    -\n\t                    Fin: \n\t                    26/04/24",
+        "entidad": "Secretaría General de Innovación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para contratos predoctorales Salvador de Madariaga 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/12/23\n\t                    -\n\t                    Fin: \n\t                    31/01/24",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda, de la Secretaría General de Universidades del Ministerio de Ciencia, Innovación y Universidades"
+    }
+][
+    {
+        "convocatoria": "Desarrollo de Unidades de Investigación Clínica 2024",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "julio 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo termina a las 15:00 horas del 12 de septiembre de 2024:\n\t                    Comienzo: \n\t                    16/07/24\n\t                    -\n\t                    Fin: \n\t                    12/09/24",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=7https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Europa Excelencia 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "abril 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    23/04/24\n\t                    -\n\t                    Fin: \n\t                    9/05/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Centros de Excelencia Severo Ochoa y María de Maetzu 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "marzo 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    25/04/24\n\t                    -\n\t                    Fin: \n\t                    16/05/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos para la formación de doctores en empresas. Doctorados Industriales 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "abril 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    23/04/23\n\t                    -\n\t                    Fin: \n\t                    4/06/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Equipamiento Científico-Técnico 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "abril 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    15/04/24\n\t                    -\n\t                    Fin: \n\t                    7/05/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas complementarias de movilidad destinadas a beneficiarios del programa de Formación del Profesorado Universitario (FPU) 2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    14/01/23\n\t                    -\n\t                    Fin: \n\t                    14/02/23",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Estancias de personal docente y/o investigador senior en centros extranjeros 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/01/23\n\t                    -\n\t                    Fin: \n\t                    9/02/23",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Ayudas para la preparación y gestión de proyectos europeos y facilitar la atracción de talento internacional 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza el 5 de junio a las 14:00 horas:\n\t                    Comienzo: \n\t                    16/05/24\n\t                    -\n\t                    Fin: \n\t                    5/06/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Programa Tecnológico Espacial (PTE) 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "mayo 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    cierra a las 12:00 horas del mediodía, hora peninsular:\n\t                    Comienzo: \n\t                    18/05/24\n\t                    -\n\t                    Fin: \n\t                    19/06/24",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI) Agencia Espacial Española"
+    }
+][
+    {
+        "convocatoria": "Proyectos líneas estratégicas \"Transmisiones\" 2024",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza el 21 de junio a las 14:00 horas:\n\t                    Comienzo: \n\t                    23/05/24\n\t                    -\n\t                    Fin: \n\t                    21/06/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Misiones de Ciencia e Innovación - TransMisiones 2024",
+        "puesto": "Centro para el Desarrollo Tecnológico y la Innovación (CDTI)",
+        "fecha_publicación": "mayo 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    El plazo finaliza el 21 de junio a las 14:00 horas:\n\t                    Comienzo: \n\t                    23/05/24\n\t                    -\n\t                    Fin: \n\t                    21/06/24",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=8https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Certificado R3",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "febrero 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    22/02/24\n\t                    -\n\t                    Fin: \n\t                    13/03/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Colaboración Internacional PCI 2024-1",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "febrero 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/02/24\n\t                    -\n\t                    Fin: \n\t                    12/03/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Evaluación por méritos investigadores o de transferencia de conocimiento. Quinquenios 2023",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "febrero 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    2/02/24\n\t                    -\n\t                    Fin: \n\t                    4/03/24",
+        "entidad": "Comisión Evaluadora del Desempeño de la Actividad Científico-Tecnológica (CEDACT)"
+    }
+][
+    {
+        "convocatoria": "Ecosistemas de Innovación 2023",
+        "puesto": "Centro para el Desarrollo Tecnológico y la Innovación (CDTI)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    11/01/24\n\t                    -\n\t                    Fin: \n\t                    12/03/24",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+][
+    {
+        "convocatoria": "Contratos Juan de la Cierva 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Investigadores:\n\t                    Comienzo: \n\t                    17/01/24\n\t                    -\n\t                    Fin: \n\t                    31/01/24\n\t                    |\n\t                    Centros:\n\t                    Comienzo: \n\t                    17/01/24\n\t                    -\n\t                    Fin: \n\t                    7/02/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Evaluación de la actividad investigadora. Sexenios de Investigación 2023",
+        "puesto": "Agencia Nacional de Evaluación de la Calidad y Acreditación (ANECA)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    22/01/24\n\t                    -\n\t                    Fin: \n\t                    12/02/24",
+        "entidad": "Comisión Nacional Evaluadora de la Actividad Investigadora (CNEAI)"
+    }
+][
+    {
+        "convocatoria": "Contratos Torres Quevedo 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    23/01/24\n\t                    -\n\t                    Fin: \n\t                    13/02/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos en Colaboración Público-Privada 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/01/24\n\t                    -\n\t                    Fin: \n\t                    20/02/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Certificado BIOPYME 2024",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MICIU)",
+        "fecha_publicación": "febrero 2024",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/03/24\n\t                    -\n\t                    Fin: \n\t                    31/03/24"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=9https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Contratos Ramón y Cajal 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    11/01/24\n\t                    -\n\t                    Fin: \n\t                    1/02/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Subvenciones para financiar medidas de apoyo institucional a los sindicatos del ámbito Universitario 2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "octubre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    9/10/23\n\t                    -\n\t                    Fin: \n\t                    30/10/23",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de  Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Generación de Conocimiento 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    9/01/24\n\t                    -\n\t                    Fin: \n\t                    30/01/24",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos de Personal Técnico de Apoyo 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "noviembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Para centros:\n\t                    Comienzo: \n\t                    29/11/23\n\t                    -\n\t                    Fin: \n\t                    21/12/23\n\t                    |\n\t                    Para personas participantes:\n\t                    Comienzo: \n\t                    29/11/23\n\t                    -\n\t                    Fin: \n\t                    14/12/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Convocatoria correspondiente al año 2024 de Concesión de subvenciones de la Acción Estratégica en Salud 2021-2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "diciembre 2023",
+        "entidad": "Subdirección General de Evaluación y Fomento de la Investigación. ISCIII."
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Investigación y Premios Nacionales de Investigación para Jóvenes 2023",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "mayo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    26/05/23\n\t                    -\n\t                    Fin: \n\t                    20/06/23"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Colaboración Internacional PCI 2023-2",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    18/10/23\n\t                    -\n\t                    Fin: \n\t                    27/10/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Formación de Profesorado Universitario 2020",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "noviembre 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/11/20\n\t                    -\n\t                    Fin: \n\t                    11/12/20",
+        "entidad": "Secretaría General de Universidades"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=10https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Plataformas de apoyo a la I+D+I en Biomedicina y Ciencias de la Salud 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "julio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    27/07/23\n\t                    -\n\t                    Fin: \n\t                    12/09/23",
+        "entidad": "Titular de la Subdirección General de Evaluación y Fomento de la Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas públicas del programa FORTALECE dirigido a Institutos de Investigación Sanitaria acreditados 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "julio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    27/07/23\n\t                    -\n\t                    Fin: \n\t                    12/09/23",
+        "entidad": "Titular de la Subdirección General de Evaluación y Fomento de la Investigación"
+    }
+][
+    {
+        "convocatoria": "Prueba de Concepto PERTE Chip 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "septiembre 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/09/23\n\t                    -\n\t                    Fin: \n\t                    17/10/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Evaluación por méritos investigadores o de transferencia de conocimiento. (Quinquenios extraordinaria 2022)",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "agosto 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    11/08/23\n\t                    -\n\t                    Fin: \n\t                    17/10/23",
+        "entidad": "Comisión Evaluadora del Desempeño de la Actividad Científico-Tecnológica"
+    }
+][
+    {
+        "convocatoria": "Fomento de la cultura científica, tecnológica y de la innovación 2023",
+        "puesto": "Fundación Española de Ciencia y Tecnología (FECYT)",
+        "fecha_publicación": "julio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/09/23\n\t                    -\n\t                    Fin: \n\t                    10/10/23",
+        "entidad": "Dirección del Departamento de Cultura Científica y de la Innovación de la FECYT"
+    }
+][
+    {
+        "convocatoria": "Fomento de la Investigación Científica de Excelencia María de Guzmán 2023",
+        "puesto": "Fundación Española de Ciencia y Tecnología (FECYT)",
+        "fecha_publicación": "julio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    6/07/23\n\t                    -\n\t                    Fin: \n\t                    11/08/23",
+        "entidad": "Dirección del Departamento de Gestión de Información Científica de la FECYT"
+    }
+][
+    {
+        "convocatoria": "Certamen universitario Arquímedes 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "noviembre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/11/22\n\t                    -\n\t                    Fin: \n\t                    16/12/22",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Ayudas Cervera para Centros Tecnológicos 2023",
+        "puesto": "Centro para el Desarrollo Tecnológico y la Innovación (CDTI)",
+        "fecha_publicación": "julio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/07/23\n\t                    -\n\t                    Fin: \n\t                    21/09/23",
+        "entidad": "Dirección General del CDTI"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Innovación y de Diseño 2023",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "mayo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    11/05/23\n\t                    -\n\t                    Fin: \n\t                    15/06/23",
+        "entidad": "Subdirección General de Coordinación de la Innovación."
+    }
+][
+    {
+        "convocatoria": "IUE – Salvador de Madariaga 2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    4/01/23\n\t                    -\n\t                    Fin: \n\t                    31/01/23",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda, de la Secretaría General de Universidades del Ministerio de Ciencia, Innovación y Universidades"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=11https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Proyectos líneas estratégicas \"Transmisiones\" 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    3/07/23\n\t                    -\n\t                    Fin: \n\t                    28/07/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Programa Tecnológico Aeronáutico 2023",
+        "puesto": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    4/04/23\n\t                    -\n\t                    Fin: \n\t                    16/05/23",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+][
+    {
+        "convocatoria": "Subvenciones para la recualificación del Sistema Universitario Español 2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "julio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    13/07/23\n\t                    -\n\t                    Fin: \n\t                    26/07/23",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Consolidación Investigadora 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "julio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    7/07/23\n\t                    -\n\t                    Fin: \n\t                    26/07/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "XXXIV Certamen Jóvenes Investigadores 2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    6/01/23\n\t                    -\n\t                    Fin: \n\t                    27/01/23",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Preparación y Gestión de Proyectos Europeos y Facilitar la Atración del Talento Internacional 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    19/05/23\n\t                    -\n\t                    Fin: \n\t                    8/06/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Incorporación de talento consolidado \"Programa ATRAE\" 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    29/06/23\n\t                    -\n\t                    Fin: \n\t                    27/07/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Programa Misiones de Ciencia e Innovación vinculadas al PERTE de microelectrónica y semiconductores 2023",
+        "puesto": "Convocatoria Centro para el Desarrollo Tecnológico y la Innovación (CDTI)",
+        "fecha_publicación": "mayo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    5/06/23\n\t                    -\n\t                    Fin: \n\t                    17/07/23",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+][
+    {
+        "convocatoria": "Ayudas Beatriz Galindo para la atracción del talento investigador 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "junio 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    26/06/22\n\t                    -\n\t                    Fin: \n\t                    28/07/22",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Misiones de Ciencia e Innovación - TransMisiones 2023",
+        "puesto": "Centro para el Desarrollo Tecnológico y la Innovación (CDTI)",
+        "fecha_publicación": "junio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    3/07/23\n\t                    -\n\t                    Fin: \n\t                    28/07/23",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=12https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Incorporación de nuevos grupos a CIBER 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    12/04/23\n\t                    -\n\t                    Fin: \n\t                    4/05/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Investigación Clínica Independiente 2023",
+        "puesto": "Instituto de Salud Carlos III",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    12/04/23\n\t                    -\n\t                    Fin: \n\t                    4/05/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Ayudas parcialmente reembolsables para actuaciones en el ámbito aeroespacial 2023",
+        "puesto": "Centro de Desarrollo Tecnológico y la Innovación (CDTI)",
+        "fecha_publicación": "abril 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Esta convocatoria permanecerá abierta hasta agotar fondos:\n\t                    Comienzo: \n\t                    4/12/23\n\t                    -",
+        "entidad": "Centro de Desarrollo Tecnológico e Industrial (CDTI)"
+    }
+][
+    {
+        "convocatoria": "Centros de Excelencia Severo Ochoa y María de Maetzu 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    14/04/23\n\t                    -\n\t                    Fin: \n\t                    4/05/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Colaboración Internacional PCI 2023-1",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    20/04/23\n\t                    -\n\t                    Fin: \n\t                    4/05/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Europa Excelencia 2023",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "abril 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/04/23\n\t                    -\n\t                    Fin: \n\t                    17/05/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación."
+    }
+][
+    {
+        "convocatoria": "Contratos Predoctorales de Formación en Investigación en Salud 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/03/23\n\t                    -\n\t                    Fin: \n\t                    26/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D+I en Salud 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    25/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Desarrollo Tecnológico en Salud 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/03/23\n\t                    -\n\t                    Fin: \n\t                    27/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Doctorados IIS-empresa en Ciencias y Tecnologías de la Salud 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/03/23\n\t                    -\n\t                    Fin: \n\t                    26/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=13https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Ayudas para la movilidad del personal investigador (Modalidad M-AES) 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    20/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Contratos de personal técnico bioinformático de apoyo a la investigación en los IIS",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    18/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Contratos para la intensificación de la actividad investigadora en el SNS 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    20/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Contratos Miguel Servet 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    19/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Contratos Río Hortega 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/03/23\n\t                    -\n\t                    Fin: \n\t                    20/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Programa NEOTEC 2023",
+        "puesto": "Centro para el Desarrollo Tecnológico y la Innovación (CDTI)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/02/23\n\t                    -\n\t                    Fin: \n\t                    20/04/23",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+][
+    {
+        "convocatoria": "Ayudas para la movilidad del personal investigador (Modalidad M-BAE) 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    20/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Formación en Gestión de la Investigación en Salud 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    18/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Contratos Juan Rodés 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    19/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Contratos Sara Borrell 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/03/23\n\t                    -\n\t                    Fin: \n\t                    20/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=14https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Subvenciones a asociaciones juveniles y a federaciones y confederaciones de estudiantes y de egresados cuyo ámbito de actuación sea la universidad 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "octubre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    3/10/22\n\t                    -\n\t                    Fin: \n\t                    17/10/22",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Distinción Ciudades de la Ciencia y la Innovación 2022",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "octubre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    18/10/22\n\t                    -\n\t                    Fin: \n\t                    28/10/22",
+        "entidad": "Secretaría General de Innovación"
+    }
+][
+    {
+        "convocatoria": "Renovación de la Distinción Ciudades de la Ciencia y la Innovación 2022",
+        "puesto": "Ministerio de Ciencia  e Innovación (MCIN)",
+        "fecha_publicación": "octubre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    14/11/22\n\t                    -\n\t                    Fin: \n\t                    30/11/22",
+        "entidad": "Secretaría General de Innovación"
+    }
+][
+    {
+        "convocatoria": "Certificado BIOPYME 2023",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "febrero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/03/23\n\t                    -\n\t                    Fin: \n\t                    31/03/23"
+    }
+][
+    {
+        "convocatoria": "Ayudas para estancias de movilidad en el extranjero José Castillejo para jóvenes doctores 2021",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "junio 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    12/07/21\n\t                    -\n\t                    Fin: \n\t                    31/08/21",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Certificado R3",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    20/03/23\n\t                    -\n\t                    Fin: \n\t                    13/04/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos de gestión en investigación en salud en los IIS 2023",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    18/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+][
+    {
+        "convocatoria": "Expresión de interés para la designación de miembros del CACTI",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    21/03/23\n\t                    -\n\t                    Fin: \n\t                    13/04/23"
+    }
+][
+    {
+        "convocatoria": "Estancias de personal docente y/o investigador senior en centros extranjeros 2021",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "junio 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    23/07/21\n\t                    -\n\t                    Fin: \n\t                    31/08/21",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda"
+    }
+][
+    {
+        "convocatoria": "Contratos de personal técnico bioinformático de apoyo a la investigación en los IIS",
+        "puesto": "Instituto de Salud Carlos III (ISCIII)",
+        "fecha_publicación": "marzo 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/03/23\n\t                    -\n\t                    Fin: \n\t                    18/04/23",
+        "entidad": "Instituto de Salud Carlos III"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=15https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Fomento de la Investigación Científica de Excelencia María de Guzmán 2022",
+        "puesto": "Fundación Española de Ciencia y Tecnología (FECYT)",
+        "fecha_publicación": "diciembre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    14/12/22\n\t                    -\n\t                    Fin: \n\t                    30/01/23",
+        "entidad": "Fundación Española para la Ciencia y la Tecnología (FECYT)"
+    }
+][
+    {
+        "convocatoria": "Proyectos en Colaboración Público-Privada 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    13/02/23\n\t                    -\n\t                    Fin: \n\t                    7/03/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos para la formación de doctores en empresas. Doctorados Industriales 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    2/02/23\n\t                    -\n\t                    Fin: \n\t                    23/02/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Generación de Conocimiento 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    10/01/23\n\t                    -\n\t                    Fin: \n\t                    31/01/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos de Personal Técnico de Apoyo 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Para centros:\n\t                    Comienzo: \n\t                    26/01/23\n\t                    -\n\t                    Fin: \n\t                    16/02/23\n\t                    |\n\t                    Para personas participantes:\n\t                    Comienzo: \n\t                    26/01/23\n\t                    -\n\t                    Fin: \n\t                    9/02/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Predoctorales para la Formación de Doctores 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    12/01/23\n\t                    -\n\t                    Fin: \n\t                    26/01/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Juan de la Cierva 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Investigadores:\n\t                    Comienzo: \n\t                    24/01/23\n\t                    -\n\t                    Fin: \n\t                    7/02/23\n\t                    |\n\t                    Centros:\n\t                    Comienzo: \n\t                    24/01/23\n\t                    -\n\t                    Fin: \n\t                    14/02/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Ramón y Cajal 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    19/01/23\n\t                    -\n\t                    Fin: \n\t                    9/02/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Torres Quevedo 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    31/01/23\n\t                    -\n\t                    Fin: \n\t                    21/02/23",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D no focalizados 2023",
+        "puesto": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/01/23\n\t                    -",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=16https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Plataformas Tecnológicas y de Innovación 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    3/11/22\n\t                    -\n\t                    Fin: \n\t                    22/11/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Subvenciones para financiar medidas de apoyo institucional a los sindicatos del ámbito universitario 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "octubre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    3/10/22\n\t                    -\n\t                    Fin: \n\t                    17/10/22",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Innovación y de Diseño 2022",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "junio 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    3/06/22\n\t                    -\n\t                    Fin: \n\t                    7/07/22",
+        "entidad": "Subdirección General de Coordinación de la Innovación."
+    }
+][
+    {
+        "convocatoria": "Consolidación Investigadora 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    3/11/22\n\t                    -\n\t                    Fin: \n\t                    24/11/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Investigación y Premios Nacionales de Investigación para Jóvenes 2022",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "octubre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/06/22\n\t                    -\n\t                    Fin: \n\t                    10/07/22",
+        "entidad": "Dirección General de Planificación de la Investigación"
+    }
+][
+    {
+        "convocatoria": "Fomento de la cultura científica, tecnológica y de la innovación 2022",
+        "puesto": "Fundación Española de Ciencia y Tecnología (FECYT)",
+        "fecha_publicación": "diciembre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    5/12/22\n\t                    -\n\t                    |\n\t                    Para elevar a definitiva la solicitud:\n\t                    -\n\t                    Fin: \n\t                    25/01/23\n\t                    |\n\t                    Para firmar electrónicamente la solicitud:\n\t                    -\n\t                    Fin: \n\t                    26/01/23",
+        "entidad": "Fundación Española para la Ciencia y la Tecnología (FECYT)"
+    }
+][
+    {
+        "convocatoria": "Ayudas para precios públicos de las matrículas en programas de doctorado 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "noviembre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    25/11/22\n\t                    -\n\t                    Fin: \n\t                    29/11/22",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Subvenciones a asociaciones juveniles y a federaciones y confederaciones de estudiantes y de egresados cuyo ámbito de actuación sea la universidad 2021",
+        "puesto": "Ministerio de Universidades(MUNI)",
+        "fecha_publicación": "septiembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    8/09/21\n\t                    -\n\t                    Fin: \n\t                    22/09/21",
+        "entidad": "Subdirección General de Formación del Profesorado Universitario y Gestión de Programas de Ayuda, de la Secretaría General de Universidades del Ministerio de Ciencia, Innovación y Universidades"
+    }
+][
+    {
+        "convocatoria": "Ayudas complementarias de movilidad destinadas a beneficiarios del programa de Formación del Profesorado Universitario",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "diciembre 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    15/01/21\n\t                    -\n\t                    Fin: \n\t                    2/03/20",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "INNVIERTE 2023",
+        "puesto": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)",
+        "fecha_publicación": "enero 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/01/23\n\t                    -",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=17https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Pruebas de Concepto PDC 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/05/22\n\t                    -\n\t                    Fin: \n\t                    31/05/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Programa Tecnológico Aeronáutico 2022",
+        "puesto": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)",
+        "fecha_publicación": "junio 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    4/06/22\n\t                    -\n\t                    Fin: \n\t                    28/07/22",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+][
+    {
+        "convocatoria": "Proyectos líneas estratégicas \"Transmisiones\" 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    14/06/22\n\t                    -\n\t                    Fin: \n\t                    5/07/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Colaboración Internacional PCI 2022-2",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    24/10/22\n\t                    -\n\t                    Fin: \n\t                    3/11/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para la realización de estudios de máster en Estados Unidos de América. Convocatoria curso 2022-2023",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "diciembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/02/22\n\t                    -\n\t                    Fin: \n\t                    21/02/22",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Europa Excelencia 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    27/06/22\n\t                    -\n\t                    Fin: \n\t                    8/07/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para la realización de estudios de máster en Estados Unidos de América. Convocatoria curso 2021-2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "enero 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    15/01/21\n\t                    -\n\t                    Fin: \n\t                    5/02/21",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Certamen universitario Arquímedes 2021",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "octubre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    21/10/21\n\t                    -\n\t                    Fin: \n\t                    20/11/21",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Ayudas para estancias de movilidad en el extranjero José Castillejo para jóvenes doctores 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "julio 2023",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    13/07/23\n\t                    -\n\t                    Fin: \n\t                    15/09/23",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Redes de Investigación 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "septiembre 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    22/09/22\n\t                    -\n\t                    Fin: \n\t                    11/10/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=18https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Programa Campus Inclusivos Para Una Universidad Inclusiva 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "mayo 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/05/22\n\t                    -\n\t                    Fin: \n\t                    22/05/22",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Colaboración Internacional PCI 2022-1",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "marzo 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    22/03/22\n\t                    -\n\t                    Fin: \n\t                    31/03/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Preparación y Gestión de Proyectos Europeos y Facilitar la Atración del Talento Internacional 2022",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "abril 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/04/22\n\t                    -\n\t                    Fin: \n\t                    12/05/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos para la formación de doctores en empresas. Doctorados Industriales 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    3/02/22\n\t                    -\n\t                    Fin: \n\t                    24/02/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Centros de Excelencia Severo Ochoa y María de Maetzu 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    31/01/22\n\t                    -\n\t                    Fin: \n\t                    22/02/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Distinción Ciudades de la Ciencia y la Innovación 2021",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "octubre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    2/11/21\n\t                    -\n\t                    Fin: \n\t                    2/12/21",
+        "entidad": "Secretaría General de Innovación"
+    }
+][
+    {
+        "convocatoria": "Contratos de Personal Técnico de Apoyo 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    CENTROS:\n\t                    Comienzo: \n\t                    7/02/22\n\t                    -\n\t                    Fin: \n\t                    24/02/22\n\t                    |\n\t                    PERSONAL TÉCNICO:\n\t                    Comienzo: \n\t                    7/02/22\n\t                    -\n\t                    Fin: \n\t                    17/02/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Torres Quevedo 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    2/02/22\n\t                    -\n\t                    Fin: \n\t                    23/02/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Certificado BIOPYME 2022",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "febrero 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/03/22\n\t                    -\n\t                    Fin: \n\t                    31/03/22"
+    }
+][
+    {
+        "convocatoria": "UIE - Salvador de Madariaga 2022",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "diciembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    12/12/21\n\t                    -\n\t                    Fin: \n\t                    31/01/22",
+        "entidad": "Secretaría General de Universidades"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=19https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Evaluación por méritos investigadores o de transferencia de conocimiento. Quinquenios 2021",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "diciembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    2/12/21\n\t                    -\n\t                    Fin: \n\t                    31/12/21",
+        "entidad": "Comisión Evaluadora del Desempeño de la Actividad Científico-Tecnológica"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Fin de Carrera de Educación Universitaria 2021",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "julio 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    15/07/21\n\t                    -\n\t                    Fin: \n\t                    18/08/21",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Proyectos en colaboración público-privada 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    19/01/22\n\t                    -\n\t                    Fin: \n\t                    10/02/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Investigación y Premios Nacionales de Investigación para Jóvenes 2021",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "noviembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    25/09/21\n\t                    -\n\t                    Fin: \n\t                    15/10/21",
+        "entidad": "Vicesecretaría General Técnica"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Generación de Conocimiento 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "noviembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    23/11/21\n\t                    -\n\t                    Fin: \n\t                    15/12/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Juan de la Cierva 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Investigadores:\n\t                    Comienzo: \n\t                    20/01/22\n\t                    -\n\t                    Fin: \n\t                    3/02/22\n\t                    |\n\t                    Centros:\n\t                    Comienzo: \n\t                    20/01/22\n\t                    -\n\t                    Fin: \n\t                    11/02/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Infraestructuras Científicas y Técnicas Singulares (ICTS) 2021",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "junio 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    2/06/21\n\t                    -\n\t                    Fin: \n\t                    22/06/21",
+        "entidad": "Subdirección General de Grandes Instalaciones Científico-Técnicas (Secretaría General de Investigación)"
+    }
+][
+    {
+        "convocatoria": "Contratos Ramón y Cajal 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2022",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    18/01/22\n\t                    -\n\t                    Fin: \n\t                    11/02/22",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Subvenciones a las universidades públicas para la modernización y digitalización del sistema universitario español",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "octubre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    8/10/21\n\t                    -\n\t                    Fin: \n\t                    17/11/20"
+    }
+][
+    {
+        "convocatoria": "Proyectos Estratégicos Orientados a la Transición Ecológica y a la Transición Digital 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    16/12/21\n\t                    -\n\t                    Fin: \n\t                    19/01/22",
+        "entidad": "Subdicisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=20https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Contratos Predoctorales para la Formación de Doctores 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/10/21\n\t                    -\n\t                    Fin: \n\t                    11/11/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Certificado BIOPYME 2021",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "julio 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    23/07/21\n\t                    -\n\t                    Fin: \n\t                    31/08/21"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Colaboración Internacional 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    19/10/21\n\t                    -\n\t                    Fin: \n\t                    28/10/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Certamen de Jóvenes Investigadores 2021",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "octubre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    4/10/21\n\t                    -\n\t                    Fin: \n\t                    17/10/21",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Equipamiento Científico-Técnico 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/06/21\n\t                    -\n\t                    Fin: \n\t                    6/07/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación."
+    }
+][
+    {
+        "convocatoria": "Concesión de moratorias a entidades promotoras de Parques Científicos y Tecnológicos 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    5/10/21\n\t                    -\n\t                    Fin: \n\t                    4/11/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de \"Prueba de Concepto\" 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "abril 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    29/04/21\n\t                    -\n\t                    Fin: \n\t                    13/05/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Innovación y de Diseño 2021",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "abril 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    7/06/21\n\t                    -\n\t                    Fin: \n\t                    8/07/21",
+        "entidad": "Subdirección General de Coordinación de la Innovación."
+    }
+][
+    {
+        "convocatoria": "IUE – Salvador de Madariaga 2021",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "febrero 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    23/02/21\n\t                    -\n\t                    Fin: \n\t                    1/03/21",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Subvenciones para financiar medidas de apoyo institucional a los sindicatos del ámbito universitario 2021",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "septiembre 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    8/09/21\n\t                    -\n\t                    Fin: \n\t                    22/09/21",
+        "entidad": "Secretaría General de Universidades"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=21https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Programa Tecnológico Aeronáutico 2021",
+        "puesto": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)",
+        "fecha_publicación": "abril 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    19/04/21\n\t                    -\n\t                    Fin: \n\t                    7/06/21",
+        "entidad": "Centro para el Desarrollo Tecnológico Industrial y la Innovación (CDTI)"
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D+I. Programación Conjunta Internacional 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    24/05/21\n\t                    -\n\t                    Fin: \n\t                    3/06/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación."
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D+I en líneas estratégicas, en colaboración público-privada 2021",
+        "puesto": "Proyectos de I+D+I en líneas estratégicas, en colaboración público-privada 2021",
+        "fecha_publicación": "abril 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    27/04/21\n\t                    -\n\t                    Fin: \n\t                    18/05/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Centros de Excelencia Severo Ochoa y María de Maetzu 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    20/01/21\n\t                    -\n\t                    Fin: \n\t                    10/02/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Torres Quevedo 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    26/01/21\n\t                    -\n\t                    Fin: \n\t                    16/02/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Europa Excelencia 2021",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    10/06/21\n\t                    -\n\t                    Fin: \n\t                    24/06/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación."
+    }
+][
+    {
+        "convocatoria": "Contratos de Personal Técnico de Apoyo 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Centros:\n\t                    Comienzo: \n\t                    21/01/21\n\t                    -\n\t                    Fin: \n\t                    11/02/21\n\t                    |\n\t                    Personas participantes:\n\t                    Comienzo: \n\t                    21/01/21\n\t                    -\n\t                    Fin: \n\t                    4/02/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Distinción Ciudades de la Ciencia y la Innovación 2020",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "diciembre 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/12/20\n\t                    -\n\t                    Fin: \n\t                    11/02/21",
+        "entidad": "Secretaría General de Innovación"
+    }
+][
+    {
+        "convocatoria": "Contratos para la formación de doctores en empresas. Doctorados Industriales 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/01/21\n\t                    -\n\t                    Fin: \n\t                    18/02/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Subvenciones para la recualificación del Sistema Universitario Español 2021",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "febrero 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    23/02/21\n\t                    -\n\t                    Fin: \n\t                    1/03/21",
+        "entidad": "Secretaría General de Universidades"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=22https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Concesión de moratorias a entidades promotoras de Parques Científicos y Tecnológicos 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "noviembre 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/11/20\n\t                    -\n\t                    Fin: \n\t                    15/12/20",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Juan de la Cierva 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Personas participantes:\n\t                    Comienzo: \n\t                    17/12/20\n\t                    -\n\t                    Fin: \n\t                    21/01/21\n\t                    |\n\t                    Centros de I+D:\n\t                    Comienzo: \n\t                    17/12/20\n\t                    -\n\t                    Fin: \n\t                    28/01/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para contratos Juan de la Cierva-incorporación 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Personas participantes:\n\t                    Comienzo: \n\t                    15/12/20\n\t                    -\n\t                    Fin: \n\t                    19/01/21\n\t                    |\n\t                    Centros de I+D:\n\t                    Comienzo: \n\t                    15/12/20\n\t                    -\n\t                    Fin: \n\t                    26/01/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Investigación y Premios Nacionales de Investigación para Jóvenes 2020",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "abril 2020",
+        "entidad": "Vicesecretaría General Técnica"
+    }
+][
+    {
+        "convocatoria": "Novación de los préstamos universidad convocatorias 2008, 2009 y 2010. Año 2020",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "julio 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    23/07/20\n\t                    -\n\t                    Fin: \n\t                    31/07/20",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Generación de Conocimiento 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "noviembre 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    26/11/20\n\t                    -\n\t                    Fin: \n\t                    17/12/20",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D+I «Programación Conjunta Internacional» 2020 - 2.ª",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2021",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    12/01/21\n\t                    -\n\t                    Fin: \n\t                    27/01/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Evaluación por méritos investigadores o de transferencia de conocimiento. Quinquenios 2020",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "diciembre 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    6/12/20\n\t                    -\n\t                    Fin: \n\t                    31/01/21",
+        "entidad": "Comisión Evaluadora del Desempeño de la Actividad Científico-Tecnológica"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Innovación y de Diseño 2020",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "agosto 2020",
+        "entidad": "Subdirección General de Coordinación y Relaciones Institucionales."
+    }
+][
+    {
+        "convocatoria": "Contratos Ramón y Cajal 2020",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "diciembre 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    10/12/20\n\t                    -\n\t                    Fin: \n\t                    21/01/21",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=23https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Plataformas Tecnológicas y de Innovación 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    2/06/20\n\t                    -\n\t                    Fin: \n\t                    16/06/20",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Predoctorales para la Formación de Doctores 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2020",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Europa Redes y Gestores - Europa Centros Tecnológicos 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    26/05/20\n\t                    -\n\t                    Fin: \n\t                    10/06/20",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos para la formación de doctores en empresas. Doctorados Industriales 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2020",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Europa Excelencia 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    28/05/20\n\t                    -\n\t                    Fin: \n\t                    16/06/20",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos de Personal Técnico de Apoyo 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2020",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Premios nacionales de fin de carrera de educación universitaria. Para estudiantes que hayan concluido sus estudios en el curso 2015-2016",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MCIU)",
+        "fecha_publicación": "noviembre 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    5/11/19\n\t                    -\n\t                    Fin: \n\t                    4/12/19",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Contratos Torres Quevedo 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Certificado BIOPYME 2020",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "mayo 2020",
+        "entidad": "Secretaría General de Innovación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D+I «Programación Conjunta Internacional» 2020",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2020",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    21/05/20\n\t                    -\n\t                    Fin: \n\t                    9/06/20",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=24https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Concesión de moratorias a entidades promotoras de Parques Científicos y Tecnológicos 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "septiembre 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para contratos Juan de la Cierva-formación 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Centros de Excelencia Severo Ochoa y María de Maetzu 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "noviembre 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para contratos Juan de la Cierva-incorporación 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    17/12/19\n\t                    -\n\t                    Fin: \n\t                    14/01/20",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Novación de los préstamos universidad convocatorias 2008, 2009 y 2010. Año 2019",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MCIU)",
+        "fecha_publicación": "febrero 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    8/03/19\n\t                    -\n\t                    Fin: \n\t                    30/06/19",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Becas y ayudas a alumnos de niveles postobligatorios. Universitarios. Curso 2019-2020",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MCIU)",
+        "fecha_publicación": "agosto 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    1/08/19\n\t                    -\n\t                    Fin: \n\t                    15/10/19",
+        "entidad": "Secretario de Estado de Educación y Formación Profesional"
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D+I «Programación Conjunta Internacional» 2019 - 2.ª",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "octubre 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de Generación de Conocimiento 2019",
+        "puesto": "Agencia Estatal de Investigación(AEI)",
+        "fecha_publicación": "septiembre 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D+I «Retos Colaboración» 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "septiembre 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Ramón y Cajal 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "diciembre 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    12/12/19\n\t                    -\n\t                    Fin: \n\t                    14/01/20",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=25https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Equipamiento Científico-Técnico 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Europa Redes y Gestores - Europa Centros Tecnológicos 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "abril 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Certamen Universitario Arquímedes 2019",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MCIU)",
+        "fecha_publicación": "agosto 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    2/08/19\n\t                    -\n\t                    Fin: \n\t                    19/08/19",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Acciones de Dinamización «Europa Excelencia» 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Predoctorales para la Formación de Doctores 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para incentivar la incorporación estable de doctores (IED) 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Investigación y Premios Nacionales de Investigación para Jóvenes 2019",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "entidad": "Subdirección General de Coordinación y Relaciones Institucionales"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Innovación y de Diseño 2019",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "abril 2019",
+        "entidad": "Subdirección General de Coordinación y Relaciones Institucionales."
+    }
+][
+    {
+        "convocatoria": "Programa Campus Inclusivos Para Una Universidad Inclusiva 2019",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MCIU)",
+        "fecha_publicación": "junio 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    15/06/19\n\t                    -\n\t                    Fin: \n\t                    21/06/19",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D+I «Programación Conjunta Internacional» 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "abril 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=26https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Ayudas para contratos Juan de la Cierva-formación 2018",
+        "puesto": "Ayudas para contratos Juan de la Cierva-formación 2018",
+        "fecha_publicación": "enero 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para contratos para la formación de investigadores en empresas (Doctorados Industriales) 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para la formación de profesorado universitarios (FPU) 2018",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "octubre 2018",
+        "plazos": "Plazos de Solicitud:\n\t                    Investigadores:\n\t                    Comienzo: \n\t                    9/10/18\n\t                    -\n\t                    Fin: \n\t                    29/10/18",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Contratos Torres Quevedo 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Redes de Investigación 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "febrero 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    12/02/19\n\t                    -\n\t                    Fin: \n\t                    5/03/19",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Premios Nacionales de Investigación y Premios Nacionales de Investigación para Jóvenes 2018",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "mayo 2018",
+        "entidad": "Subdirección General de Coordinación y Relaciones Institucionales"
+    }
+][
+    {
+        "convocatoria": "Contratos de Personal Técnico de Apoyo 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    30/01/19\n\t                    -\n\t                    Fin: \n\t                    20/02/19",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Contratos Ramón y Cajal 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "enero 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    9/01/19\n\t                    -\n\t                    Fin: \n\t                    30/01/19",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Certificado I3",
+        "puesto": "Ministerio de Ciencia, Innovación y Universidades (MCIU)",
+        "fecha_publicación": "enero 2019",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    29/01/19\n\t                    -\n\t                    Fin: \n\t                    31/12/19"
+    }
+][
+    {
+        "convocatoria": "Europa Excelencia 2019",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "abril 2019",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+]https://www.ciencia.gob.es/Buscador-especifico.html?tipoDocumento=convocatoria&convocatoriaTipo=subvenciones&currentPage=27https://www.ciencia.gob.es/Convocatorias.html[
+    {
+        "convocatoria": "Contratos Predoctorales para la Formación de Doctores 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2018",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Europa Excelencia 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "julio 2018",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Retos Investigación: Proyectos I+D+I 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2018",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Distinción Ciudades de la Ciencia y la Innovación 2018",
+        "puesto": "Ministerio de Ciencia e Innovación (MCIN)",
+        "fecha_publicación": "mayo 2018",
+        "entidad": "Secretaría de Estado de Universidades, Investigación, Desarrollo e Innovación"
+    }
+][
+    {
+        "convocatoria": "Ayudas para la promoción de empleo joven e implantación de la Garantía Juvenil en I+D+I 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "mayo 2018",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Becas y ayudas a alumnos de niveles postobligatorios. Universitarios. Curso 2018-2019",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "agosto 2018",
+        "plazos": "Plazos de Solicitud:\n\t                    Investigadores:\n\t                    Comienzo: \n\t                    17/08/18\n\t                    -\n\t                    Fin: \n\t                    15/10/18",
+        "entidad": "Secretaría de Estado de Educación y Formación Profesional"
+    }
+][
+    {
+        "convocatoria": "Becas de colaboración. Convocatoria 2018-2019",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "agosto 2018",
+        "plazos": "Plazos de Solicitud:\n\t                    Investigadores:\n\t                    Comienzo: \n\t                    13/08/18\n\t                    -\n\t                    Fin: \n\t                    18/09/18",
+        "entidad": "Secretaría de Estado de Educación y Formación Profesional"
+    }
+][
+    {
+        "convocatoria": "Equipamiento Científico-Técnico 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "junio 2018",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+][
+    {
+        "convocatoria": "Formación de Profesorado Universitario 2017",
+        "puesto": "Ministerio de Universidades (MUNI)",
+        "fecha_publicación": "diciembre 2017",
+        "plazos": "Plazos de Solicitud:\n\t                    Comienzo: \n\t                    13/12/17\n\t                    -\n\t                    Fin: \n\t                    29/12/17",
+        "entidad": "Secretaría General de Universidades"
+    }
+][
+    {
+        "convocatoria": "Proyectos de I+D+I «Programación Conjunta Internacional» 2018",
+        "puesto": "Agencia Estatal de Investigación (AEI)",
+        "fecha_publicación": "julio 2018",
+        "entidad": "Subdivisión de Planificación y Gestión Administrativa. Agencia Estatal de Investigación"
+    }
+]https://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspx
+https://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspx
+https://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspx
+https://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/AgrupacionesEmpresarialeshttps://www.mintur.gob.es/PortalAyudas/PERTE-IPCEI-ME-TChttps://www.mintur.gob.es/PortalAyudas/PERTE-DI-L4https://www.mintur.gob.es/PortalAyudas/PERTE-AGRO2https://www.mintur.gob.es/PortalAyudas/FAIIPhttps://www.mintur.gob.es/PortalAyudas/PERTE-ME-GENERALhttps://www.mintur.gob.es/PortalAyudas/reinicia-autohttps://www.mintur.gob.es/PortalAyudas/VEC-SECCIONBhttps://www.mintur.gob.es/PortalAyudas/plataformas-tecnologicas-RDTIhttps://www.mintur.gob.es/PortalAyudas/emisionesCO2https://www.mintur.gob.es/PortalAyudas/PERTE-DI-L4#contenidohttps://www.mintur.gob.es/PortalAyudas/VEC-SECCIONB#contenidohttps://www.mintur.gob.es/PortalAyudas/PERTE-IPCEI-ME-TC#contenidohttps://www.mintur.gob.es/PortalAyudas/plataformas-tecnologicas-RDTI#contenidohttps://www.mintur.gob.es/PortalAyudas/PERTE-ME-GENERAL#contenidohttps://www.mintur.gob.es/PortalAyudas/FAIIP#contenidohttps://www.mintur.gob.es/PortalAyudas/reinicia-auto#contenidohttps://www.mintur.gob.es/PortalAyudas/emisionesCO2#contenidohttps://www.mintur.gob.es/PortalAyudas/PERTE-AGRO2#contenidohttps://www.mintur.gob.es/PortalAyudas/AgrupacionesEmpresariales#contenido
+[
+    {
+        "index": 0,
+        "error": true,
+        "tags": [
+            "error"
+        ],
+        "content": "litellm.AuthenticationError: HuggingfaceException - <!DOCTYPE html><html dir=ltr class=ms-isBot lang=es-ES><head><meta http-equiv=X-UA-Compatible content=\"IE=Edge\"><meta name=viewport content=\"width=device-width, initial-scale=1.0\"><meta charset=utf-8><meta name=google-site-verification content=euDKNaMjl2_9D647EUohNILOEErAyKX3c_TVLtYQBLE><link rel=\"shortcut icon\" href=/Style%20Library/PC/Img/icons/Favicon.ico type=image/vnd.microsoft.icon id=favicon><title>Detalle de un anuncio del tablón de anuncios</title><script src=\"/_layouts/15/3082/initstrings.js?rev=VH27cqV0GG4Tm%2FLXObNlKQ%3D%3DTAG0\"></script><script src=\"/_layouts/15/init.js?rev=RQDIbxAC6fmsZTX0d3hJfQ%3D%3DTAG0\"></script><script src=\"/ScriptResource.axd?d=ScxySdy61YnyN05QS1THpEPBj31SdLKpE8p_8vpmoWUQJHkN7flrGyGKfel4-DD65fTHcyOnElExA6cUbJC_fKsZono4obvt7OeTQ09c4zGnB8emxnpsPWGggBcLb74hj0215TwkFDCjMsZGzNZ_-uOHL5rW_1IN0abJglyOt7sxUWOZrQGpJdIdDxgqVYIZ0&amp;t=ffffffffc820c398\"></script><script src=\"/_layouts/15/blank.js?rev=RNb8579P4OIxfq1Xu9%2FJHw%3D%3DTAG0\"></script><script>RegisterSod(\"require.js\",\"\\u002f_layouts\\u002f15\\u002frequire.js?rev=4UhLIF\\u00252FezOvmGnh\\u00252Fs0LLpA\\u00253D\\u00253DTAG0\");</script><script>RegisterSod(\"strings.js\",\"\\u002f_layouts\\u002f15\\u002f3082\\u002fstrings.js?rev=L3YO7EIa1vDmCtORuAnTsQ\\u00253D\\u00253DTAG0\");</script><script>RegisterSod(\"sp.res.resx\",\"\\u002f_layouts\\u002f15\\u002f3082\\u002fsp.res.js?rev=J\\u00252BxNHd1ikIXlPBl\\u00252FKw\\u00252FybQ\\u00253D\\u00253DTAG0\");</script><script>RegisterSod(\"sp.runtime.js\",\"\\u002f_layouts\\u002f15\\u002fsp.runtime.js?rev=76\\u00252BgPWw9KIjAT0sxQnzfsw\\u00253D\\u00253DTAG0\");RegisterSodDep(\"sp.runtime.js\",\"sp.res.resx\");</script><script>RegisterSod(\"sp.js\",\"\\u002f_layouts\\u002f15\\u002fsp.js?rev=8syJlJiAj2NbB7Lk8SwYuQ\\u00253D\\u00253DTAG0\");RegisterSodDep(\"sp.js\",\"sp.runtime.js\");RegisterSodDep(\"sp.js\",\"sp.ui.dialog.js\");RegisterSodDep(\"sp.js\",\"sp.res.resx\");</script><script>RegisterSod(\"sp.init.js\",\"\\u002f_layouts\\u002f15\\u002fsp.init.js?rev=GkFLBis9U36Li1QnvOcURg\\u00253D\\u00253DTAG0\");</script><script>RegisterSod(\"sp.ui.dialog.js\",\"\\u002f_layouts\\u002f15\\u002fsp.ui.dialog.js?rev=LhLDR0KxzrPklAskp5YXTQ\\u00253D\\u00253DTAG0\");RegisterSodDep(\"sp.ui.dialog.js\",\"sp.init.js\");RegisterSodDep(\"sp.ui.dialog.js\",\"sp.res.resx\");</script><script>RegisterSod(\"core.js\",\"\\u002f_layouts\\u002f15\\u002fcore.js?rev=faFDNr3V4dxNC4h0B8g2Fg\\u00253D\\u00253DTAG0\");RegisterSodDep(\"core.js\",\"strings.js\");</script><script>RegisterSod(\"menu.js\",\"\\u002f_layouts\\u002f15\\u002fmenu.js?rev=w0MVgf0aLTYZzrHJ\\u00252BcCvNg\\u00253D\\u00253DTAG0\");</script><script>RegisterSod(\"mQuery.js\",\"\\u002f_layouts\\u002f15\\u002fmquery.js?rev=nwHLdAhsqaXtR67vEBu2Tw\\u00253D\\u00253DTAG0\");</script><script>RegisterSod(\"callout.js\",\"\\u002f_layouts\\u002f15\\u002fcallout.js?rev=06sk\\u00252Fhw3YOo4dp8FkR\\u00252BRJw\\u00253D\\u00253DTAG0\");RegisterSodDep(\"callout.js\",\"strings.js\");RegisterSodDep(\"callout.js\",\"mQuery.js\");RegisterSodDep(\"callout.js\",\"core.js\");</script><script>RegisterSod(\"sp.core.js\",\"\\u002f_layouts\\u002f15\\u002fsp.core.js?rev=SmybodxC6WEGQK1zFZwioQ\\u00253D\\u00253DTAG0\");RegisterSodDep(\"sp.core.js\",\"strings.js\");RegisterSodDep(\"sp.core.js\",\"sp.init.js\");RegisterSodDep(\"sp.core.js\",\"core.js\");</script><script>RegisterSod(\"clienttemplates.js\",\"\\u002f_layouts\\u002f15\\u002fclienttemplates.js?rev=RQNe\\u00252FIRdtsgQrRvMgLED9Q\\u00253D\\u00253DTAG0\");</script><script>RegisterSod(\"sharing.js\",\"\\u002f_layouts\\u002f15\\u002fsharing.js?rev=irR3ihDVPrkb3Lg\\u00252FODFgCA\\u00253D\\u00253DTAG0\");RegisterSodDep(\"sharing.js\",\"strings.js\");RegisterSodDep(\"sharing.js\",\"mQuery.js\");RegisterSodDep(\"sharing.js\",\"clienttemplates.js\");RegisterSodDep(\"sharing.js\",\"core.js\");</script><script>RegisterSod(\"suitelinks.js\",\"\\u002f_layouts\\u002f15\\u002fsuitelinks.js?rev=gQNiQ\\u00252FxC3km6ep0\\u00252BDEBeRQ\\u00253D\\u00253DTAG0\");RegisterSodDep(\"suitelinks.js\",\"strings.js\");RegisterSodDep(\"suitelinks.js\",\"core.js\");</script><script>RegisterSod(\"userprofile\",\"\\u002f_layouts\\u002f15\\u002fsp.userprofiles.js?rev=cx6U8sP\\u00252ByP0OFLjk6ekyIg\\u00253D\\u00253DTAG0\");RegisterSodDep(\"userprofile\",\"sp.runtime.js\");</script><script>RegisterSod(\"followingcommon.js\",\"\\u002f_layouts\\u002f15\\u002ffollowingcommon.js?rev=KiQH\\u00252BfIW0qVAkKWi2UJSng\\u00253D\\u00253DTAG0\");RegisterSodDep(\"followingcommon.js\",\"strings.js\");RegisterSodDep(\"followingcommon.js\",\"sp.js\");RegisterSodDep(\"followingcommon.js\",\"userprofile\");RegisterSodDep(\"followingcommon.js\",\"core.js\");RegisterSodDep(\"followingcommon.js\",\"mQuery.js\");</script><script>RegisterSod(\"profilebrowserscriptres.resx\",\"\\u002f_layouts\\u002f15\\u002f3082\\u002fprofilebrowserscriptres.js?rev=Q0jeR3lY56raUGvs8iu7RA\\u00253D\\u00253DTAG0\");</script><script>RegisterSod(\"sp.ui.mysitecommon.js\",\"\\u002f_layouts\\u002f15\\u002fsp.ui.mysitecommon.js?rev=lTgJiiDAyqMG\\u00252F3aszKzAHQ\\u00253D\\u00253DTAG0\");RegisterSodDep(\"sp.ui.mysitecommon.js\",\"sp.init.js\");RegisterSodDep(\"sp.ui.mysitecommon.js\",\"sp.runtime.js\");RegisterSodDep(\"sp.ui.mysitecommon.js\",\"userprofile\");RegisterSodDep(\"sp.ui.mysitecommon.js\",\"profilebrowserscriptres.resx\");</script><script>RegisterSod(\"browserScript\",\"\\u002f_layouts\\u002f15\\u002fnon_ie.js?rev=3W1TzrPH4V\\u00252B9hg9\\u00252FzIx5Bg\\u00253D\\u00253DTAG0\");RegisterSodDep(\"browserScript\",\"strings.js\");</script><script>RegisterSod(\"inplview\",\"\\u002f_layouts\\u002f15\\u002finplview.js?rev=48ZaFOMCZWeK\\u00252FLZGkN\\u00252Bu6w\\u00253D\\u00253DTAG0\");RegisterSodDep(\"inplview\",\"strings.js\");RegisterSodDep(\"inplview\",\"core.js\");RegisterSodDep(\"inplview\",\"clienttemplates.js\");RegisterSodDep(\"inplview\",\"sp.js\");</script><link type=text/xml rel=alternate href=/es/ServiciosAlCiudadano/TablonDeAnuncios/_vti_bin/spsdisco.aspx><link rel=canonical href=\"https://www.exteriores.gob.es:443/es/ServiciosAlCiudadano/TablonDeAnuncios/Paginas/DetalleAnuncioTablon.aspx?bbn=Subvenciones+2025+de+la+Secretar%C3%ADa+de+Estado+para+la+Uni%C3%B3n+Europea\"><link href=/Style%20Library/PC/Script/jquery-ui-1.12.1/jquery-ui.min.css rel=stylesheet media=screen><link href=/Style%20Library/PC/Script/owl-carousel-2.3.4/owl.carousel.min.css rel=stylesheet media=screen><link href=/Style%20Library/PC/Script/owl-carousel-2.3.4/owl.theme.default.min.css rel=stylesheet media=screen><link href=/Style%20Library/PC/css/bootstrap-grid-4.3.1/bootstrap-grid.min.css rel=stylesheet media=screen><link href=/Style%20Library/PC/css/fontawesome-6.5.2/css/all.min.css rel=stylesheet media=screen><link href=/Style%20Library/PC/css/fontawesome-6.5.2/css/fontawesome.min.css rel=stylesheet media=screen><link href=/Style%20Library/PC/Script/ol-map/ol.css rel=stylesheet media=screen><link href=/Style%20Library/PC/Script/ol-map/ol-popup.css rel=stylesheet media=screen><link href=/Style%20Library/PC/css/stylesPCMain.min.css rel=stylesheet media=screen><link href=/Style%20Library/PC/css/stylesPC.min.css rel=stylesheet media=screen></head><body onhashchange=\"if(typeof(_spBodyOnHashChange)!='undefined')_spBodyOnHashChange()\"><span id=DeltaSPWebPartManager> </span> <form method=post action=\"./DetalleAnuncioTablon.aspx?bbn=Subvenciones+2025+de+la+Secretar%u00eda+de+Estado+para+la+Uni%u00f3n+Europea\" id=aspnetForm> <div class=aspNetHidden> <input type=hidden name=_wpcmWpid id=_wpcmWpid> <input type=hidden name=wpcmVal id=wpcmVal> <input type=hidden name=MSOWebPartPage_PostbackSource id=MSOWebPartPage_PostbackSource> <input type=hidden name=MSOTlPn_SelectedWpId id=MSOTlPn_SelectedWpId> <input type=hidden name=MSOTlPn_View id=MSOTlPn_View value=0> <input type=hidden name=MSOTlPn_ShowSettings id=MSOTlPn_ShowSettings value=False> <input type=hidden name=MSOGallery_SelectedLibrary id=MSOGallery_SelectedLibrary> <input type=hidden name=MSOGallery_FilterString id=MSOGallery_FilterString> <input type=hidden name=MSOTlPn_Button id=MSOTlPn_Button value=none> <input type=hidden name=__REQUESTDIGEST id=__REQUESTDIGEST value=noDigest> <input type=hidden name=MSOSPWebPartManager_DisplayModeName id=MSOSPWebPartManager_DisplayModeName value=Browse> <input type=hidden name=MSOSPWebPartManager_ExitingDesignMode id=MSOSPWebPartManager_ExitingDesignMode value=false> <input type=hidden name=MSOWebPartPage_Shared id=MSOWebPartPage_Shared> <input type=hidden name=MSOLayout_LayoutChanges id=MSOLayout_LayoutChanges> <input type=hidden name=MSOLayout_InDesignMode id=MSOLayout_InDesignMode> <input type=hidden name=_wpSelected id=_wpSelected> <input type=hidden name=_wzSelected id=_wzSelected> <input type=hidden name=MSOSPWebPartManager_OldDisplayModeName id=MSOSPWebPartManager_OldDisplayModeName value=Browse> <input type=hidden name=MSOSPWebPartManager_StartWebPartEditingName id=MSOSPWebPartManager_StartWebPartEditingName value=false> <input type=hidden name=MSOSPWebPartManager_EndWebPartEditing id=MSOSPWebPartManager_EndWebPartEditing value=false> <input type=hidden name=__VIEWSTATE id=__VIEWSTATE value=\"/wEPDwUBMA9kFgJmD2QWAgIBD2QWBgIBD2QWBAIGD2QWAmYPZBYCAgEPFgIeE1ByZXZpb3VzQ29udHJvbE1vZGULKYgBTWljcm9zb2Z0LlNoYXJlUG9pbnQuV2ViQ29udHJvbHMuU1BDb250cm9sTW9kZSwgTWljcm9zb2Z0LlNoYXJlUG9pbnQsIFZlcnNpb249MTYuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49NzFlOWJjZTExMWU5NDI5YwFkAg4PZBYEAgEPZBYCAgUPFgIfAAsrBAFkAgMPZBYCZg9kFgJmDzwrAAYAZAIJD2QWBAIED2QWAgIFD2QWAgICD2QWAgIBD2QWAgIDDxYCHgdWaXNpYmxlaBYCZg9kFgQCAw9kFgYCAQ8WAh8BaGQCAw8WAh8BaGQCBQ8WAh8BaGQCBA8PFgIeCUFjY2Vzc0tleQUBL2RkAgYPZBYGAggPZBYIZg8WAh4EVGV4dAVkRm9ybXVsYXJpbyBkZWwgYnVzY2Fkb3IgZ2Vuw6lyaWNvIGRlbCBNaW5pc3RlcmlvIGRlIEFzdW50b3MgRXh0ZXJpb3JlcywgVW5pb24gRXVyb3BlYSB5IENvb3BlcmFjacOzbmQCAQ8WAh8DBQhCdXNjYWRvcmQCAg8WAh4LcGxhY2Vob2xkZXIFF0J1c2NhciBlbiBlbCBtaW5pc3RlcmlvZAIEDxYCHwMFBkJ1c2NhcmQCCg8WAh8DBQVNZW7DumQCDg9kFghmDxYCHwMFZEZvcm11bGFyaW8gZGVsIGJ1c2NhZG9yIGdlbsOpcmljbyBkZWwgTWluaXN0ZXJpbyBkZSBBc3VudG9zIEV4dGVyaW9yZXMsIFVuaW9uIEV1cm9wZWEgeSBDb29wZXJhY2nDs25kAgEPFgIfAwUIQnVzY2Fkb3JkAgIPFgIfBAUXQnVzY2FyIGVuIGVsIG1pbmlzdGVyaW9kAgQPFgIfAwUGQnVzY2FyZAIlD2QWAgIBDxYCHwALKwQBZGQsPeFtR4WpLm5pevlhsAKMr3bGTg3S+ptcV34dcBwEmg==\"> </div><script>var MSOWebPartPageFormName='aspnetForm';var g_presenceEnabled=true;var g_wsaEnabled=false;var g_correlationId='045790a1-f7fa-20d8-a8e3-7c7791306af2';var g_wsaQoSEnabled=false;var g_wsaQoSDataPoints=[];var g_wsaRUMEnabled=false;var g_wsaLCID=3082;var g_wsaListTemplateId=850;var g_wsaSiteTemplateId='CMSPUBLISHING#0';var _fV4UI=true;var _spPageContextInfo={webServerRelativeUrl:\"\\u002fes\\u002fServiciosAlCiudadano\\u002fTablonDeAnuncios\",webAbsoluteUrl:\"https:\\u002f\\u002fwww.exteriores.gob.es\\u002fes\\u002fServiciosAlCiudadano\\u002fTablonDeAnuncios\",siteAbsoluteUrl:\"https:\\u002f\\u002fwww.exteriores.gob.es\",serverRequestPath:\"\\u002fes\\u002fServiciosAlCiudadano\\u002fTablonDeAnuncios\\u002fPaginas\\u002fDetalleAnuncioTablon.aspx\",layoutsUrl:\"_layouts\\u002f15\",webTitle:\"Tabl\\u00F3n de anuncios \\u0028ayudas, subvenciones, formaci\\u00F3n y empleo\\u0029\",webTemplate:\"39\",tenantAppVersion:\"0\",isAppWeb:false,Has2019Era:true,webLogoUrl:\"\\u002fStyle Library\\u002fPC\\u002fImg\\u002fcommon\\u002flogoMinisterio.png\",webLanguage:3082,currentLanguage:3082,currentUICultureName:\"es-ES\",currentCultureName:\"es-ES\",clientServerTimeDelta:new Date(\"2025-04-01T21:30:39.9818314Z\")-new Date(),updateFormDigestPageLoaded:new Date(\"2025-04-01T21:30:39.9818314Z\"),siteClientTag:\"573$$16.0.5448.1000\",crossDomainPhotosEnabled:false,webUIVersion:15,webPermMasks:{High:16,Low:196673},pageListId:\"{c2c973ae-1b8c-4d8c-981b-d1af4ae8b468}\",pageItemId:3,pagePersonalizationScope:1,alertsEnabled:true,customMarkupInCalculatedFieldDisabled:true,siteServerRelativeUrl:\"\\u002f\",allowSilverlightPrompt:'True',isSiteAdmin:false};document.onreadystatechange=fnRemoveAllStatus;function fnRemoveAllStatus(){removeAllStatus(true)};var settingsCookies={\"IdControlButtonAceptar\":\"ctl00_ctl56_ctl01_btnAceptar\",\"IdControlButtonRechazar\":\"ctl00_ctl56_ctl01_btnRechazar\",\"IdGoogle\":\"G-YHZBSPQRHE\",\"LinkGoogle\":\"https://www.googletagmanager.com/gtag/js\",\"CookieName\":\"cookiePortalCiudadano\",\"CookieValue\":\"cookie cerrada\",\"CookieDays\":7,\"IdContainerCookies\":\"ctl00_ctl56_ctl01\"};var settingsCookies={\"IdControlButtonAceptar\":\"ctl00_ctl57_ctl06_btnAceptar\",\"IdControlButtonRechazar\":\"ctl00_ctl57_ctl06_btnRechazar\",\"IdGoogle\":\"G-YHZBSPQRHE\",\"LinkGoogle\":\"https://www.googletagmanager.com/gtag/js\",\"CookieName\":\"cookiePortalCiudadano\",\"CookieValue\":\"cookie cerrada\",\"CookieDays\":7,\"IdContainerCookies\":\"ctl00_ctl57_ctl06\"};var settingsCookies={\"IdControlButtonAceptar\":\"ctl00_ctl57_ctl07_btnAceptar\",\"IdControlButtonRechazar\":\"ctl00_ctl57_ctl07_btnRechazar\",\"IdGoogle\":\"G-YHZBSPQRHE\",\"LinkGoogle\":\"https://www.googletagmanager.com/gtag/js\",\"CookieName\":\"cookiePortalCiudadano\",\"CookieValue\":\"cookie cerrada\",\"CookieDays\":7,\"IdContainerCookies\":\"ctl00_ctl57_ctl07\"};var lazyLoadingSettings={\"ClassNoLazyLoadings\":\"noLazy\",\"ClassLazyLoadings\":\"lazy\",\"EnabledLazyLoadings\":true,\"Timeout\":200};Flighting.ExpFeatures=[480215056,1880287568,1561350208,302071836,3212816,69472768,4194310,-2113396707,268502022,-872284160,1049232,-2147421952,65536,65536,2097472,917504,-2147474174,1372324107,67108882,0,0,-2147483648,2097152,0,0,32768,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,32768];(function()\n{if(typeof(window.SP)==\"undefined\")window.SP={};if(typeof(window.SP.YammerSwitch)==\"undefined\")window.SP.YammerSwitch={};var ysObj=window.SP.YammerSwitch;ysObj.IsEnabled=false;ysObj.TargetYammerHostName=\"www.yammer.com\";})();var _spWebPartComponents=new Object();</script><script src=\"/_layouts/15/blank.js?rev=RNb8579P4OIxfq1Xu9%2FJHw%3D%3DTAG0\"></script><script>(function(){if(typeof(_spBodyOnLoadFunctions)==='undefined'||_spBodyOnLoadFunctions===null){return;}\n_spBodyOnLoadFunctions.push(function(){SP.SOD.executeFunc('core.js','FollowingDocument',function(){FollowingDocument();});});})();(function(){if(typeof(_spBodyOnLoadFunctions)==='undefined'||_spBodyOnLoadFunctions===null){return;}\n_spBodyOnLoadFunctions.push(function(){SP.SOD.executeFunc('core.js','FollowingCallout',function(){FollowingCallout();});});})();if(typeof(DeferWebFormInitCallback)=='function')DeferWebFormInitCallback();</script><div id=main-container>  <header> <div class=header__main-Wrapper> <div class=header__main> <a href=/es title=\"Volver a la página principal\"> <img alt=\"Ministerio de Asuntos Exteriores, Unión Europea y Cooperación\" class=\"header__logo hide-in-desktop-moncloa noLazy\" src=/PublishingImages/Banners/logoMinisterio.svg> <img alt=\"Ministerio de Asuntos Exteriores, Unión Europea y Cooperación\" class=\"header__logo hide-in-mobile noLazy\" src=/PublishingImages/Banners/logoMinisterio.svg> </a>     <div class=header__links-Wrapper> <div class=header__links> <nav class=\"header__nav1 hide-in-mobile\"> <ul><li class=hide-in-mobile> <a href=https://sede.maec.gob.es title=\"Se abre en ventana nueva: Sede electrónica\" target=_blank> Sede electrónica <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li class=hide-in-mobile> <a href=/es/Ministerio/Paginas/Contacto.aspx title=Contacto> Contacto </a> </li> <li class=dropdown> <div class=dropbtn> Castellano <span aria-hidden=true class=\"fas fa-chevron-down\"></span> </div> <div class=dropdown-content> <ul><li class=ltr-text> <a href=/ca hreflang=ca-ES> <span lang=ca-ES>Català</span> </a> </li> <li class=ltr-text> <a href=/en hreflang=en-US> <span lang=en-US>English</span> </a> </li> <li class=ltr-text> <a href=/eu hreflang=eu-ES> <span lang=eu-ES>Euskera</span> </a> </li> <li class=ltr-text> <a href=/fr hreflang=fr-FR> <span lang=fr-FR>Français</span> </a> </li> <li class=ltr-text> <a href=/gl hreflang=gl-ES> <span lang=gl-ES>Galego</span> </a> </li></ul> </div> </li></ul> </nav> <div class=\"header__search hide-in-mobile\"> <div class=\"search-Content ltr-text\"> <div class=header__form> <fieldset class=hide-in-desktop><legend class=hide> Formulario del buscador genérico del Ministerio de Asuntos Exteriores, Union Europea y Cooperación </legend><label for=ctl00_ctl56_ctl04_txtSearch class=hide> Buscador </label> <input name=ctl00$ctl56$ctl04$txtSearch type=text id=ctl00_ctl56_ctl04_txtSearch placeholder=\"Buscar en el ministerio\" class=header__searchBox> <input type=button name=ctl00$ctl56$ctl04$btnSearch value= onclick=\"WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&#34;ctl00$ctl56$ctl04$btnSearch&#34;,&#34;&#34;,true,&#34;&#34;,&#34;&#34;,false,true))\" id=ctl00_ctl56_ctl04_btnSearch class=\"header__button fa fa-search\"> </fieldset> <div class=hide-in-tablet> <a href=/es/Paginas/Resultados-busqueda.aspx class=BtnSearchDesktop> Buscar <input type=button name=ctl00$ctl56$ctl04$ctl00 value= onclick=\"WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&#34;ctl00$ctl56$ctl04$ctl00&#34;,&#34;&#34;,true,&#34;&#34;,&#34;&#34;,false,true))\" class=\"header__button fa fa-search\"> </a> </div> </div> </div> </div> </div> </div> <div class=\"header__menu hide-in-desktop\"> <span aria-hidden=true class=\"fas fa-bars allign\"></span> <p class=text__menu>Menú</p>  </div> </div> <div class=header__aux-Wrapper> <div class=header__nav> <nav class=header__nav2> <div> <ul><li class=\"dropdown hide-in-desktop\"> <div class=dropbtn> Castellano <span aria-hidden=true class=\"fas fa-chevron-down\"></span> </div> <div class=dropdown-content> <ul><li class=ltr-text> <a href=/ca hreflang=ca-ES> <span lang=ca-ES>Català</span> </a> </li> <li class=ltr-text> <a href=/en hreflang=en-US> <span lang=en-US>English</span> </a> </li> <li class=ltr-text> <a href=/eu hreflang=eu-ES> <span lang=eu-ES>Euskera</span> </a> </li> <li class=ltr-text> <a href=/fr hreflang=fr-FR> <span lang=fr-FR>Français</span> </a> </li> <li class=ltr-text> <a href=/gl hreflang=gl-ES> <span lang=gl-ES>Galego</span> </a> </li></ul> </div> </li></ul> </div> <ul><li> <a class=itemMenu href=/es/Ministerio> Ministerio <span class=\"fas fa-chevron-down\"></span> </a> <ul class=twoColumns><li> <a href=/es/Ministerio/Ministro> Ministro </a> </li> <li> <a href=/es/Ministerio/Ministro/Paginas/AgendaMinistro.aspx> Agenda del ministro </a> </li> <li> <a href=/es/Ministerio/Paginas/index.aspx> Estructura y organigrama </a> </li> <li> <a href=\"https://www.aecid.es/\"> AECID </a> </li> <li> <a href=https://cervantes.org/es#> Instituto Cervantes </a> </li> <li> <a href=/es/Ministerio/EscuelaDiplomatica> Escuela Diplomática </a> </li> <li> <a href=/es/Ministerio/OrganismosVinculados> Organismos vinculados </a> </li> <li> <a href=/es/Ministerio/Protocolo> Protocolo </a> </li> <li> <a href=/es/Ministerio/HistoriaDelMinisterio> Historia del Ministerio </a> </li> <li> <a href=/es/Ministerio/Sedes> Sedes </a> </li> <li> <a href=/es/Ministerio/Transparencia> Transparencia y buen gobierno </a> </li></ul> </li> <li> <a class=itemMenu href=/es/PoliticaExterior> Política Exterior <span class=\"fas fa-chevron-down\"></span> </a> <ul class=twoColumns><li> <a href=/es/PoliticaExterior/Paginas/AccionHumanitaria.aspx> Acción y diplomacia humanitarias </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/Africa.aspx> África </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/AsiaPacifico.aspx> Asia y Pacífico </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/CooperacionDesarrollo.aspx> Cooperación para el desarrollo sostenible </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/CumbresIberoamericanas.aspx> Cumbres Iberoamericanas </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/DerechosHumanos.aspx> Derechos Humanos </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/DiplomaciaCulturalCientifica.aspx> Diplomacia cultural y científica </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/DiplomaciaEconomica.aspx> Diplomacia económica </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/DiplomaciaPreventiva.aspx> Diplomacia preventiva </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/DiplomaciaPublicaDigital.aspx> Diplomacia pública y digital </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/ElEspanolEnElMundo.aspx> El español en el mundo </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/EspanaIberoamerica.aspx> España en Iberoamérica </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/EspanaOTAN.aspx> España y la OTAN </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/EspanaUE.aspx> España y la Unión Europea </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/EspanaNacionesUnidas.aspx> España y Naciones Unidas </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/FlujosMigratorios.aspx> Flujos migratorios </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/Gibraltar.aspx> Gibraltar </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/LaLuchaContraLaDesinformacion.aspx> La lucha contra la desinformación </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/Magreb-y-Oriente-Pr%c3%b3ximo.aspx> Magreb y Oriente Próximo </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/Mediterraneo.aspx> Mediterráneo </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/ObservacionElectoral.aspx> Observación electoral </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/PoliticaExteriorFeminista.aspx> Política Exterior Feminista </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/PoliticaExteriorSeguridadComunUE.aspx> Política Exterior y de Seguridad Común de la Unión Europea </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/SancionesInternacionales.aspx> Sanciones internacionales </a> </li> <li> <a href=/es/PoliticaExterior/Paginas/SeguridadGlobal.aspx> Seguridad global </a> </li></ul> </li> <li> <a class=itemMenu href=/es/Comunicacion> Comunicación <span class=\"fas fa-chevron-down\"></span> </a> <ul class=twoColumns><li> <a href=/es/Comunicacion/Noticias> Actualidad </a> </li> <li> <a href=/es/Comunicacion/NotasPrensa> Notas de prensa </a> </li> <li> <a href=/es/Comunicacion/Comunicados> Comunicados </a> </li> <li> <a href=/es/Comunicacion/Paginas/Ficha.aspx> Fichas país o territorio </a> </li> <li> <a href=/es/Comunicacion/Paginas/RRSS.aspx> Atlas de redes sociales </a> </li> <li> <a href=/es/Comunicacion/Paginas/Contacto.aspx> Contacto de medios de comunicación </a> </li></ul> </li> <li> <a class=itemMenu href=/es/EmbajadasConsulados> Embajadas y consulados </a> </li> <li class=active> <a class=itemMenu href=/es/ServiciosAlCiudadano> Servicios al ciudadano <span class=\"fas fa-chevron-down\"></span> </a> <ul class=twoColumns><li> <a href=/es/ServiciosAlCiudadano/Paginas/Servicios-consulares.aspx> Servicios consulares </a> </li> <li> <a href=/es/ServiciosAlCiudadano/Paginas/viogen.aspx> Ayuda a mujeres españolas víctimas de violencia de género en el exterior </a> </li> <li> <a href=/es/ServiciosAlCiudadano/Paginas/Publicaciones-oficiales.aspx> Publicaciones oficiales </a> </li> <li> <a href=/es/ServiciosAlCiudadano/Paginas/Legalizacion-y-apostilla.aspx> Legalización diplomática </a> </li> <li> <a href=/es/ServiciosAlCiudadano/Paginas/Recomendaciones-de-viaje.aspx> Recomendaciones de viaje </a> </li> <li> <a href=/es/ServiciosAlCiudadano/TratadosInternacionales> Tratados internacionales </a> </li> <li> <a href=/es/ServiciosAlCiudadano/Paginas/Archivo-General-y-Biblioteca-Central.aspx> Archivo General y Biblioteca Central </a> </li> <li> <a href=/es/ServiciosAlCiudadano/Paginas/Contacto.aspx> Direcciones y teléfonos </a> </li> <li> <a href=/es/ServiciosAlCiudadano/TablonDeAnuncios> Tablón de anuncios (ayudas, subvenciones, formación y empleo) </a> </li> <li> <a href=/es/ServiciosAlCiudadano/Paginas/Traductores-Interpretes-Jurados.aspx> Traductores/as - Intérpretes Jurados/as </a> </li> <li> <a href=/es/ServiciosAlCiudadano/Paginas/SOLVIT.aspx> SOLVIT Red de Resolución de Problemas en Europa </a> </li> <li> <a href=/es/ServiciosAlCiudadano/OportunidadesEnOrganizacionesInternacionales> Oportunidades de empleo en Organizaciones Internacionales y Unión Europea </a> </li></ul> </li> <li class=\"hide-in-desktop btn-direct-link\"> <a class=itemMenu href=https://sede.maec.gob.es target=_blank title=\"Se abre en ventana nueva\"> Sede electrónica <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li class=\"hide-in-desktop btn-direct-link\"> <a class=itemMenu href=/es/Ministerio/Paginas/Contacto.aspx> Contacto </a> </li></ul> </nav> </div> </div> </div> <div class=header__horizontal-stripe></div>  <div class=header__aux-Wrapper-mobile> <div class=header__search> <div class=\"search-Content ltr-text\"> <div class=header__form> <fieldset class=hide-in-desktop><legend class=hide> Formulario del buscador genérico del Ministerio de Asuntos Exteriores, Union Europea y Cooperación </legend><label for=ctl00_ctl56_ctl06_txtSearch class=hide> Buscador </label> <input name=ctl00$ctl56$ctl06$txtSearch type=text id=ctl00_ctl56_ctl06_txtSearch placeholder=\"Buscar en el ministerio\" class=header__searchBox> <input type=button name=ctl00$ctl56$ctl06$btnSearch value= onclick=\"WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&#34;ctl00$ctl56$ctl06$btnSearch&#34;,&#34;&#34;,true,&#34;&#34;,&#34;&#34;,false,true))\" id=ctl00_ctl56_ctl06_btnSearch class=\"header__button fa fa-search\"> </fieldset> <div class=hide-in-tablet> <a href=/es/Paginas/Resultados-busqueda.aspx class=BtnSearchDesktop> Buscar <input type=button name=ctl00$ctl56$ctl06$ctl00 value= onclick=\"WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&#34;ctl00$ctl56$ctl06$ctl00&#34;,&#34;&#34;,true,&#34;&#34;,&#34;&#34;,false,true))\" class=\"header__button fa fa-search\"> </a> </div> </div> </div> </div> </div> <div class=header__breadcrumb> <ul><li> <a href=/es>Bienvenido</a> </li> <li> <a href=/es/ServiciosAlCiudadano>Servicios al ciudadano</a> </li> <li> <a href=/es/ServiciosAlCiudadano/TablonDeAnuncios>Tablón de anuncios (ayudas, subvenciones, formación y empleo)</a> </li></ul> </div> </header> <main> <div class=banner__img-Wrapper> <div class=banner__img-full> <img class=\"banner__img lazy\" src=\"\" alt=\"\" data-src=\"/PublishingImages/RecursosPaginas/cabe-tablon-anuncios.jpg?width=1440&amp;height=240\"> </div> </div> <div class=\"row max-container pt-0 pb-0\"> <div class=\"col-12 col-md-8 col-lg-9\"> <section class=body__detail-Wrapper> <div class=single__detail-Wrapper> <h1 class=\"section__header-title hide\"> Detalle de un anuncio del tablón de anuncios </h1> </div> </section> <div class=\"ms-webpart-zone ms-fullWidth\"> <div id=MSOZoneCell_WebPartctl00_ctl48_g_23bd8784_34b5_4974_8021_b38f462e28f6 class=\"s4-wpcell-plain ms-webpartzone-cell ms-webpart-cell-vertical ms-fullWidth\"> <div class=\"ms-webpart-chrome ms-webpart-chrome-vertical ms-webpart-chrome-fullWidth\"> <div webpartid=23bd8784-34b5-4974-8021-b38f462e28f6 haspers=false id=WebPartctl00_ctl48_g_23bd8784_34b5_4974_8021_b38f462e28f6 width=100% class=ms-WPBody allowdelete=false><div id=ctl00_ctl48_g_23bd8784_34b5_4974_8021_b38f462e28f6> <section class=notasPrensa-Wrapper> <div class=header_viewAll> <h2 class=section__header-main>Subvenciones 2025 de la Secretaría de Estado para la Unión Europea</h2> </div> <div class=section__container-wrapper> <div class=notasPrensa__list> <ul><li> <article class=cardType4-Wrapper> <div class=row> <div class=\"col-3 col-sm-1\"> <time class=cardType4__time datetime=2025-03-13> <span class=cardType4__main>13</span> <span class=cardType4__secondary>mar. 25</span> </time> </div> <div class=\"col-9 col-sm-11 cardType4__text-Wrapper\"> <h2 class=cardType4__header>Resolución de 10 de marzo de 2025, de la Secretaría de Estado para la Unión Europea, por la que se anuncia la convocatoria para la concesión de subvenciones correspondientes al año 2025</h2> <div class=\"cardType4__text single__text\"> <div class=ExternalClass922D05A812B74B038A6729CFCA710029><p>​RESOLUCIÓN de 10 de marzo de 2025, de la Secretaría de Estado para la Unión Europea, por la que se anuncia la convocatoria para la concesión de subvenciones correspondientes al año 2025, para la celebración de acciones de comunicación y actividades divulgativas, sobre asuntos relacionados con el ámbito de sus competencias.<br></p><p><a href=/es/ServiciosAlCiudadano/TablonDeAnuncios/Documents/SEUE/Subvenciones-2025/Convocatoria%20Subvenci%c3%b3n%20HdE%202025%20Resoluci%c3%b3n%20y%20anexos.pdf target=_blank title=\"Se abre en ventana nueva\"><img class=\"ms-asset-icon ms-rtePosition-4 lazy\" src=\"\" alt=\"\" data-src=/_layouts/images/icpdf.png>Resolución SEUE subvenciones 2025​</a><br><br></p><ul><li><a href=/es/ServiciosAlCiudadano/TablonDeAnuncios/Documents/SEUE/Subvenciones-2025/Anexo%201_2025_Solicitud.docx target=_blank title=\"Se abre en ventana nueva\"><img class=\"ms-asset-icon ms-rtePosition-4 lazy\" src=\"\" alt=\"\" data-src=/_layouts/images/icdocx.png>Anexo 1_2025_Solicitud.docx​</a></li><li><a href=/es/ServiciosAlCiudadano/TablonDeAnuncios/Documents/SEUE/Subvenciones-2025/Anexo%202_2025_Formulario%20identificaci%c3%b3n%20proyecto.docx target=_blank title=\"Se abre en ventana nueva\"><img class=\"ms-asset-icon ms-rtePosition-4 lazy\" src=\"\" alt=\"\" data-src=/_layouts/images/icdocx.png>Anexo 2_2025_Formulario identificacion proyecto.docx</a></li><li><a href=/es/ServiciosAlCiudadano/TablonDeAnuncios/Documents/SEUE/Subvenciones-2025/Anexo_3_2025_Presupuesto%20estimado.xlsx target=_blank title=\"Se abre en ventana nueva\"><img class=\"ms-asset-icon ms-rtePosition-4 lazy\" src=\"\" alt=\"\" data-src=/_layouts/images/icxlsx.png>Anexo 3_2025_Presupuesto estimado.xlsx​</a></li></ul><p>Extracto de la Resolución de 10 de marzo de 2025, BOE nº 62, de 13 de marzo de 2025..&#160;<a href=https://www.boe.es/boe/dias/2025/03/13/pdfs/BOE-B-2025-9105.pdf>Anuncio 9105 del BOE núm. 62 de 2025</a></p><div>&#160;&#160;<br></div><div>Plazo de presentación de solicitudes&#58; 15 días hábiles a partir del día siguiente a la publicación del extracto de la Resolución de convocatoria en el BOE, por lo que el plazo de presentación estará abierto <strong>desde el viernes 14 de marzo de 2025 hasta las 24&#58;00 horas del jueves 03 de abril de 2025</strong> (<a href=https://www.boe.es/eli/es/res/2024/12/16/%281%29>de acuerdo con el calendario de días inhábiles de la AGE 2025</a>)<br></div><div>&#160;<br></div><div>Presentación electrónica de solicitudes&#58; <a href=\"https://sede.maec.gob.es/\">https&#58;//sede.maec.gob.es/</a><br></div><div><br></div><div>También puede consultar el texto completo de la <a href=https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/819757>Resolución de 10 de marzo de 2025 de la SEUE en el Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas (Código&#160;BDNS&#160;819757)​</a>&#160;y en la página <a href=https://www.hablamosdeeuropa.es/es/Paginas/home.aspx>www.hablamosdeeuropa.es​</a></div><div><br>​<br></div><p><br></p></div> </div> </div> </div> </article> </li></ul> </div> </div> </section> </div><div class=ms-clear></div></div> </div> </div> </div><script>if(typeof(MSOLayout_MakeInvisibleIfEmpty)==\"function\"){MSOLayout_MakeInvisibleIfEmpty();}</script></div> <div class=\"col-12 col-md-4 col-lg-3 aside-right\"> <aside class=aside__detail-Wrapper> <div class=header_viewAll> <h2 class=section__header-main> Más información </h2> </div> <div class=cardType3_2-Wrapper> <ul><li class=aside__detail-itemsadsd> <div class=section__header-secondary> <a href=/es/Comunicacion/NotasPrensa/Paginas/2025_NOTAS_P/Albares-presenta-nueva-Estrategia-de-Accion-Exterior-para-un-contexto-geopol%c3%adtico-cambiante.aspx>Albares presenta nueva Estrategia de Acción Exterior para un contexto geopolítico cambiante</a> </div> </li> <li class=aside__detail-itemsadsd> <div class=section__header-secondary> <a href=/es/Comunicacion/Comunicados/Paginas/2025_COMUNICADOS/Comunicado-sobre-nuevo-gobierno-de-transicion-en-Siria.aspx>Comunicado sobre nuevo gobierno de transición en Siria</a> </div> </li> <li class=aside__detail-itemsadsd> <div class=section__header-secondary> <a href=/es/Comunicacion/Comunicados/Paginas/2025_COMUNICADOS/Declaracion-conjunta-de-los-ministros-de-asuntos-exteriores-Alemania-Francia-Italia-Polonia-Espana-Reino-Unido-Alta-Represe.aspx>Declaración conjunta de los Ministros de Asuntos Exteriores de Alemania, Francia, Italia, Polonia, España, Reino Unido, así como la Alta Representante de la Unión Europea para Asuntos Exteriores y Política de Seguridad en Madrid </a> </div> </li> <li class=aside__detail-itemsadsd> <div class=section__header-secondary> <a href=/es/Comunicacion/Noticias/Paginas/Noticias/El-ministro-Albares-recibe-en-Madrid-a-sus-socios-del-g5--en-apoyo-a-Ucrania.aspx>El ministro Albares recibe en Madrid a sus socios del G5+ en apoyo a Ucrania</a> </div> </li> <li class=aside__detail-itemsadsd> <div class=section__header-secondary> <a href=/es/Comunicacion/NotasPrensa/Paginas/2025_NOTAS_P/Albares-reitera-el-compromiso-con-Ucrania-y-la-seguridad-europea-ante-la-ministra-letona-de-Exteriores-.aspx>Albares reitera el compromiso con Ucrania y la seguridad europea ante la ministra letona de Exteriores</a> </div> </li></ul> </div> </aside> </div> </div> </main> <footer> <section class=list__sponsor-Wrapper> <div class=container-fluid> <div class=\"section__header-secondary hide\"> Banners </div> <ul class=\"list__sponsor row\"><li class=\"col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2\"> <a href=https://www.cooperacionespanola.es title=\"Se abre en ventana nueva: Cooperación Española\" target=_blank> <span class=hide>Cooperación Española</span> <img class=\"list__img lazy\" src=\"\" alt=\"\" width=180 data-src=/PublishingImages/Banners/COOPERACION.svg> </a> </li> <li class=\"col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2\"> <a href=https://www.cervantes.es title=\"Se abre en ventana nueva: Instituto Cervantes\" target=_blank> <span class=hide>Instituto Cervantes</span> <img class=\"list__img lazy\" src=\"\" alt=\"\" width=180 data-src=/PublishingImages/Banners/CERVANTES.svg> </a> </li> <li class=\"col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2\"> <a href=/es/ServiciosAlCiudadano/ParticipacionPublica title=\"Se abre en ventana nueva: Participación pública\" target=_blank> <span class=hide>Participación pública</span> <img class=\"list__img lazy\" src=\"\" alt=\"\" width=180 data-src=/PublishingImages/Banners/PARTICIPACION_PUBLICA.svg> </a> </li> <li class=\"col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2\"> <a href=/es/Ministerio/OrganismosVinculados/Paginas/Red-de-Casas.aspx title=\"Se abre en ventana nueva: Red de casas\" target=_blank> <span class=hide>Red de casas</span> <img class=\"list__img lazy\" src=\"\" alt=\"\" width=180 data-src=/PublishingImages/Banners/RED_DE_CASAS.svg> </a> </li> <li class=\"col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2\"> <a href=https://transparencia.gob.es title=\"Se abre en ventana nueva: Portal de transparecia\" target=_blank> <span class=hide>Portal de transparecia</span> <img class=\"list__img lazy\" src=\"\" alt=\"\" width=180 data-src=/PublishingImages/Banners/TRANSPARENCIA.svg> </a> </li></ul> </div> </section> <section class=list__links-Wrapper> <div class=\"container-fluid list__links\"> <div class=\"row max-container\"> <div class=col-md-6> <div class=section__header-secondary> Accesos directos </div> <ul class=columns data-columns=2><li> <a href=/es/EmbajadasConsulados title=\"Embajadas y Consulados\"> Embajadas y Consulados </a> </li> <li> <a href=/es/Documents/Politica%20de%20Privacidad.%20RGPD%20v5.pdf title=\"Se abre en ventana nueva: Información Protección de Datos\" target=_blank> Información Protección de Datos <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=/es/Documents/Resoluci%C3%B3n%20protocolo%20actuaci%C3%B3n%20acoso%20sexual%20y%20raz%C3%B3n%20de%20sexo.pdf title=\"Stop acoso sexual y por razón de sexo\" hreflang=es-ES> Stop acoso sexual y por razón de sexo </a> </li> <li> <a href=/es/ServiciosAlCiudadano/Paginas/FAQs.aspx title=\"Preguntas frecuentes\"> Preguntas frecuentes </a> </li> <li> <a href=/es/Comunicacion/Paginas/Ficha.aspx title=\"Ficha país\"> Ficha país </a> </li> <li> <a href=/es/Paginas/Datos-abiertos.aspx title=\"Datos abiertos\"> Datos abiertos </a> </li> <li> <a href=https://sede.maec.gob.es/pagina/index/directorio/citaprevia title=\"Cita previa MAEUEC\"> Cita previa MAEUEC </a> </li> <li> <a href=https://sede.maec.gob.es/procedimientos/portada/ida/925/idp/58 title=Sugerencias> Sugerencias </a> </li> <li> <a href=/es/ServiciosAlCiudadano/ParticipacionPublica/Paginas/index.aspx title=\"Participación ciudadana\"> Participación ciudadana </a> </li> <li> <a href=/es/Canal-del-informante/Paginas/index.aspx title=\"Canal del informante\" hreflang=es-ES> Canal del informante </a> </li> <li> <a href=\"https://contrataciondelestado.es/wps/portal/!ut/p/b0/DcoxDoAgDEDRI3XWxMG464h0q1JIAxRCUK8v23_JB4QTUOmVQF2KUhq2jrkm0ThXbl7SVrQ36qSdwQACPpfcdI_9aIF0NNiAk49OdpO-BWrO6w_EW4qz/\" title=\"Perfil de contratante\"> Perfil de contratante </a> </li></ul> </div> <div class=col-md-6> <div class=section__header-secondary> Enlaces de interés </div> <ul class=\"columns ltr-text\" data-columns=2><li> <a href=\"https://www.cooperacionespanola.es/\" title=\"Se abre en ventana nueva: Cooperación Española\" target=_blank> Cooperación Española <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=\"https://sede.maec.gob.es/\" title=\"Se abre en ventana nueva: Sede Electrónica MAEUEC\" target=_blank> Sede Electrónica MAEUEC <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=\"https://administracion.gob.es/pag_Home/index.html#.XUfurOgzZPY/\" title=\"Se abre en ventana nueva: Portal Administracion.gob.es\" target=_blank> Portal Administracion.gob.es <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=http://www.aecid.es/ES title=\"Se abre en ventana nueva: AECID\" target=_blank> AECID <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=\"https://cervantes.org/\" title=\"Se abre en ventana nueva: Instituto Cervantes\" target=_blank> Instituto Cervantes <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=\"https://transparencia.gob.es/\" title=\"Se abre en ventana nueva: Portal Transparencia\" target=_blank> Portal Transparencia <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=\"https://www.lamoncloa.gob.es/\" title=\"Se abre en ventana nueva: La Moncloa\" target=_blank> La Moncloa <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=\"http://www.casareal.es/\" title=\"Se abre en ventana nueva: Casa Real\" target=_blank> Casa Real <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li></ul> </div> </div> </div> </section> <section class=footer__info-Wrapper> <div class=\"container-fluid footer__info\"> <div class=\"row max-container\"> <div class=\"footer__info-ulContainer col-12 col-sm-12 col-md-8 col-lg-8 col-xl-9\"> <ul class=footer__list><li> <a href=/es/Paginas/AvisoLegal.aspx title=\"Aviso legal\"> Aviso legal </a> </li> <li> <a href=/es/Paginas/Politica-de-privacidad.aspx title=\"Política de privacidad\"> Política de privacidad </a> </li> <li> <a href=/es/Paginas/accesibilidad.aspx title=Accesibilidad> Accesibilidad </a> </li> <li> <a href=/es/Paginas/navegacion.aspx title=\"Guía de navegación\"> Guía de navegación </a> </li> <li> <a href=/es/Paginas/Cookies.aspx title=\"Política de cookies\"> Política de cookies </a> </li> <li> <a href=/es/Paginas/Mapa-web.aspx title=\"Mapa web\"> Mapa web </a> </li></ul> </div> <div class=\"footer__rrss col-10 col-sm-7 col-md-4 col-lg-4 col-xl-3\"> <ul class=header__social><li> <a href=https://twitter.com/MAECgob title=\"Se abre en ventana nueva: Twitter\" target=_blank> <span class=hide>Twitter</span> <span class=\"fab fa-brands fa-x-twitter\" title=Twitter></span> <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=https://www.facebook.com/Exteriores.maec title=\"Se abre en ventana nueva: Facebook\" target=_blank> <span class=hide>Facebook</span> <span class=\"fab fa-facebook-f\" title=Facebook></span> <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=https://www.youtube.com/user/canalmaectv title=\"Se abre en ventana nueva: Youtube\" target=_blank> <span class=hide>Youtube</span> <span class=\"fab fa-youtube\" title=Youtube></span> <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=https://www.instagram.com/exteriores.maec title=\"Se abre en ventana nueva: Instagram\" target=_blank> <span class=hide>Instagram</span> <span class=\"fab fa-instagram\" title=Instagram></span> <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=https://open.spotify.com/show/6BGK97qmzrPMM7nEDuh7qi title=\"Se abre en ventana nueva: Spotify\" target=_blank> <span class=hide>Spotify</span> <span class=\"fab fa-spotify\" title=Spotify></span> <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=/_layouts/15/MAEUEC.SP.PC.Components/RSSComunication.aspx title=\"Se abre en ventana nueva: RSS\" target=_blank> <span class=hide>RSS</span> <span class=\"fas fa-rss\" title=RSS></span> <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li> <li> <a href=https://bsky.app/profile/exterioresgob.bsky.social title=\"Se abre en ventana nueva: Bluesky\" target=_blank> <span class=hide>Bluesky</span> <span class=\"fab fa-bluesky\" title=Bluesky></span> <img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> </li></ul> </div> <div class=\"footer__logo col-12 col-sm-12 col-md-12 col-xl-12\"> <img class=\"img__logo lazy\" alt=\"\" src=\"\" data-src=/PublishingImages/Banners/LogoMinisterioBN.svg> </div> <div class=\"col-12 col-sm-12 ltr-text\"> <p class=footer__title> Ministerio de Asuntos Exteriores, Unión Europea y Cooperación </p> <p class=footer__text> Plaza del Marqués de Salamanca, 8. 28006 Madrid (España) </p> <p class=footer__text> Portal gestionado por la Dirección General de Comunicación, Diplomacia Pública y Redes </p> </div> </div> </div> </section> </footer>  <div class=\"alert__msg-Wrapper Disclaimer_cookies hide\" id=ctl00_ctl57_ctl07> <div class=alert__content dir=ltr> <img alt=\"\" class=\"alert__icon lazy\" src=\"\" data-src=/Style%20Library/PC/Img/icons/icon-info.svg> <p lang=es-ES class=alert__text> Este sitio web utiliza cookies propias y de terceros para su funcionamiento, mantener la sesión y personalizar la experiencia del usuario. Más información en nuestra política de Cookies</p> </div> <div class=alert__buttons> <a class=alert__viewMore href=/es/Paginas/Cookies.aspx target=_blank title=\"Se abre en ventana nueva\"> Ver más<img src=/Style%20Library/PC/Img/icons/icon-external-link.svg alt=\"Se abre en ventana nueva\" class=\"icon-external-link noLazy\"></a> <input type=submit name=ctl00$ctl57$ctl07$btnAceptar value=Aceptar onclick=\"WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&#34;ctl00$ctl57$ctl07$btnAceptar&#34;,&#34;&#34;,true,&#34;&#34;,&#34;&#34;,false,false))\" id=ctl00_ctl57_ctl07_btnAceptar class=alert__viewMore> <input type=submit name=ctl00$ctl57$ctl07$btnRechazar value=Rechazar onclick=\"WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&#34;ctl00$ctl57$ctl07$btnRechazar&#34;,&#34;&#34;,true,&#34;&#34;,&#34;&#34;,false,false))\" id=ctl00_ctl57_ctl07_btnRechazar class=alert__viewMore> </div> </div>   <div class=\"alert__msg-Wrapper googleCookies hide\" id=\"G-YHZBSPQRHE srcLink='https://www.googletagmanager.com/gtag/js\"> </div> </div> <div class=aspNetHidden> <input type=hidden name=__VIEWSTATEGENERATOR id=__VIEWSTATEGENERATOR value=73E4531B> <input type=hidden name=__EVENTVALIDATION id=__EVENTVALIDATION value=\"/wEdAA0BK8rV8hl2MrfEufTSPYGhL5fdhulmtdoLA52gNsRcJBoTw4F23vX8iejQe+tcm0J2eJFF+ruUXLe3RwtWIFQBFam4ai/ajgh5Pp6mKKmEO5Fw9/PmfBLPAmsiD2OPQUeUNc9FbStgblGMr0T2yj91EegxSb1nMp+d/HAzMFl+4B/nWRj6ZfBgxGndTbrWGAWl1O3qLdHPqdvt8u7nhiFvYdwIuPFhrfB/tJg9GKRYapNnLrNINE3waO7pIye/KhQ4ktFQ+xGi3u8ZPEsRC/YG+TKA5kejT7mD40BVt7Dj2tUisyz5V9mXxgrrMiOJJ8A=\"> </div><script>var _spFormDigestRefreshInterval=1440000;IsSPSocialSwitchEnabled=function(){return true;};var _fV4UI=true;function _RegisterWebPartPageCUI()\n{var initInfo={editable:false,isEditMode:false,allowWebPartAdder:false,listId:\"{c2c973ae-1b8c-4d8c-981b-d1af4ae8b468}\",itemId:3,recycleBinEnabled:true,enableMinorVersioning:true,enableModeration:true,forceCheckout:true,rootFolderUrl:\"\\u002fes\\u002fServiciosAlCiudadano\\u002fTablonDeAnuncios\\u002fPaginas\",itemPermissions:{High:16,Low:196673}};SP.Ribbon.WebPartComponent.registerWithPageManager(initInfo);var wpcomp=SP.Ribbon.WebPartComponent.get_instance();var hid;hid=document.getElementById(\"_wpSelected\");if(hid!=null)\n{var wpid=hid.value;if(wpid.length>0)\n{var zc=document.getElementById(wpid);if(zc!=null)\nwpcomp.selectWebPart(zc,false);}}\nhid=document.getElementById(\"_wzSelected\");if(hid!=null)\n{var wzid=hid.value;if(wzid.length>0)\n{wpcomp.selectWebPartZone(null,wzid);}}};function __RegisterWebPartPageCUI(){ExecuteOrDelayUntilScriptLoaded(_RegisterWebPartPageCUI,\"sp.ribbon.js\");}\n_spBodyOnLoadFunctionNames.push(\"__RegisterWebPartPageCUI\");var __wpmExportWarning='This Web Part Page has been personalized. As a result, one or more Web Part properties may contain confidential information. Make sure the properties contain information that is safe for others to read. After exporting this Web Part, view properties in the Web Part description file (.WebPart) by using a text editor such as Microsoft Notepad.';var __wpmCloseProviderWarning='You are about to close this Web Part.  It is currently providing data to other Web Parts, and these connections will be deleted if this Web Part is closed.  To close this Web Part, click OK.  To keep this Web Part, click Cancel.';var __wpmDeleteWarning='You are about to permanently delete this Web Part.  Are you sure you want to do this?  To delete this Web Part, click OK.  To keep this Web Part, click Cancel.';var g_clientIdDeltaPlaceHolderUtilityContent=\"DeltaPlaceHolderUtilityContent\";</script></form> <span id=DeltaPlaceHolderUtilityContent> </span><script src=/style%20library/pc/script/jquery-ui-1.12.1/jquery.min.js></script><script src=/style%20library/pc/script/jquery-ui-1.12.1/jquery-ui.min.js></script><script src=/style%20library/pc/script/jquery-ui-1.12.1/jquery-ui-i18n.min.js></script><script src=/Style%20Library/PC/Script/owl-carousel-2.3.4/owl.carousel.min.js></script><script src=/Style%20Library/PC/Script/imageMapResizer/imageMapResizer.min.js></script><script src=/Style%20Library/PC/Script/ol-map/ol.js></script><script src=/Style%20Library/PC/Script/ol-map/ol-popup.js></script><script src=/style%20library/pc/script/scriptPC.min.js></script><script src=/style%20library/pc/script/scriptAnalytics.js></script><script async src=\"https://cse.google.com/cse.js?cx=008750461806166452304:wd9y-ncsxn0\"></script></body></html>"
+    }
+][
+    {
+        "index": 0,
+        "error": true,
+        "tags": [
+            "error"
+        ],
+        "content": "litellm.APIError: HuggingfaceException - Original Response received: <html>\n\t<head>\n\t\t<title>P&aacute;gina Rechazada</title>\n\t\t<link rel='stylesheet' type='text/css' HREF='https://webpub2.igae.hacienda.gob.es/public/include/css/apm.css'>\n\t</head>\n\t<body>\n\t\t<table class='main_table'>\n\t\t\t<tr valign='top'>\n\t\t\t\t<td>\n\t\t\t\t\t<table width='500px' cellpadding='10'>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<td><h1>Acceso Denegado</h1></td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t<font color=red><b>Explicaci&oacute;n:</b> La petici\u00f3n realizada incumple alguna pol\u00edtica de seguridad de la organizaci\u00f3n o no tiene permitido el acceso a este recurso.</font>\n\t\t\t\t\t\t\t\t<br/><br/>\n\t\t\t\t\t\t\t\tPor favor p\u00f3ngase en contacto con el grupo de soporte de la aplicaci\u00f3n utilizando el ticket de soporte : <b>5361427621696154187</b><br><br>\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t\t<tr>\n\t\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t\t<a href='javascript:history.back();'>Volver atr&aacute;s\n\t\t\t\t\t\t\t</td>\n\t\t\t\t\t\t</tr>\n\t\t\t\t\t</table>\n\t\t\t\t</td>\n\t\t\t</tr>\n\t\t</table>\n\t\t<br/>\n\t\t<div id='page_footer'><div>Ministerio de Hacienda</div></div>\n\t</body>\n</html>"
+    }
+][
+    {
+        "presupuesto": "400.000.000,00\u00a0\u20ac",
+        "fecha_inicio": "01/01/2025 Desde el 1 de enero de 2025 (car\u00e1cter retroactivo)",
+        "fecha_final": "31/12/2025 31 de diciembre de 2025",
+        "finalidad": "INDUSTRIA Y ENERG\u00cdA"
+    }
+]https://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/AgrupacionesEmpresarialeshttps://www.mintur.gob.es/PortalAyudas/PERTE-AGRO2https://www.mintur.gob.es/PortalAyudas/PERTE-IPCEI-ME-TChttps://www.mintur.gob.es/PortalAyudas/FAIIPhttps://www.mintur.gob.es/PortalAyudas/reinicia-autohttps://www.mintur.gob.es/PortalAyudas/PERTE-DI-L4https://www.mintur.gob.es/PortalAyudas/VEC-SECCIONBhttps://www.mintur.gob.es/PortalAyudas/PERTE-ME-GENERALhttps://www.mintur.gob.es/PortalAyudas/plataformas-tecnologicas-RDTIhttps://www.mintur.gob.es/PortalAyudas/emisionesCO2https://www.mintur.gob.es/PortalAyudas/Paginas/convocatorias-ayudas.aspxhttps://www.mintur.gob.es/PortalAyudas/reinicia-autohttps://www.mintur.gob.es/PortalAyudas/FAIIPhttps://www.mintur.gob.es/PortalAyudas/PERTE-ME-GENERALhttps://www.mintur.gob.es/PortalAyudas/PERTE-IPCEI-ME-TChttps://www.mintur.gob.es/PortalAyudas/PERTE-AGRO2https://www.mintur.gob.es/PortalAyudas/PERTE-DI-L4https://www.mintur.gob.es/PortalAyudas/emisionesCO2https://www.mintur.gob.es/PortalAyudas/AgrupacionesEmpresarialeshttps://www.mintur.gob.es/PortalAyudas/VEC-SECCIONBhttps://www.mintur.gob.es/PortalAyudas/plataformas-tecnologicas-RDTI
