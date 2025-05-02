@@ -97,7 +97,7 @@ if "messages" not in st.session_state:
                     - fecha_final: fecha final del período de aplicabilidad de la convocatoria
                     - presupuesto: monto económico que ofrece la convocatoria
                     - localidad: localidad donde se concede la ayuda
-                    - url: enlace para más información
+                    - url: enlace para más información\n
                     Por favor, mantente fiel a la estructura de arriba y emplea los nombres como
                     están redactados. En caso de que no sea capaz de hayar alguna, realizaré una búsqueda semántica
                     con el mensaje de tu consulta y te mostraré las que creo que más se aproximan a lo que pides.

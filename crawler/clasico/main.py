@@ -38,7 +38,7 @@ import numpy as np
 from docling.document_converter import DocumentConverter
 
 # cargamos configuacion de logging
-logging.config.fileConfig('crawler/logconfig.conf')
+logging.config.fileConfig('crawler/clasico/logconfig.conf')
 
 # creamos logger
 logger = logging.getLogger(__name__)

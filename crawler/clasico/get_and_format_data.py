@@ -5,7 +5,7 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 
-from crawler.main import turismoGob, cienciaGob, SNPSAP, AEI, AEI_selenium
+from .main import turismoGob, cienciaGob, SNPSAP, AEI_selenium
 
 from dotenv import load_dotenv
 load_dotenv()
