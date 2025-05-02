@@ -29,3 +29,6 @@ streamlit==1.44.1
 tokenizers==0.21.1
 transformers==4.50.3
 selenium==4.30.0
+inscriptis==2.6.0 
+llm-reader==1 
+minify_html==0.16.4

@@ -1,11 +1,11 @@
 import asyncio
-import re, os
+import re, os, json
 from datetime import datetime
 
 import pandas as pd
 import numpy as np
 
-from main import turismoGob, cienciaGob, SNPSAP
+from .main import turismoGob, cienciaGob, SNPSAP, AEI_selenium
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -67,7 +67,7 @@ def extract_key_words_azure(contenido):
 
     result = text_analytics_client.extract_key_phrases(articles)
     for idx, doc in enumerate(result):
-        contenido[idx]["keywords"] = doc.key_phrases
+        contenido[idx]["keywords"] = doc.key_phrases if hasattr(doc, "key_phrases") else []
     
     print("Palabras claves extraidas de Azure AI Services")
 
@@ -76,7 +76,7 @@ def extract_key_words_azure(contenido):
 
 def embbed_key_words(contenido: list[dict]):
     model = SentenceTransformer("jaimevera1107/all-MiniLM-L6-v2-similarity-es")
-    contenido = [{k: (np.mean(model.encode(sentences=v), axis=0) if k == "keywords" else v) for k, v in entry.items()} for entry in contenido]
+    contenido = [{k: [model.encode(sentences=word) for word in v] if k == "keywords" else v for k, v in entry.items()} for entry in contenido]
     return contenido
 
 
@@ -157,6 +157,58 @@ def get_and_format_cienciaGob_data():
     return contenido
 
 
+def get_and_format_AEI_data():
+    """
+    Format and store data from AEI.
+    """
+    def extract_dates(entry):
+        pat = r"\d{1,2}\/\d{2}\/\d{2}"
+        fechas = re.findall(pat, entry["plazos"])
+        if len(fechas) >= 2:
+            entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y")
+            entry["fecha_final"] = datetime.strptime(fechas[1], "%d/%m/%y")
+            entry.pop("plazos")
+            return entry
+        elif len(fechas) == 1:
+            entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y")
+            entry["fecha_final"] = datetime.strptime(fechas[0], "%d/%m/%y")
+            entry.pop("plazos")
+            return entry
+        else:
+            entry["fecha_inicio"] = None
+            entry["fecha_final"] = None
+            entry.pop("plazos")
+            return entry
+
+    def format_presupuesto(entry):
+        if entry["presupuesto"] != "":
+            entry["presupuesto"] = int("".join(re.findall(r"[\d\.\,]", entry["presupuesto"])[:-3]).replace(".", "")) 
+        else:
+            entry["presupuesto"] = None
+        return entry
+        
+    contenido = AEI_selenium()
+    #contenido = [entry for iteracion in contenido for entry in iteracion if sum([v != '' for k, v in entry.items()]) > 3]
+    contenido = list(
+        map(
+            extract_dates,
+            contenido
+        )
+    )
+    contenido = list(
+        map(
+            format_presupuesto,
+            contenido
+        )
+    )
+    contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
+    contenido = [extract_key_words_azure(contenido=contenido[seccion:seccion+10]) for seccion in range(0, len(contenido), 10)]
+    contenido = [entry for iteracion in contenido for entry in iteracion]
+    contenido = [{k: v[:255] if k == "beneficiario" else v for k, v in entry.items()} for entry in contenido]
+    contenido = embbed_key_words(contenido)
+    return contenido
+
+
 def get_and_format_turismoGob_data():
     """
     Format and store data from turismoGob.
@@ -186,22 +238,42 @@ def get_and_format_SNPSAP_data():
     # Código BDNS, Mecanismo de Recuperación y Resiliencia, Administración, Departamento, Órgano, Fecha de Registro,
     # Título, Título Cooficial
     # presupuesto, fecha_inicio, fecha_final, finalidad
+    def format_presupuesto(string):
+        if string != "":
+            string = int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")) 
+        else:
+            string = None
+        return string
     df: pd.DataFrame = asyncio.run(SNPSAP())
     print(df.columns)
-    df = df[["Administración", "Departamento", "Fecha de registro", "Título", "presupuesto", "fecha_inicio", "fecha_final", "finalidad", "url"]]
+    df = df[[
+        "Departamento",
+        "Fecha de registro",
+        "Título",
+        "presupuesto",
+        "fecha_inicio",
+        "fecha_final",
+        "finalidad",
+        "url",
+        "localidad",
+        "bases",
+        "beneficiario",
+        "tipo"
+    ]]
     df = df.rename(columns={
         "Departamento": "entidad",
         "Fecha de registro": "fecha_publicacion",
         "Título": "convocatoria",
         "finalidad": "descripcion"
     })
-    df["presupuesto"] = df["presupuesto"].map(lambda string: int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")) if type(string) is not float else None)
-    df = df[["convocatoria", "presupuesto", "localidad", "entidad", "fecha_publicacion", "fecha_inicio", "fecha_final", "descripcion", "url"]]
-    df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%y", errors="coerce")
-    df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%y", errors="coerce")
-    df["fecha_inicio"] = pd.to_datetime(df["fecha_publicacion"], format="%d/%m/%y", errors="coerce")
-    contenido = df.iloc[20:30].to_dict(orient="records") # Limitados por el alcance de Azure AI
-    contenido = extract_key_words_azure(contenido)
-    contenido = embbed_key_words(contenido=contenido)
+    df["presupuesto"] = df["presupuesto"].map(format_presupuesto)
+    df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%Y", errors="coerce")
+    df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%Y", errors="coerce")
+    df["fecha_publicacion"] = pd.to_datetime(df["fecha_publicacion"], format="%d/%m/%Y", errors="coerce")
+    df[["fecha_inicio", "fecha_final", "fecha_publicacion"]] = df[["fecha_inicio", "fecha_final", "fecha_publicacion"]].map(lambda x: datetime.strptime("01/01/1900", "%d/%m/%Y") if x is pd.NaT else x)
+    contenido = df.to_dict('records')
+    contenido = [extract_key_words_azure(contenido=contenido[seccion:seccion+10]) for seccion in range(0, len(df), 10)]
+    contenido = [entry for iteracion in contenido for entry in iteracion]
+    contenido = embbed_key_words(contenido)
     return contenido
     
