@@ -80,7 +80,7 @@ class PerformQuery(Tool):
     description = """
     This function will receive a sql query that uses the postgres dialect and pgvector and
     is generated from a user query.
-    Alongside with that, it will return a set of keywords from the user query
+    Alongside with that, it will receive a set of keywords from the user query
     The schema of the database table 'call_data' to query to is this one:
         Columns:
         - id: INTEGER PRIMARY KEY
@@ -108,8 +108,10 @@ class PerformQuery(Tool):
             type of economic aid such as "subvencion", "concesion", etc.
         - keywords: VECTOR(384)
             a vector representing an embedding of the call's keywords
-    The query should have a parameter `:embedding` (e.g., `1 - (keywords <=> :embedding)`) 
-    if case cosine similarity search is used.
+    The query should have a parameter `:embedding` (e.g., `1 - (keywords <=> :embedding)`) inside the
+    'where' or 'order by' clause of the sql query depending on the user query, which will be replaced
+    by the embedding of the keywords provided by the user. This is only needed in case cosine similarity
+    search is used.
     """
     inputs = {
         "query": {
