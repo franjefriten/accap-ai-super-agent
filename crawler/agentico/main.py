@@ -28,12 +28,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, WebDriverException
 import requests
 import urllib3
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
 import time
+from datetime import datetime
 
 import pandas as pd
 import numpy as np
@@ -47,6 +48,9 @@ from url_to_llm_text.get_llm_input_text import get_processed_text   # pass html 
 
 from openai import AzureOpenAI
 
+from pypdf import PdfReader
+from pypdf.errors import PdfReadError
+
 # cargamos configuacion de logging
 logging.config.fileConfig('crawler/agentico/logconfig.conf')
 
@@ -59,26 +63,7 @@ if os.path.exists(".env"):
     load_dotenv(".env")
 
 
-class AEISchema(BaseModel):
-    """
-    Schema for AEI data extraction.
-    """
-    #title: str = Field(..., validation_alias="nombre", description="Title of the AEI entry")
-    term: str = Field(..., validation_alias="plazos", description="Plazon de la entrada AEI")
-    description: str = Field(..., validation_alias="descripcion", description="Descripción de la entrada AEI")
-    amount: str = Field(..., validation_alias="presupuesto", description="Presupuesto de la entrada AEI")
-    type_of_subsidy: str = Field(..., validation_alias="tipo", description="Tipo de subvención de la entrada AEI")
-    beneficiary: str = Field(..., validation_alias="beneficiario", description="Beneficiarios de la entrada AEI")
-    place: str = Field(..., validation_alias="localidad", description="Localidad de la convocatoria")
-    convening_body: str = Field(..., validation_alias="entidad", description="Órgano convocante de la entrada AEI")
-    #url: str = Field(..., description="URL of the AEI entry")
-    bases: str = Field(..., validation_alias="bases", description="URL a las bases de la orden de la entrada AEI")
-
-
-class SNPSAPSchema(BaseModel):
-    """
-    Schema for SNPSAP data extraction.
-    """
+class CallSchema(BaseModel):
     #title: str = Field(..., validation_alias="nombre", description="Title of the AEI entry")
     start_date: str = Field(..., validation_alias="fecha_inicio", description="Fecha de inicio del período de aplicabilidad de la convocatoria")
     end_date: str = Field(..., validation_alias="fecha_final", description="Fecha de finalización del período de aplicabilidad de la convocatoria")
@@ -89,6 +74,8 @@ class SNPSAPSchema(BaseModel):
     place: str = Field(..., validation_alias="localidad", description="Localidad de la convocatoria")
     #url: str = Field(..., description="URL of the AEI entry")
     bases: str = Field(..., validation_alias="bases", description="URL a las bases de la orden de la convocatoria")
+    compatibility: str = Field(..., validation_alias="compatibilidad", description="Compatibilidad de la convocatoria")
+    duration: str = Field(..., validation_alias="duracion", description="Duración de la convocatoria")
 
 
 class LegacySSLAdapter(HTTPAdapter):
@@ -152,12 +139,11 @@ def download_pdf(url, driver, options=None):
         # de tal forma que no se abra el visor de PDF
         driver.get(url)
     elif tipo[0] == "redirect":
-        # TODO: Handle redirects
-        pdfs = driver.find_elements(By.XPATH, "//a[contains(@href, 'pdf') or contains(@href, 'documento')]")
-        for pdf in pdfs:
-            download_pdf(pdf.get_attribute('href'), driver)
+        # Vamos a suponer solo el primer pdf
+        pdf = driver.find_element(By.XPATH, "//a[contains(@href, 'pdf') or contains(@href, 'documento')]")
+        download_pdf(pdf.get_attribute('href'), driver)
 
-async def CrawlAEI():
+async def _CrawlAEI():
     
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
@@ -201,7 +187,7 @@ async def CrawlAEI():
                     8. URL of the AEI entry\n
                     9. URL to the order basis of the AEI entry\n\n
                     Please provide the information in JSON format""",
-        schema=AEISchema.model_json_schema(),
+        schema=CallSchema.model_json_schema(),
         extraction_type="json",
         input_format="html"
     )
@@ -257,7 +243,7 @@ async def CrawlAEI():
     return contenido
 
 
-async def AEI():
+async def AgenticoAEI():
 
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
@@ -290,8 +276,9 @@ async def AEI():
                         """
                         You are a web scraping assistant. Your task is to extract specific information from web pages.
                         This is the information you need to extract:
-                        """ + str(AEISchema.model_json_schema()) + """
-                        Please provide the information in JSON format. Here is the text:
+                        """ + str(CallSchema.model_json_schema()) + """
+                        Please provide the information in JSON format and leave any unfound data as '' in the entry.
+                        Here is the text:
                         """
                 }
             ]
@@ -420,8 +407,8 @@ async def AEI():
     return contenido
 
 
-async def SNPSAP():
-    pdf_filename = "listado4_11_2025.pdf" #f"listado{datetime.today().month}_{datetime.today().day}_{datetime.today().year}.pdf" 
+async def AgenticoSNPSAP():
+    pdf_filename = f"listado{datetime.today().month}_{datetime.today().day}_{datetime.today().year}.pdf" 
     LOG_FILE = "crawler/logger.txt"
     
     with open("crawler/urls.json", "rb") as urlsfile:
@@ -433,7 +420,7 @@ async def SNPSAP():
         api_key=os.getenv("AZURE_AI_AGENT_API_KEY"),
         api_version="2025-01-01-preview",
     )
-    chat_prompt = [
+    chat_prompt_scrap_web = [
         {
             "role": "system",
             "content": [
@@ -443,8 +430,29 @@ async def SNPSAP():
                         """
                         You are a web scraping assistant. Your task is to extract specific information from web pages.
                         This is the information you need to extract:
-                        """ + str(SNPSAPSchema.model_json_schema()) + """
+                        {schema}
                         Please provide the information in JSON format, in case of a field missing, leave an empty string. Here is the text:
+                        """
+                }
+            ]
+        }
+    ]
+    chat_prompt_scrap_pdf = [
+        {
+            "role": "system",
+            "content": [
+                {
+                    "type": "text",
+                    "text": 
+                        """
+                        You are a pdf scraping assistant.
+                        We have information already extracted from another source, but you need to complete it.
+                        This is the information we have:
+                        {data_extracted}
+                        This is the information you need to extract:
+                        {schema}
+                        Please provide the information in JSON format, in case of a field missing, leave an empty string. Here is the text:
+                        {text}
                         """
                 }
             ]
@@ -505,9 +513,32 @@ async def SNPSAP():
         df = pd.concat([df, table_df], ignore_index=True, axis=0)
         logging.info(f"Data extraída de tabla {table_ix}")
     df["url"] = list(map(lambda x: os.path.join(base_url, x), df["Código BDNS"]))
-    df[["presupuesto", "fecha_inicio", "fecha_final", "finalidad", "localidad", "tipo", "bases", "beneficiario"]] = pd.DataFrame(
+    df = df[["Código BDNS", "Órgano", "Fecha de registro", "Título", "url"]]
+    df[[
+        "presupuesto",
+        "fecha_inicio",
+        "fecha_final",
+        "finalidad",
+        "localidad",
+        "tipo",
+        "bases",
+        "beneficiario", 
+        "compatibilidad",
+        "duracion"
+    ]] = pd.DataFrame(
         data=[],
-        columns=["presupuesto", "fecha_inicio", "fecha_final", "finalidad", "localidad", "tipo", "bases", "beneficiario"],
+        columns=[
+            "presupuesto",
+            "fecha_inicio",
+            "fecha_final",
+            "finalidad",
+            "localidad",
+            "tipo",
+            "bases",
+            "beneficiario",
+            "compatibilidad",
+            "duracion"
+        ],
         dtype=str
     )
     for i, url in enumerate(df["url"]):
@@ -515,12 +546,16 @@ async def SNPSAP():
             driver = webdriver.Chrome(options=options)
             wait = WebDriverWait(driver, 20)
             driver.get(url)
-            data = driver.find_element(By.TAG_NAME, 'main').get_attribute('innerHTML')
-            data = await get_processed_text(data, url)
-            chat_prompt[0]['content'][0]['text'] += data
+            text = driver.find_element(By.TAG_NAME, 'main').get_attribute('innerHTML')
+            text = await get_processed_text(text, url)
+            chat_prompt_scrap_web[0]['content'][0]['text'] = \
+                chat_prompt_scrap_web[0]['content'][0]['text'].format(
+                    schema=CallSchema.model_json_schema(),
+                )
+            chat_prompt_scrap_web[0]['content'][0]['text'] += text
             completion = client.chat.completions.create(  
                 model="gpt-4o-mini",
-                messages=chat_prompt,
+                messages=chat_prompt_scrap_web,
                 max_tokens=800,  
                 temperature=0.7,  
                 top_p=0.95,  
@@ -529,15 +564,10 @@ async def SNPSAP():
                 stop=None,
                 stream=False  
             )
-            data = completion.choices[0].message.content
-            call_data = re.sub(r"```json\s*|```", "", (data).strip())
-            call_data = dict(json.loads(call_data))
-            driver.quit()
-        except Exception as e:
-            print(f"Error al obtener los datos de las tablas: {e}")
-            driver.quit()
-        try:
-            bases = call_data["bases"]
+            table_data = completion.choices[0].message.content
+            table_data = re.sub(r"```json\s*|```", "", (table_data).strip())
+            table_data = dict(json.loads(table_data))
+            bases = table_data["bases"]
             store_folder = os.path.join("./downloads", df.loc[i, "Código BDNS"])
             if not os.path.isdir(store_folder):
                 os.makedirs(store_folder)
@@ -546,12 +576,46 @@ async def SNPSAP():
             driver = webdriver.Chrome(options=options)
             wait = WebDriverWait(driver, 20)
             download_pdf(bases, driver, options)
-        except Exception as e:
+            pdf_data = {}
+            for file in os.listdir(store_folder):
+                if not file.endswith(".pdf"):
+                    continue
+                reader = PdfReader(os.path.join(store_folder, file))
+                text = "\n".join([page.extract_text() for page in reader.pages])
+                chat_prompt_scrap_pdf_text = chat_prompt_scrap_pdf[0]['content'][0]['text'].format(
+                        schema=CallSchema.model_json_schema(),
+                        data_extracted=str(table_data),
+                        text=text
+                    )
+                chat_prompt_scrap_pdf[0]['content'][0]['text'] = chat_prompt_scrap_pdf_text
+                completion = client.chat.completions.create(  
+                    model="gpt-4o-mini",
+                    messages=chat_prompt_scrap_pdf,
+                    max_tokens=800,  
+                    temperature=0.7,  
+                    top_p=0.95,  
+                    frequency_penalty=0,  
+                    presence_penalty=0,
+                    stop=None,
+                    stream=False  
+                )
+                data = completion.choices[0].message.content
+                pdf_data = re.sub(r"```json\s*|```", "", (data).strip())
+                pdf_data = dict(json.loads(pdf_data))
+                table_data = {**table_data, **pdf_data}   
+            call_data = table_data
+            df.loc[i, call_data.keys()] = call_data.values()                 
+        except (WebDriverException, NoSuchElementException) as e:
             print(f"Error al descargar el PDF: {e}")
+        except PdfReadError as e:
+            print(f"Error al leer el PDF: {e}")
+        except Exception as e:
+            print(f"Error al obtener los datos de las tablas: {e}")
+    driver.quit()
     
     return df
 
 
 if __name__ == "__main__":
-    asyncio.run(SNPSAP())
+    asyncio.run(AgenticoSNPSAP())
     #print(json.dumps(AEISchema.model_json_schema()["properties"], indent=4))

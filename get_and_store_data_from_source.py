@@ -1,10 +1,12 @@
 from db_utils.db_schema import CallData
-from crawler.get_and_format_data import *
+from crawler.clasico.get_and_format_data import *
+from crawler.agentico.main import *
 
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from sqlalchemy import text
 
+from typing import Annotated, Literal
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -54,26 +56,51 @@ def send_to_db(contenido: list[dict]):
     return None
 
 
-def fetch_all_data_and_store_in_db(source: str):
-    match source:
-        case "cienciaGob":
-            contenido_cienciaGob = get_and_format_cienciaGob_data()
-            send_to_db(contenido_cienciaGob)
-            print("cienciaGob contenido volcado")
-        case "turismoGob":
-            contenido_turismoGob = get_and_format_turismoGob_data()
-            send_to_db(contenido_turismoGob)
-            print("turismoGob contenido volcado")
-        case "SNPSAP":
-            contenido_SNPSAP = get_and_format_SNPSAP_data()
-            send_to_db(contenido_SNPSAP)
-            print("SNPSAP contenido volcado")
-        case "AEI":
-            contenido_AEI = get_and_format_AEI_data()
-            send_to_db(contenido_AEI)
-            print("AEI contenido volcado")
+def fetch_all_data_and_store_in_db(
+    source: Literal["cienciaGob", "turismoGob", "SNPSAP", "AEI"],
+    tipo: Literal["agentico", "clasico"]
+):
+    if tipo == "clasico":
+        match source:
+            case "cienciaGob":
+                contenido_cienciaGob = get_and_format_cienciaGob_data()
+                send_to_db(contenido_cienciaGob)
+                print("cienciaGob contenido volcado")
+            case "turismoGob":
+                contenido_turismoGob = get_and_format_turismoGob_data()
+                send_to_db(contenido_turismoGob)
+                print("turismoGob contenido volcado")
+            case "SNPSAP":
+                contenido_SNPSAP = get_and_format_SNPSAP_data()
+                send_to_db(contenido_SNPSAP)
+                print("SNPSAP contenido volcado")
+            case "AEI":
+                contenido_AEI = get_and_format_AEI_data()
+                send_to_db(contenido_AEI)
+                print("AEI contenido volcado")
+    elif tipo == "agentico":
+        match source:
+            case "cienciaGob":
+                print("opcion no disponible")
+            case "turismoGob":
+                contenido_turismoGob = get_and_format_turismoGob_data()
+                send_to_db(contenido_turismoGob)
+                print("opcion no disponible")
+            case "SNPSAP":
+                contenido_SNPSAP = AgenticoSNPSAP()
+                send_to_db(contenido_SNPSAP)
+                print("SNPSAP contenido volcado")
+            case "AEI":
+                contenido_AEI = AgenticoAEI()
+                send_to_db(contenido_AEI)
+                print("AEI contenido volcado")
 
 
 if __name__ == "__main__":
     source = input("Fuente (cienciaGob, turismoGob, SNPSAP, AEI): \n")
-    fetch_all_data_and_store_in_db(source)
+    tipo = input("Tipo (clasico, agentico): \n")
+    if tipo not in ["clasico", "agentico"]:
+        raise ValueError("Tipo no válido. Debe ser 'clasico' o 'agentico'.")
+    if source not in ["cienciaGob", "turismoGob", "SNPSAP", "AEI"]:
+        raise ValueError("Fuente no válida. Debe ser 'cienciaGob', 'turismoGob', 'SNPSAP' o 'AEI'.")
+    fetch_all_data_and_store_in_db(source, tipo)
