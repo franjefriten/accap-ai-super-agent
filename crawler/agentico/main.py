@@ -567,11 +567,6 @@ async def AgenticoSNPSAP():
             table_data = completion.choices[0].message.content
             table_data = re.sub(r"```json\s*|```", "", (table_data).strip())
             table_data = dict(json.loads(table_data))
-        except Exception as e:
-            print(f"Error al obtener los datos de las tablas: {e}")
-        finally:
-            driver.quit()
-        try:
             bases = table_data["bases"]
             store_folder = os.path.join("./downloads", df.loc[i, "Código BDNS"])
             if not os.path.isdir(store_folder):
@@ -605,17 +600,18 @@ async def AgenticoSNPSAP():
                     stream=False  
                 )
                 data = completion.choices[0].message.content
-                pdf_data_i = re.sub(r"```json\s*|```", "", (data).strip())
-                pdf_data_i = dict(json.loads(pdf_data_i))
-                pdf_data = {**pdf_data, **pdf_data_i}                    
+                pdf_data = re.sub(r"```json\s*|```", "", (data).strip())
+                pdf_data = dict(json.loads(pdf_data))
+                table_data = {**table_data, **pdf_data}   
+            call_data = table_data
+            df.loc[i, call_data.keys()] = call_data.values()                 
         except (WebDriverException, NoSuchElementException) as e:
             print(f"Error al descargar el PDF: {e}")
         except PdfReadError as e:
             print(f"Error al leer el PDF: {e}")
-        finally:
-            driver.quit()
-        call_data = {**table_data, **pdf_data}
-        df.loc[i, call_data.keys()] = call_data.values()
+        except Exception as e:
+            print(f"Error al obtener los datos de las tablas: {e}")
+    driver.quit()
     
     return df
 
