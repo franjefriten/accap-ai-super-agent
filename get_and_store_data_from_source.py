@@ -1,6 +1,6 @@
 from db_utils.db_schema import CallData
 from crawler.clasico.get_and_format_data import *
-from crawler.agentico.main import *
+from crawler.agentico.get_and_format_data import *
 
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
@@ -47,6 +47,9 @@ def send_to_db(contenido: list[dict]):
                 beneficiario=entry.get("beneficiario", None),
                 tipo=entry.get("tipo", None),
                 bases=entry.get("bases", None),
+                compatibilidad=entry.get("compatibilidad", None),
+                objetivo=entry.get("objetivo", None),
+                duracion=entry.get("duracion", None),
                 url=entry.get("url", None),
             )
             session.add(call_data)
@@ -83,15 +86,13 @@ def fetch_all_data_and_store_in_db(
             case "cienciaGob":
                 print("opcion no disponible")
             case "turismoGob":
-                contenido_turismoGob = get_and_format_turismoGob_data()
-                send_to_db(contenido_turismoGob)
                 print("opcion no disponible")
             case "SNPSAP":
-                contenido_SNPSAP = AgenticoSNPSAP()
+                contenido_SNPSAP = get_and_format_AgenticoSNPSAP_data()
                 send_to_db(contenido_SNPSAP)
                 print("SNPSAP contenido volcado")
             case "AEI":
-                contenido_AEI = AgenticoAEI()
+                contenido_AEI = get_and_format_AgenticoAEI_data()
                 send_to_db(contenido_AEI)
                 print("AEI contenido volcado")
 

@@ -13,14 +13,11 @@ class CallData(Base):
     __tablename__ = "call_data"
 
     id: Mapped[int] = Column(Integer, primary_key=True)
-    nombre: Mapped[str] = Column(String(255), nullable=False, default=Null)
-    entidad: Mapped[str] = Column(String(255), nullable=True, default=Null)
     objetivo: Mapped[str] = Column(String(255), nullable=True, default=Null)
     duracion: Mapped[str] = Column(String(255), nullable=True, default=Null)
     nombre: Mapped[str] = Column(String(255), nullable=False, default="Desconocido")
     entidad: Mapped[str] = Column(String(255), nullable=True)
     compatibilidad: Mapped[str] = Column(String(255), nullable=True)
-    duracion: Mapped[str] = Column(String(255), nullable=True)
     fecha_publicacion: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)
     fecha_inicio: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)
     fecha_final: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)

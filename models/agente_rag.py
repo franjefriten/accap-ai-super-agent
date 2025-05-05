@@ -106,25 +106,39 @@ class PerformQuery(Tool):
             beneficiaries elegible to apply
         - tipo: VARCHAR(255)
             type of economic aid such as "subvencion", "concesion", etc.
+        - objetivo: VARCHAR(255)
+            objective of the call
+        - compatibilidad: VARCHAR(255)
+            compatibility of the call with other calls
+        - duration: VARCHAR(255)
+            duration of the call
         - keywords: VECTOR(384)
             a vector representing an embedding of the call's keywords
     The query should have a parameter `:embedding` (e.g., `1 - (keywords <=> :embedding)`) inside the
     'where' or 'order by' clause of the sql query depending on the user query, which will be replaced
     by the embedding of the keywords provided by the user. This is only needed in case cosine similarity
     search is used.
+    Here is an example of a query:
+    SELECT *
+    FROM call_data
+    WHERE 1 - (keywords <=> :embedding) < 0.5 AND presupuesto > 10000
+    ORDER BY 1 - (keywords <=> :embedding) DESC
+    LIMIT 5;
     """
     inputs = {
         "query": {
-            "type": str,
+            "type": 'string',
             "description": "The sql query that will be performed"
         },
         "list_of_keywords": {
-            "type": list,
+            "type": 'array',
             "description": "List of the keywords",
-            "element_type": {"type": "str"},
-            "required": False
+            "element_type": {"type": "string"},
+            "required": "false",
+            "nullable": "true"
         }
     }
+    output_type = "array"
 
 
     def forward(self, query: str, list_of_keywords: Optional[list[str]] = None) -> pd.DataFrame:
@@ -146,7 +160,7 @@ class PerformQuery(Tool):
         try:
             with engine.connect() as conn:
                 result = conn.execute(text(query), params)
-                return pd.DataFrame([dict(row._mapping) for row in result])
+                return pd.DataFrame([dict(row._mapping) for row in result]).to_records()
         except Exception as e:
             st.error(f"Database Error: {e}")
         finally:

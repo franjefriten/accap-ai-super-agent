@@ -76,6 +76,7 @@ class CallSchema(BaseModel):
     bases: str = Field(..., validation_alias="bases", description="URL a las bases de la orden de la convocatoria")
     compatibility: str = Field(..., validation_alias="compatibilidad", description="Compatibilidad de la convocatoria")
     duration: str = Field(..., validation_alias="duracion", description="Duración de la convocatoria")
+    objective: str = Field(..., validation_alias="objetivo", description="Objetivo de la convocatoria")
 
 
 class LegacySSLAdapter(HTTPAdapter):
@@ -139,9 +140,10 @@ def download_pdf(url, driver, options=None):
         # de tal forma que no se abra el visor de PDF
         driver.get(url)
     elif tipo[0] == "redirect":
+        pass
         # Vamos a suponer solo el primer pdf
-        pdf = driver.find_element(By.XPATH, "//a[contains(@href, 'pdf') or contains(@href, 'documento')]")
-        download_pdf(pdf.get_attribute('href'), driver)
+        #pdf = driver.find_element(By.XPATH, "//a[contains(@href, 'pdf') or contains(@href, 'documento')]")
+        #download_pdf(pdf.get_attribute('href'), driver)
 
 async def _CrawlAEI():
     
@@ -274,11 +276,11 @@ async def AgenticoAEI():
                     "type": "text",
                     "text": 
                         """
-                        You are a web scraping assistant. Your task is to extract specific information from web pages.
-                        This is the information you need to extract:
+                        Eres un asistente de web scraping. Tu tarea es extraer información específica de las páginas web.
+                        Esta es la información que necesitas extraer:
                         """ + str(CallSchema.model_json_schema()) + """
-                        Please provide the information in JSON format and leave any unfound data as '' in the entry.
-                        Here is the text:
+                        Proporcione la información en formato JSON y deje los datos no encontrados como '' en la entrada.
+                        Aquí está el texto:
                         """
                 }
             ]
@@ -420,44 +422,6 @@ async def AgenticoSNPSAP():
         api_key=os.getenv("AZURE_AI_AGENT_API_KEY"),
         api_version="2025-01-01-preview",
     )
-    chat_prompt_scrap_web = [
-        {
-            "role": "system",
-            "content": [
-                {
-                    "type": "text",
-                    "text": 
-                        """
-                        You are a web scraping assistant. Your task is to extract specific information from web pages.
-                        This is the information you need to extract:
-                        {schema}
-                        Please provide the information in JSON format, in case of a field missing, leave an empty string. Here is the text:
-                        """
-                }
-            ]
-        }
-    ]
-    chat_prompt_scrap_pdf = [
-        {
-            "role": "system",
-            "content": [
-                {
-                    "type": "text",
-                    "text": 
-                        """
-                        You are a pdf scraping assistant.
-                        We have information already extracted from another source, but you need to complete it.
-                        This is the information we have:
-                        {data_extracted}
-                        This is the information you need to extract:
-                        {schema}
-                        Please provide the information in JSON format, in case of a field missing, leave an empty string. Here is the text:
-                        {text}
-                        """
-                }
-            ]
-        }
-    ]
         
     # Configure Firefox options for automatic PDF downloading
     options = webdriver.ChromeOptions()
@@ -466,6 +430,7 @@ async def AgenticoSNPSAP():
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument("--disable-features=DownloadBubble")
+    options.add_argument("--disable-extensions")
     options.add_argument("--ignore-certificate-errors")
     options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
     prefs = {
@@ -475,15 +440,12 @@ async def AgenticoSNPSAP():
         "plugins.plugins_disabled": ["Chrome PDF Viewer"],
         "pdfjs.disabled": True  # For older Chrome versions
     }
-    options.add_experimental_option(
-        'prefs', prefs)
     
 
     if pdf_filename not in os.listdir("./downloads/pdf"):
-        driver = webdriver.Chrome(options=options)
-        wait = WebDriverWait(driver, 20)
-        prefs["download.default_directory"] = "./downloads/pdf"
+        prefs["download.default_directory"] = os.path.abspath("./downloads/pdf")
         options.add_experimental_option('prefs', prefs)
+        driver = webdriver.Chrome(options=options)
         driver.get(base_url)
         # Wait until a PDF link appears (Modify XPath if necessary)
         try:
@@ -513,7 +475,7 @@ async def AgenticoSNPSAP():
         df = pd.concat([df, table_df], ignore_index=True, axis=0)
         logging.info(f"Data extraída de tabla {table_ix}")
     df["url"] = list(map(lambda x: os.path.join(base_url, x), df["Código BDNS"]))
-    df = df[["Código BDNS", "Órgano", "Fecha de registro", "Título", "url"]]
+    df = df[["Código BDNS", "Departamento", "Fecha de registro", "Título", "url"]]
     df[[
         "presupuesto",
         "fecha_inicio",
@@ -524,7 +486,8 @@ async def AgenticoSNPSAP():
         "bases",
         "beneficiario", 
         "compatibilidad",
-        "duracion"
+        "duracion",
+        "objetivo"
     ]] = pd.DataFrame(
         data=[],
         columns=[
@@ -537,12 +500,58 @@ async def AgenticoSNPSAP():
             "bases",
             "beneficiario",
             "compatibilidad",
-            "duracion"
+            "duracion",
+            "objetivo"
         ],
         dtype=str
     )
     for i, url in enumerate(df["url"]):
+        chat_prompt_scrap_web = [
+            {
+                "role": "system",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": 
+                            """
+                            Eres un asistente de web scraping. Tu tarea es extraer información específica de las páginas web.
+                            Esta es la información que necesitas extraer:
+                            {schema}
+                            Proporcione la información en formato JSON y deje los datos no encontrados como '' en la entrada.
+                            Aquí está el texto:
+                            {text}
+                            """
+                    }
+                ]
+            }
+        ]
+        chat_prompt_scrap_pdf = [
+            {
+                "role": "system",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": 
+                            """
+                            Eres un asistente de extracción de PDF.
+                            Ya tenemos información extraída de otra fuente, pero necesitas completarla.
+                            Esta es la información que tenemos:
+                            {data_extracted}
+                            Esta es la toda la información que necesitamos:                        
+                            {schema}
+                            Proporcione la información en formato JSON. Si falta algún campo, deje una cadena vacía. A continuación, el texto:
+                            {text}
+                            """
+                    }
+                ]
+            }
+        ]
         try:
+            store_folder = os.path.join("./downloads", df.loc[i, "Código BDNS"])
+            if not os.path.isdir(store_folder):
+                os.makedirs(store_folder)
+            prefs["download.default_directory"] = os.path.abspath(store_folder)
+            options.add_experimental_option('prefs', prefs)           
             driver = webdriver.Chrome(options=options)
             wait = WebDriverWait(driver, 20)
             driver.get(url)
@@ -550,9 +559,9 @@ async def AgenticoSNPSAP():
             text = await get_processed_text(text, url)
             chat_prompt_scrap_web[0]['content'][0]['text'] = \
                 chat_prompt_scrap_web[0]['content'][0]['text'].format(
-                    schema=CallSchema.model_json_schema(),
+                    schema=str(CallSchema.model_json_schema()),
+                    text=text
                 )
-            chat_prompt_scrap_web[0]['content'][0]['text'] += text
             completion = client.chat.completions.create(  
                 model="gpt-4o-mini",
                 messages=chat_prompt_scrap_web,
@@ -568,54 +577,50 @@ async def AgenticoSNPSAP():
             table_data = re.sub(r"```json\s*|```", "", (table_data).strip())
             table_data = dict(json.loads(table_data))
             bases = table_data["bases"]
-            store_folder = os.path.join("./downloads", df.loc[i, "Código BDNS"])
-            if not os.path.isdir(store_folder):
-                os.makedirs(store_folder)
-            prefs["download.default_directory"] = os.path.abspath(store_folder)
-            options.add_experimental_option('prefs', prefs)           
-            driver = webdriver.Chrome(options=options)
-            wait = WebDriverWait(driver, 20)
             download_pdf(bases, driver, options)
             pdf_data = {}
-            for file in os.listdir(store_folder):
-                if not file.endswith(".pdf"):
-                    continue
-                reader = PdfReader(os.path.join(store_folder, file))
-                text = "\n".join([page.extract_text() for page in reader.pages])
-                chat_prompt_scrap_pdf_text = chat_prompt_scrap_pdf[0]['content'][0]['text'].format(
-                        schema=CallSchema.model_json_schema(),
-                        data_extracted=str(table_data),
-                        text=text
-                    )
-                chat_prompt_scrap_pdf[0]['content'][0]['text'] = chat_prompt_scrap_pdf_text
-                completion = client.chat.completions.create(  
-                    model="gpt-4o-mini",
-                    messages=chat_prompt_scrap_pdf,
-                    max_tokens=800,  
-                    temperature=0.7,  
-                    top_p=0.95,  
-                    frequency_penalty=0,  
-                    presence_penalty=0,
-                    stop=None,
-                    stream=False  
-                )
-                data = completion.choices[0].message.content
-                pdf_data = re.sub(r"```json\s*|```", "", (data).strip())
-                pdf_data = dict(json.loads(pdf_data))
-                table_data = {**table_data, **pdf_data}   
-            call_data = table_data
-            df.loc[i, call_data.keys()] = call_data.values()                 
+            # for file in os.listdir(store_folder):
+            #     if not file.endswith(".pdf"):
+            #         continue
+            #     reader = PdfReader(os.path.join(store_folder, file))
+            #     text = "\n".join([page.extract_text() for page in reader.pages])
+            #     chat_prompt_scrap_pdf_text = chat_prompt_scrap_pdf[0]['content'][0]['text'].format(
+            #             schema=CallSchema.model_json_schema(),
+            #             data_extracted=str(table_data),
+            #             text=text
+            #         )
+            #     chat_prompt_scrap_pdf[0]['content'][0]['text'] = chat_prompt_scrap_pdf_text
+            #     completion = client.chat.completions.create(  
+            #         model="gpt-4o-mini",
+            #         messages=chat_prompt_scrap_pdf,
+            #         max_tokens=800,  
+            #         temperature=0.7,  
+            #         top_p=0.95,  
+            #         frequency_penalty=0,  
+            #         presence_penalty=0,
+            #         stop=None,
+            #         stream=False  
+            #     )
+            #     data = completion.choices[0].message.content
+            #     pdf_data = re.sub(r"```json\s*|```", "", (data).strip())
+            #     pdf_data = dict(json.loads(pdf_data))
+            #     table_data = {**table_data, **pdf_data}   
+            # call_data = table_data
+            # df.loc[i, call_data.keys()] = call_data.values()                 
         except (WebDriverException, NoSuchElementException) as e:
             print(f"Error al descargar el PDF: {e}")
         except PdfReadError as e:
             print(f"Error al leer el PDF: {e}")
         except Exception as e:
             print(f"Error al obtener los datos de las tablas: {e}")
-    driver.quit()
+        finally:
+            call_data = table_data
+            df.loc[i, call_data.keys()] = call_data.values() 
+            driver.quit()
     
     return df
 
 
-if __name__ == "__main__":
-    asyncio.run(AgenticoSNPSAP())
+# if __name__ == "__main__":
+#     asyncio.run(AgenticoSNPSAP())
     #print(json.dumps(AEISchema.model_json_schema()["properties"], indent=4))

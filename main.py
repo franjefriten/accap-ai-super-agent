@@ -54,11 +54,24 @@ if "messages" not in st.session_state:
                     - fecha_final: fecha final del período de aplicabilidad de la convocatoria
                     - presupuesto: monto económico que ofrece la convocatoria
                     - localidad: localidad donde se concede la ayuda
-                    - url: enlace para más información\n
-                    Por favor, mantente fiel a la estructura de arriba y emplea los nombres como
-                    están redactados. En caso de que no sea capaz de hayar alguna, realizaré una búsqueda semántica
+                    - url: enlace para más informació
+                    - beneficiario: tipo de beneficiario que puede solicitar la ayuda
+                    - tipo: tipo de ayuda que se concede
+                    - bases: enlace a las bases de la convocatoria
+                    - compatibilidad: compatibilidad de la convocatoria con otras ayudas
+                    - objetivo: objetivo de la convocatoria
+                    - duracion: duración de la convocatoria
+
+                    Puedes hacerme preguntas sobre la base de datos, como por ejemplo:
+                    - ¿Cuántas convocatorias hay?
+                    - ¿Cuántas convocatorias hay de una entidad específica?
+                    - ¿Cuántas convocatorias hay en una localidad específica?
+                    - ¿Cuántas convocatorias hay de un tipo específico?
+                    - ¿Cuántas convocatorias hay de una fecha específica?
+
+                    Por favor, mantente fiel a la estructura de arriba. En caso de que no sea capaz de 
+                    hayar alguna, realizaré una búsqueda semántica
                     con el mensaje de tu consulta y te mostraré las que creo que más se aproximan a lo que pides.
-                    Si quieres salir, solo escribe 'exit'
                     """
         }
     )
@@ -76,6 +89,9 @@ for message in st.session_state.messages:
                 key=f"cols_{len(st.session_state.messages)}"
             )
             st.dataframe(df[selected_cols])
+        if message.get("greet") is not None:
+            st.markdown(message["greet"])
+        
 
 if query := st.chat_input("Haz tu consulta"):
     st.session_state.messages.append({"role": "user", "content": query})
@@ -93,15 +109,6 @@ if query := st.chat_input("Haz tu consulta"):
                 azure_endpoint=endpoint,
                 api_key=api_key,
                 api_version="2025-01-01-preview",
-                client_kwargs={
-                    "max_tokens":800,  
-                    "temperature":0.7,  
-                    "top_p":0.95,  
-                    "frequency_penalty":0,  
-                    "presence_penalty":0,
-                    "stop":None,
-                    "stream":False                    
-                }
             )
         )
         
@@ -109,9 +116,9 @@ if query := st.chat_input("Haz tu consulta"):
 
             response = agente.run(query)
             
-            if hasattr(response, "tool_result") and isinstance(response.tool_result, pd.DataFrame):
-                df = response.tool_result
-                mensaje = "¡Aquí están los resultados:"
+            if isinstance(response, pd.DataFrame):
+                df = response
+                mensaje = "Aquí están los resultados:"
                 
                 st.markdown(mensaje)
                 cols = st.multiselect(
@@ -126,12 +133,35 @@ if query := st.chat_input("Haz tu consulta"):
                     "content": mensaje,
                     "df": df
                 })
+
+            if isinstance(response, list):
+                df = pd.DataFrame.from_records(response)
+                mensaje = "Aquí están los resultados:"
+                
+                st.markdown(mensaje)
+                cols = st.multiselect(
+                    "Columnas a mostrar",
+                    options=df.columns,
+                    default=df.columns.tolist()
+                )
+                st.dataframe(df[cols])
+                st.markdown("¡No dudes en volver a preguntar!")
+                
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "content": mensaje,
+                    "df": df,
+                    "greet": "¡No dudes en volver a preguntar!"
+                })
+
             else:
                 st.markdown(response)
                 st.session_state.messages.append({
                     "role": "assistant",
-                    "content": response
+                    "content": response,
+                    "greet": "¡No dudes en volver a preguntar!"
                 })
+                st.markdown("¡No dudes en volver a preguntar!")
                 
         except Exception as e:
             st.error(f"Error: {str(e)}")

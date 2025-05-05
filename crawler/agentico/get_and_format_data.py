@@ -46,7 +46,7 @@ def embbed_key_words(contenido: list[dict]):
     return contenido
 
 
-def get_and_format_AEI_data():
+def get_and_format_AgenticoAEI_data():
     """
     Format and store data from AEI.
     """
@@ -98,7 +98,7 @@ def get_and_format_AEI_data():
     return contenido
 
 
-def get_and_format_SNPSAP_data():
+def get_and_format_AgenticoSNPSAP_data():
     # El dataset tiene columnas:
     # Código BDNS, Mecanismo de Recuperación y Resiliencia, Administración, Departamento, Órgano, Fecha de Registro,
     # Título, Título Cooficial
