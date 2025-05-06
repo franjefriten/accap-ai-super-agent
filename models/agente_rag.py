@@ -110,7 +110,7 @@ class PerformSemanticQuery(Tool):
         keywords = doc.key_phrases if hasattr(doc, "key_phrases") else []
         
         model = SentenceTransformer("jaimevera1107/all-MiniLM-L6-v2-similarity-es")
-        embeddings = model.encode(sentences=keywords)
+        embeddings = model.encode(sentences=keywords, convert_to_numpy=True, convert_to_tensor=False).mean(axis=0)
         return embeddings.tolist()
 
     def _execute_query(self, query: str, params: dict) -> pd.DataFrame:
