@@ -36,6 +36,28 @@ transfomers_logging.disable_progress_bar()
 transfomers_logging.set_verbosity_warning()
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
+mensajes = [
+    "Aquí tienes la información que he encontrado:",
+    "Estas son las convocatorias que he encontrado:",
+    "Aquí tienes los resultados de tu consulta:",
+    "Aquí tienes los datos que he encontrado:",
+    "¿Qué te parece esta información?",
+    "Aquí tienes los resultados de tu búsqueda:",
+    "Esto es lo que he encontrado en mi base de datos:",
+]
+
+greets = [
+    "No dudes en volver a preguntar",
+    "¡Espero que esta información te sea útil!",
+    "¡No dudes en preguntar si necesitas más información!",
+    "¡Espero que encuentres lo que buscas!",
+    "¡Estoy aquí para ayudarte!",
+    "¡No dudes en preguntar si necesitas más ayuda!",
+    "¡Espero haberte ayudado!",
+    "¡Espero haberte sido de ayuda!",
+    "¡Espero que esta información te sea útil!",
+]   
+
 st.title("ACCAP")
 
 if "messages" not in st.session_state:
@@ -102,7 +124,9 @@ if query := st.chat_input("Haz tu consulta"):
     with st.chat_message("assistant"):
         agente = CodeAgent(
             tools=[
-                PerformQuery()
+                PerformHybridQuery(),
+                PerformSQLQuery(),
+                PerformSemanticQuery()
             ],
             model=AzureOpenAIServerModel(
                 model_id="gpt-4o-mini",
@@ -114,11 +138,12 @@ if query := st.chat_input("Haz tu consulta"):
         
         try:
 
+            greet = np.random.choice(greets)
+            mensaje = np.random.choice(mensajes)
             response = agente.run(query)
             
             if isinstance(response, pd.DataFrame):
                 df = response
-                mensaje = "Aquí están los resultados:"
                 
                 st.markdown(mensaje)
                 cols = st.multiselect(
@@ -131,12 +156,12 @@ if query := st.chat_input("Haz tu consulta"):
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": mensaje,
-                    "df": df
+                    "df": df,
+                    "greet": greet
                 })
 
             if isinstance(response, list):
                 df = pd.DataFrame.from_records(response)
-                mensaje = "Aquí están los resultados:"
                 
                 st.markdown(mensaje)
                 cols = st.multiselect(
@@ -151,7 +176,7 @@ if query := st.chat_input("Haz tu consulta"):
                     "role": "assistant",
                     "content": mensaje,
                     "df": df,
-                    "greet": "¡No dudes en volver a preguntar!"
+                    "greet": greet
                 })
 
             else:
@@ -159,7 +184,7 @@ if query := st.chat_input("Haz tu consulta"):
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": response,
-                    "greet": "¡No dudes en volver a preguntar!"
+                    "greet": greet
                 })
                 st.markdown("¡No dudes en volver a preguntar!")
                 

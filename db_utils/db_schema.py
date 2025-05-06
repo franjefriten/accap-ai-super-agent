@@ -26,7 +26,7 @@ class CallData(Base):
     beneficiario: Mapped[str] = Column(String(255), nullable=True)
     tipo: Mapped[str] = Column(String(255), nullable=True)
     bases: Mapped[str] = Column(String(255), nullable=True)
-    keywords: Mapped[list[list[float]]] = Column(ARRAY(Vector(dim=384)))
+    keywords: Mapped[list[float]] = Column(Vector(dim=384))
     url: Mapped[str] = Column(String(255), nullable=False, default="https://example.com")
 
     def __repr__(self):

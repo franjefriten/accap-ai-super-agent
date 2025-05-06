@@ -42,7 +42,7 @@ def extract_key_words_azure(contenido):
 
 def embbed_key_words(contenido: list[dict]):
     model = SentenceTransformer("jaimevera1107/all-MiniLM-L6-v2-similarity-es")
-    contenido = [{k: [model.encode(sentences=word) for word in v] if k == "keywords" else v for k, v in entry.items()} for entry in contenido]
+    contenido = [{k: list(model.encode(sentences=v, convert_to_numpy=True).mean(axis=0)) if k == "keywords" else v for k, v in entry.items()} for entry in contenido]
     return contenido
 
 
