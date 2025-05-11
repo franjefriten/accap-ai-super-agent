@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, Float, inspect, Null, ARRAY
+from sqlalchemy import Column, Integer, String, DateTime, Float, inspect, Null, ARRAY, Boolean
 from datetime import datetime
 from sqlalchemy.orm import Mapped, DeclarativeBase
 from pgvector.sqlalchemy import Vector
@@ -17,7 +17,7 @@ class CallData(Base):
     duracion: Mapped[str] = Column(String(255), nullable=True, default=Null)
     nombre: Mapped[str] = Column(String(255), nullable=False, default="Desconocido")
     entidad: Mapped[str] = Column(String(255), nullable=True)
-    compatibilidad: Mapped[str] = Column(String(255), nullable=True)
+    compatibilidad: Mapped[str] = Column(Boolean, nullable=True)
     fecha_publicacion: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)
     fecha_inicio: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)
     fecha_final: Mapped[DateTime] = Column(DateTime, nullable=True, default=Null)
