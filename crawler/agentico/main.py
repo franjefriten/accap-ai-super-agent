@@ -47,9 +47,15 @@ from url_to_llm_text.get_html_text import get_page_source   # you can also use y
 from url_to_llm_text.get_llm_input_text import get_processed_text   # pass html source text to get llm ready text
 
 from openai import AzureOpenAI
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.documentintelligence import DocumentIntelligenceClient
+from azure.ai.documentintelligence.models import AnalyzeResult
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
 from pypdf import PdfReader
 from pypdf.errors import PdfReadError
+
+
 
 # cargamos configuacion de logging
 logging.config.fileConfig('crawler/agentico/logconfig.conf')
@@ -90,7 +96,51 @@ session = requests.Session()
 session.mount('https://', LegacySSLAdapter())
 
 
-def check_link_behavior(url):
+def get_words(page, line):
+    result = []
+    for word in page.words:
+        if _in_span(word, line.spans):
+            result.append(word)
+    return result
+
+
+def _in_span(word, spans):
+    for span in spans:
+        if word.span.offset >= span.offset and (
+            word.span.offset + word.span.length
+        ) <= (span.offset + span.length):
+            return True
+    return False
+
+def safe_json_loads(json_str):
+    try:
+        return json.loads(json_str)
+    except json.JSONDecodeError as e:
+        # Get the position where parsing failed
+        error_pos = e.pos
+        
+        # Find the last unclosed quote before the error position
+        last_quote_pos = json_str.rfind('"', 0, error_pos)
+        
+        # Check if we're inside an unclosed string
+        if last_quote_pos > 0 and json_str[last_quote_pos-1] != '\\':  # Not an escaped quote
+            # Insert closing quote only at the exact unterminated string
+            repaired = json_str[:error_pos] + '"' + json_str[error_pos:]
+        else:
+            # Handle other types of truncation (objects/arrays)
+            repaired = json_str[:error_pos]
+            open_braces = repaired.count('{') - repaired.count('}')
+            open_brackets = repaired.count('[') - repaired.count(']')
+            repaired += '}' * open_braces
+            repaired += ']' * open_brackets
+        
+        try:
+            return json.loads(repaired)
+        except json.JSONDecodeError:
+            # Final fallback - return None or raise custom error
+            return {"error": "Could not repair JSON", "truncated_data": json_str[:200] + "..."}
+
+def check_link_behavior(url: str) -> str:
     """
     Determines what happens when accessing a URL:
     - 'download': Forces PDF download
@@ -103,6 +153,9 @@ def check_link_behavior(url):
     session.mount('https://', HTTPAdapter())
     
     try:
+        if url.endswith("pdf"):
+            return 'view'
+
         # First try HEAD request (doesn't download content)
         response = session.head(url, allow_redirects=True, timeout=5)
         
@@ -144,6 +197,247 @@ def download_pdf(url, driver, options=None):
         # Vamos a suponer solo el primer pdf
         #pdf = driver.find_element(By.XPATH, "//a[contains(@href, 'pdf') or contains(@href, 'documento')]")
         #download_pdf(pdf.get_attribute('href'), driver)
+
+def convert_table_to_json(table_data):
+    """
+    Transform Document Intelligence table structure into column-value JSON
+    
+    Input: 
+        [{'kind': 'columnHeader', 'rowIndex': 0, 'columnIndex': 0, 'content': 'Año'},
+         {'rowIndex': 1, 'columnIndex': 0, 'content': '2023'}]
+         
+    Output:
+        [{'Año': '2023'}]
+    """
+    # Step 1: Extract headers
+    print(table_data)
+    headers = {}
+    max_col = max(cell['columnIndex'] for cell in table_data)
+    
+    for cell in table_data:
+        if cell.get('kind') == 'columnHeader':
+            headers[cell['columnIndex']] = cell['content']
+    
+    # Step 2: Group by rows
+    rows = {}
+    for cell in table_data:
+        if cell.get('kind') != 'columnHeader':  # Skip headers
+            row_idx = cell['rowIndex']
+            col_idx = cell['columnIndex']
+            
+            if row_idx not in rows:
+                rows[row_idx] = {col_idx: cell['content']}
+            else:
+                rows[row_idx][col_idx] = cell['content']
+    
+    # Step 3: Map to header names
+    result = []
+    for row in rows.values():
+        json_row = {}
+        for col_idx, content in row.items():
+            if col_idx in headers:  # Only include columns with headers
+                json_row[headers[col_idx]] = content.strip()
+        if json_row:  # Skip empty rows
+            result.append(json_row)
+    
+    return result
+
+
+def analyze_layout(pdf):
+    endpoint = os.getenv("AZURE_DOCUMENT_ANALYZER_ENDPOINT")
+    key = os.getenv("AZURE_DOCUMENT_ANALYZER_API_KEY")
+
+    document_intelligence_client = DocumentIntelligenceClient(
+        endpoint=endpoint, credential=AzureKeyCredential(key)
+    )
+
+    MAX_BYTES = 4 * 1024 * 1024
+
+    with open(pdf, "rb") as doc:
+        # Read exactly MAX_BYTES (truncates if larger)
+        file_content = doc.read(MAX_BYTES)
+        
+        # Verify if we hit the limit
+        if len(file_content) == MAX_BYTES:
+            remaining = doc.read(1)  # Check for any remaining bytes
+            if remaining:
+                raise ValueError(f"File exceeds {MAX_BYTES} bytes limit")
+
+        poller = document_intelligence_client.begin_analyze_document(
+            "prebuilt-layout", 
+            AnalyzeDocumentRequest(
+                bytes_source=file_content,
+            )
+        )
+
+    result: AnalyzeResult = poller.result()
+    if result.tables:
+        table_data = []
+        for table in result.tables: 
+            table_data.append(convert_table_to_json(table['cells']))
+    else:
+        table_data = []
+    if result.key_value_pairs:
+        kv_data = [kv_data.append(kv.as_dict()) for kv in result.key_value_pairs]
+    else:
+        kv_data = []
+    if result.content:
+        content = result.content
+    else:
+        content = ""
+        #for table_idx, table in enumerate(result.tables):
+        #     print(
+        #         f"Table # {table_idx} has {table.row_count} rows and "
+        #         f"{table.column_count} columns"
+        #     )
+        #     if table.bounding_regions:
+        #         for region in table.bounding_regions:
+        #             print(
+        #                 f"Table # {table_idx} location on page: {region.page_number} is {region.polygon}"
+        #             )
+            # for cell in table.cells:
+            #     print(
+            #         f"...Cell[{cell.row_index}][{cell.column_index}] has text '{cell.content}'"
+            #     )
+            #     if cell.bounding_regions:
+            #         for region in cell.bounding_regions:
+            #             print(
+            #                 f"...content on page {region.page_number} is within bounding polygon '{region.polygon}'"
+            #             )
+    
+    return ([*kv_data, *table_data], content)
+
+    # if result.styles and any([style.is_handwritten for style in result.styles]):
+    #     print("Document contains handwritten content")
+    # else:
+    #     print("Document does not contain handwritten content")
+
+    # for page in result.pages:
+    #     # print(f"----Analyzing layout from page #{page.page_number}----")
+    #     # print(
+    #     #     f"Page has width: {page.width} and height: {page.height}, measured with unit: {page.unit}"
+    #     # )
+
+    #     if page.lines:
+    #         for line_idx, line in enumerate(page.lines):
+    #             words = get_words(page, line)
+    #             print(
+    #                 f"...Line # {line_idx} has word count {len(words)} and text '{line.content}' "
+    #                 f"within bounding polygon '{line.polygon}'"
+    #             )
+
+    #             for word in words:
+    #                 print(
+    #                     f"......Word '{word.content}' has a confidence of {word.confidence}"
+    #                 )
+
+    #     if page.selection_marks:
+    #         for selection_mark in page.selection_marks:
+    #             print(
+    #                 f"Selection mark is '{selection_mark.state}' within bounding polygon "
+    #                 f"'{selection_mark.polygon}' and has a confidence of {selection_mark.confidence}"
+    #             )
+
+    # if result.tables:
+    #     for table_idx, table in enumerate(result.tables):
+    #         print(
+    #             f"Table # {table_idx} has {table.row_count} rows and "
+    #             f"{table.column_count} columns"
+    #         )
+    #         if table.bounding_regions:
+    #             for region in table.bounding_regions:
+    #                 print(
+    #                     f"Table # {table_idx} location on page: {region.page_number} is {region.polygon}"
+    #                 )
+    #         for cell in table.cells:
+    #             print(
+    #                 f"...Cell[{cell.row_index}][{cell.column_index}] has text '{cell.content}'"
+    #             )
+    #             if cell.bounding_regions:
+    #                 for region in cell.bounding_regions:
+    #                     print(
+    #                         f"...content on page {region.page_number} is within bounding polygon '{region.polygon}'"
+    #                     )
+
+    # print("----------------------------------------")
+
+
+def query_pdf_data(document_tables, document_data, information_avaialble):
+    client = AzureOpenAI(
+        azure_endpoint=os.getenv("AZURE_AI_AGENT_ENDPOINT"),
+        api_key=os.getenv("AZURE_AI_AGENT_API_KEY"),
+        api_version="2025-01-01-preview",
+    )
+    
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",  # Use "gpt-35-turbo" for faster/cheaper
+        messages=[
+            {"role": "system", "content": """
+             Eres un asistente de extracción de datos.
+             Tu tarea es extraer información específica de documentos JSON.
+             Sin embargo, ya tenemos parte de la información extraída,
+             por lo que solo debes extraer la información faltante.
+             Rellena los campos vacíos (marcados con "") con la información que encuentres en el documento.
+             """},
+            {"role": "user", "content": f"""
+             TABLAS DEL DOCUMENTO:
+             {document_tables}
+
+             DATOS DEL DOCUMENTO:
+             {document_data}
+             
+             INFORMACIÓN DISPONIBLE:
+             {information_avaialble}
+
+             Devuelve toda la información en formato JSON y deja los datos no encontrados como '' en la entrada.
+             """}
+        ],
+        max_tokens=800,  
+        temperature=0.7,  
+        top_p=0.95,  
+        frequency_penalty=0,  
+        presence_penalty=0,
+        stop=None,
+        stream=False 
+    )
+    
+    return response.choices[0].message.content
+
+
+def extract_data_from_page(text, schema):
+    client = AzureOpenAI(
+        azure_endpoint=os.getenv("AZURE_AI_AGENT_ENDPOINT"),
+        api_key=os.getenv("AZURE_AI_AGENT_API_KEY"),
+        api_version="2025-01-01-preview",
+    )
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",  # Use "gpt-35-turbo" for faster/cheaper
+        messages=[
+            {"role": "system", "content": """
+             Eres un asistente de web scraping. Tu tarea es extraer
+             información específica de las páginas web.
+            Esta es la información que necesitas extraer:
+             """},
+            {"role": "user", "content": f"""
+             ESQUEMA DE DATOS A EXTRAER:
+             {schema}
+             
+             TEXTO DE LA PÁGINA:
+             {text}
+
+             Devuelve la información en formato JSON y deja los datos no encontrados como '' en la entrada.
+             """}
+        ],
+        max_tokens=800,  
+        temperature=0.7,  
+        top_p=0.95,  
+        frequency_penalty=0,  
+        presence_penalty=0,
+        stop=None,
+        stream=False 
+    )
+    return response.choices[0].message.content
 
 async def _CrawlAEI():
     
@@ -410,7 +704,7 @@ async def AgenticoAEI():
 
 
 async def AgenticoSNPSAP():
-    pdf_filename = f"listado{datetime.today().month}_{datetime.today().day}_{datetime.today().year}.pdf" 
+    pdf_filename = "listado5_6_2025.pdf" #f"listado{datetime.today().month}_{datetime.today().day}_{datetime.today().year}.pdf" 
     LOG_FILE = "crawler/logger.txt"
     
     with open("crawler/urls.json", "rb") as urlsfile:
@@ -506,46 +800,6 @@ async def AgenticoSNPSAP():
         dtype=str
     )
     for i, url in enumerate(df["url"]):
-        chat_prompt_scrap_web = [
-            {
-                "role": "system",
-                "content": [
-                    {
-                        "type": "text",
-                        "text": 
-                            """
-                            Eres un asistente de web scraping. Tu tarea es extraer información específica de las páginas web.
-                            Esta es la información que necesitas extraer:
-                            {schema}
-                            Proporcione la información en formato JSON y deje los datos no encontrados como '' en la entrada.
-                            Aquí está el texto:
-                            {text}
-                            """
-                    }
-                ]
-            }
-        ]
-        chat_prompt_scrap_pdf = [
-            {
-                "role": "system",
-                "content": [
-                    {
-                        "type": "text",
-                        "text": 
-                            """
-                            Eres un asistente de extracción de PDF.
-                            Ya tenemos información extraída de otra fuente, pero necesitas completarla.
-                            Esta es la información que tenemos:
-                            {data_extracted}
-                            Esta es la toda la información que necesitamos:                        
-                            {schema}
-                            Proporcione la información en formato JSON. Si falta algún campo, deje una cadena vacía. A continuación, el texto:
-                            {text}
-                            """
-                    }
-                ]
-            }
-        ]
         try:
             store_folder = os.path.join("./downloads", df.loc[i, "Código BDNS"])
             if not os.path.isdir(store_folder):
@@ -557,56 +811,24 @@ async def AgenticoSNPSAP():
             driver.get(url)
             text = driver.find_element(By.TAG_NAME, 'main').get_attribute('innerHTML')
             text = await get_processed_text(text, url)
-            chat_prompt_scrap_web[0]['content'][0]['text'] = \
-                chat_prompt_scrap_web[0]['content'][0]['text'].format(
-                    schema=str(CallSchema.model_json_schema()),
-                    text=text
-                )
-            completion = client.chat.completions.create(  
-                model="gpt-4o-mini",
-                messages=chat_prompt_scrap_web,
-                max_tokens=800,  
-                temperature=0.7,  
-                top_p=0.95,  
-                frequency_penalty=0,  
-                presence_penalty=0,
-                stop=None,
-                stream=False  
-            )
-            table_data = completion.choices[0].message.content
+            table_data = extract_data_from_page(text, str(CallSchema.model_json_schema()))
             table_data = re.sub(r"```json\s*|```", "", (table_data).strip())
             table_data = dict(json.loads(table_data))
+            table_data_missing = {k: v for k, v in table_data.items() if v == ""}
             bases = table_data["bases"]
             download_pdf(bases, driver, options)
             pdf_data = {}
-            # for file in os.listdir(store_folder):
-            #     if not file.endswith(".pdf"):
-            #         continue
-            #     reader = PdfReader(os.path.join(store_folder, file))
-            #     text = "\n".join([page.extract_text() for page in reader.pages])
-            #     chat_prompt_scrap_pdf_text = chat_prompt_scrap_pdf[0]['content'][0]['text'].format(
-            #             schema=CallSchema.model_json_schema(),
-            #             data_extracted=str(table_data),
-            #             text=text
-            #         )
-            #     chat_prompt_scrap_pdf[0]['content'][0]['text'] = chat_prompt_scrap_pdf_text
-            #     completion = client.chat.completions.create(  
-            #         model="gpt-4o-mini",
-            #         messages=chat_prompt_scrap_pdf,
-            #         max_tokens=800,  
-            #         temperature=0.7,  
-            #         top_p=0.95,  
-            #         frequency_penalty=0,  
-            #         presence_penalty=0,
-            #         stop=None,
-            #         stream=False  
-            #     )
-            #     data = completion.choices[0].message.content
-            #     pdf_data = re.sub(r"```json\s*|```", "", (data).strip())
-            #     pdf_data = dict(json.loads(pdf_data))
-            #     table_data = {**table_data, **pdf_data}   
-            # call_data = table_data
-            # df.loc[i, call_data.keys()] = call_data.values()                 
+            for file in os.listdir(store_folder):
+                if not file.endswith(".pdf"):
+                    continue
+                pdf_path = os.path.join(store_folder, file)
+                pdf_jsondata, pdf_content = analyze_layout(pdf_path)
+                pdf_data = query_pdf_data(json.dumps(pdf_jsondata), pdf_content, table_data)
+                pdf_data = re.sub(r"```json\s*|```", "", (pdf_data).strip())+"\""
+                pdf_data = safe_json_loads(pdf_data)
+                table_data = {**table_data, **pdf_data[table_data_missing.keys()]}   
+            call_data = table_data
+            df.loc[i, call_data.keys()] = call_data.values()                 
         except (WebDriverException, NoSuchElementException) as e:
             print(f"Error al descargar el PDF: {e}")
         except PdfReadError as e:
@@ -621,6 +843,6 @@ async def AgenticoSNPSAP():
     return df
 
 
-# if __name__ == "__main__":
-#     asyncio.run(AgenticoSNPSAP())
-    #print(json.dumps(AEISchema.model_json_schema()["properties"], indent=4))
+if __name__ == "__main__":
+    asyncio.run(AgenticoSNPSAP())
+    # print(json.dumps(AEISchema.model_json_schema()["properties"], indent=4))

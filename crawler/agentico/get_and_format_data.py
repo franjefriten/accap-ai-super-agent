@@ -103,12 +103,20 @@ def get_and_format_AgenticoSNPSAP_data():
     # Código BDNS, Mecanismo de Recuperación y Resiliencia, Administración, Departamento, Órgano, Fecha de Registro,
     # Título, Título Cooficial
     # presupuesto, fecha_inicio, fecha_final, finalidad
-    def format_presupuesto(string):
+    def format_presupuesto(string: str):
         if string != "":
             string = int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")) 
         else:
             string = None
         return string
+    def format_compatibilidad(string: str):
+        if re.search(r"\s*no\s*", string.lower(), re.IGNORECASE):
+            return False
+        elif re.search(r"\s*si\s*", string.lower(), re.IGNORECASE):
+            return True
+        else:
+            return None
+
     df: pd.DataFrame = asyncio.run(AgenticoSNPSAP())
     print(df.columns)
     df = df.rename(columns={
@@ -118,6 +126,10 @@ def get_and_format_AgenticoSNPSAP_data():
         "finalidad": "descripcion"
     })
     df["presupuesto"] = df["presupuesto"].map(format_presupuesto)
+    df["compatibilidad"] = df["compatibilidad"].map(format_compatibilidad)
+    df["entidad"] = df["entidad"].map(lambda x: x[:255])
+    df["convocatoria"] = df["convocatoria"].map(lambda x: x[:255])
+    df["descripcion"] = df["descripcion"].map(lambda x: x[:255])
     df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%Y", errors="coerce")
     df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%Y", errors="coerce")
     df["fecha_publicacion"] = pd.to_datetime(df["fecha_publicacion"], format="%d/%m/%Y", errors="coerce")
