@@ -133,7 +133,7 @@ def get_and_format_AgenticoSNPSAP_data():
     df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%Y", errors="coerce")
     df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%Y", errors="coerce")
     df["fecha_publicacion"] = pd.to_datetime(df["fecha_publicacion"], format="%d/%m/%Y", errors="coerce")
-    df[["fecha_inicio", "fecha_final", "fecha_publicacion"]] = df[["fecha_inicio", "fecha_final", "fecha_publicacion"]].map(lambda x: None if x is pd.NaT else x) #datetime.strptime("01/01/1900", "%d/%m/%Y")
+    df[["fecha_inicio", "fecha_final", "fecha_publicacion"]] = df[["fecha_inicio", "fecha_final", "fecha_publicacion"]].map(lambda x: None if pd.isna(x) else x) #datetime.strptime("01/01/1900", "%d/%m/%Y")
     contenido = df.to_dict('records')
     contenido = [extract_key_words_azure(contenido=contenido[seccion:seccion+10]) for seccion in range(0, len(df), 10)]
     contenido = [entry for iteracion in contenido for entry in iteracion]

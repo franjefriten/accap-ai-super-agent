@@ -13,6 +13,10 @@ import pandas as pd
 import base64
 import logging
 
+from tenacity import retry, stop_after_attempt, retry_if_exception
+
+from psycopg.errors import UndefinedColumn, ProgrammingError, OperationalError
+
 from openai import AzureOpenAI
 
 from sentence_transformers import SentenceTransformer  
@@ -23,7 +27,52 @@ import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
 URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@db:5432/{os.getenv("POSTGRES_DB")}"
+MAX_ATTEMPTS = 5
 
+# hash_funcs = {
+#     list: lambda x: hash(tuple(getattr(obj, "name", obj) for obj in x))
+# }
+
+# class AgenteRAG(CodeAgent):
+
+#     def __init__(self):
+#         super().__init__(
+#         tools = [
+#                 PerformHybridQuery(),
+#                 PerformSQLQuery(),
+#                 PerformSemanticQuery()
+#             ],
+#         model = AzureOpenAIServerModel(
+#                 model_id="gpt-4o-mini",
+#                 azure_endpoint=endpoint,
+#                 api_key=api_key,
+#                 api_version="2025-01-01-preview",
+#             )
+#         )
+
+#     # @st.cache(
+#     #     show_spinner="Analizado la consulta, puede tardar unos segundos...",
+#     #     hash_funcs=hash_funcs
+#     # )
+#     @retry(
+#         stop=stop_after_attempt(MAX_ATTEMPTS),
+#         retry=retry_if_exception((UndefinedColumn, ProgrammingError, OperationalError))
+#     )
+#     def runAgent(self, query: str):
+#         try:
+#             response = self.run(query)
+            
+#             # Add basic validation
+#             if not response or "ERROR:" in response:
+#                 raise ValueError("Invalid agent response")
+                
+#             return response
+            
+#         except Exception as e:  # Catch-all for other errors
+#             if isinstance(e, (UndefinedColumn, ProgrammingError)):
+#                 raise  # Let tenacity handle these
+#             return f"Critical error: {str(e)}"
+        
 
 endpoint = os.getenv("AZURE_AI_AGENT_ENDPOINT")
 api_key = os.getenv("AZURE_AI_AGENT_API_KEY")
@@ -98,6 +147,21 @@ if "messages" not in st.session_state:
         }
     )
 
+if "agente" not in st.session_state:
+    st.session_state.agente = CodeAgent(
+        tools = [
+            PerformHybridQuery(),
+            PerformSQLQuery(),
+            PerformSemanticQuery()
+        ],
+        model = AzureOpenAIServerModel(
+            model_id="gpt-4o-mini",
+            azure_endpoint=endpoint,
+            api_key=api_key,
+            api_version="2025-01-01-preview",
+        )
+    )
+
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
@@ -122,29 +186,16 @@ if query := st.chat_input("Haz tu consulta"):
         st.markdown(query)
     
     with st.chat_message("assistant"):
-        agente = CodeAgent(
-            tools=[
-                PerformHybridQuery(),
-                PerformSQLQuery(),
-                PerformSemanticQuery()
-            ],
-            model=AzureOpenAIServerModel(
-                model_id="gpt-4o-mini",
-                azure_endpoint=endpoint,
-                api_key=api_key,
-                api_version="2025-01-01-preview",
-            )
-        )
-        
-        try:
-
+        with st.spinner("Analizando la consulta, puede tardar unos segundos..."):  # Shows spinner
+            # Simulate processing time
+            time.sleep(2)  
             greet = np.random.choice(greets)
             mensaje = np.random.choice(mensajes)
-            response = agente.run(query)
-            
+            response = st.session_state.agente.run(query)
+                
             if isinstance(response, pd.DataFrame):
                 df = response
-                
+                    
                 st.markdown(mensaje)
                 cols = st.multiselect(
                     "Columnas a mostrar",
@@ -152,7 +203,7 @@ if query := st.chat_input("Haz tu consulta"):
                     default=df.columns.tolist()
                 )
                 st.dataframe(df[cols])
-                
+                    
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": mensaje,
@@ -162,7 +213,7 @@ if query := st.chat_input("Haz tu consulta"):
 
             if isinstance(response, list):
                 df = pd.DataFrame.from_records(response)
-                
+                    
                 st.markdown(mensaje)
                 cols = st.multiselect(
                     "Columnas a mostrar",
@@ -170,8 +221,27 @@ if query := st.chat_input("Haz tu consulta"):
                     default=df.columns.tolist()
                 )
                 st.dataframe(df[cols])
-                st.markdown("¡No dudes en volver a preguntar!")
-                
+                st.markdown(greet)
+                    
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "content": mensaje,
+                    "df": df,
+                    "greet": greet
+                })
+
+            if isinstance(response, dict):
+                df = pd.DataFrame().from_records([response])
+
+                st.markdown(mensaje)
+                cols = st.multiselect(
+                    "Columnas a mostrar",
+                    options=df.columns,
+                    default=df.columns.tolist()
+                )
+                st.dataframe(df[cols])
+                st.markdown(greet)
+                    
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": mensaje,
@@ -186,9 +256,7 @@ if query := st.chat_input("Haz tu consulta"):
                     "content": response,
                     "greet": greet
                 })
-                st.markdown("¡No dudes en volver a preguntar!")
+                st.markdown(greet)
                 
-        except Exception as e:
-            st.error(f"Error: {str(e)}")
             
 
