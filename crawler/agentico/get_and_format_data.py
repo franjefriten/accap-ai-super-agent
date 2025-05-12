@@ -127,13 +127,13 @@ def get_and_format_AgenticoSNPSAP_data():
     })
     df["presupuesto"] = df["presupuesto"].map(format_presupuesto)
     df["compatibilidad"] = df["compatibilidad"].map(format_compatibilidad)
-    df["entidad"] = df["entidad"].map(lambda x: x[:255])
-    df["convocatoria"] = df["convocatoria"].map(lambda x: x[:255])
-    df["descripcion"] = df["descripcion"].map(lambda x: x[:255])
+    df["entidad"] = df["entidad"].astype('str').map(lambda x: x[:255])
+    df["convocatoria"] = df["convocatoria"].astype('str').map(lambda x: x[:255])
+    df["descripcion"] = df["descripcion"].astype('str').map(lambda x: x[:255])
     df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%Y", errors="coerce")
     df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%Y", errors="coerce")
     df["fecha_publicacion"] = pd.to_datetime(df["fecha_publicacion"], format="%d/%m/%Y", errors="coerce")
-    df[["fecha_inicio", "fecha_final", "fecha_publicacion"]] = df[["fecha_inicio", "fecha_final", "fecha_publicacion"]].map(lambda x: datetime.strptime("01/01/1900", "%d/%m/%Y") if x is pd.NaT else x)
+    df[["fecha_inicio", "fecha_final", "fecha_publicacion"]] = df[["fecha_inicio", "fecha_final", "fecha_publicacion"]].map(lambda x: None if x is pd.NaT else x) #datetime.strptime("01/01/1900", "%d/%m/%Y")
     contenido = df.to_dict('records')
     contenido = [extract_key_words_azure(contenido=contenido[seccion:seccion+10]) for seccion in range(0, len(df), 10)]
     contenido = [entry for iteracion in contenido for entry in iteracion]
