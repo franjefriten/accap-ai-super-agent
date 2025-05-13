@@ -1,6 +1,7 @@
 import asyncio
 import re, os, json
 from datetime import datetime
+from typing import List, Dict
 
 import pandas as pd
 import numpy as np
@@ -18,7 +19,7 @@ from azure.ai.textanalytics import TextAnalyticsClient
 from sentence_transformers import SentenceTransformer
 
 
-def extract_key_words_azure(contenido):
+def extract_key_words_azure(contenido: List[Dict]) -> List[Dict]:
     """Emplea Azure AI Services para sacar palabras claves con api y endpoint de azure.
     
     Keyword arguments:
@@ -40,17 +41,27 @@ def extract_key_words_azure(contenido):
     return contenido
 
 
-def embbed_key_words(contenido: list[dict]):
+def embbed_key_words(contenido: List[Dict]):
+    """Se crean embebidos con jaimevera1107/all-MiniLM-L6-v2-similarity-es"""
     model = SentenceTransformer("jaimevera1107/all-MiniLM-L6-v2-similarity-es")
     contenido = [{k: list(model.encode(sentences=v, convert_to_numpy=True).mean(axis=0)) if k == "keywords" else v for k, v in entry.items()} for entry in contenido]
     return contenido
 
 
-def get_and_format_AgenticoAEI_data():
+def get_and_format_AgenticoAEI_data() -> List[Dict]:
     """
-    Format and store data from AEI.
+    Formatear y guardar datos de la Agencia
+    Espacial de Investigación con el sistema agéntico
     """
-    def extract_dates(entry):
+    def extract_dates(entry: Dict):
+        """Formatear distintos formatos de fecha.
+        O cuando las fechas están mal cpatadas
+        
+        Keyword arguments:
+            entry: entrada de una convocatoria
+        Return: entry 
+        """
+        
         pat = r"\d{1,2}\/\d{2}\/\d{2}"
         fechas = re.findall(pat, entry["plazos"])
         if len(fechas) >= 2:
@@ -69,13 +80,23 @@ def get_and_format_AgenticoAEI_data():
             entry.pop("plazos")
             return entry
 
-    def format_presupuesto(entry):
+    def format_presupuesto(entry: Dict):
+        """Formatear el presupuesto. La mayoría de veces
+        vienen en formato '10.000.000,00 €' y se reconvierten
+        a formato de entero
+        
+        Keyword arguments:
+            entry: entrada de una convocatoria
+        Return: entry 
+        """
+        
         if entry["presupuesto"] != "":
             entry["presupuesto"] = int("".join(re.findall(r"[\d\.\,]", entry["presupuesto"])[:-3]).replace(".", "")) 
         else:
             entry["presupuesto"] = None
         return entry
-        
+    
+    # Obtenemos datos
     contenido = asyncio.run(AgenticoAEI())
     #contenido = [entry for iteracion in contenido for entry in iteracion if sum([v != '' for k, v in entry.items()]) > 3]
     contenido = list(
@@ -90,26 +111,53 @@ def get_and_format_AgenticoAEI_data():
             contenido
         )
     )
-    contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
+    #contenido = [{**contenido, "localidad": None, "presupuesto": None} for contenido in contenido]
+    # Extraer pares clave-valor
+    # Azure solo permite documentos de 10 en 10.
     contenido = [extract_key_words_azure(contenido=contenido[seccion:seccion+10]) for seccion in range(0, len(contenido), 10)]
+    # se aplana la lista
     contenido = [entry for iteracion in contenido for entry in iteracion]
+    # El limite de la base de datos es 255 caracteres de texto
     contenido = [{k: v[:255] if k == "beneficiario" else v for k, v in entry.items()} for entry in contenido]
+    # embebimos las palabras clave
     contenido = embbed_key_words(contenido)
     return contenido
 
 
-def get_and_format_AgenticoSNPSAP_data():
+def get_and_format_AgenticoSNPSAP_data() -> List[Dict]:
+    """
+    Formatear y guardar datos del Sistema Nacional de Publicidad de 
+    Subvenciones y Ayudas Públicas con el sistema agéntico
+    """
+    
     # El dataset tiene columnas:
     # Código BDNS, Mecanismo de Recuperación y Resiliencia, Administración, Departamento, Órgano, Fecha de Registro,
     # Título, Título Cooficial
     # presupuesto, fecha_inicio, fecha_final, finalidad
     def format_presupuesto(string: str):
+        """Formatear el presupuesto. La mayoría de veces
+        vienen en formato '10.000.000,00 €' y se reconvierten
+        a formato de entero
+        
+        Keyword arguments:
+            string: presupuesto a formatear
+        Return: entry 
+        """
         if string != "":
             string = int("".join(re.findall(r"[\d\.\,]", string)[:-3]).replace(".", "")) 
         else:
             string = None
         return string
+    
     def format_compatibilidad(string: str):
+        """Formatear el atributo de compatiblidad. Se debe introducir en la
+        base de datos como un buleano y se debe formatear como tal
+        
+        Keyword arguments:
+            string: compatibilidad en forma de (NO, no, Si, si, SI, No)
+        Return: return_description
+        """
+        
         if re.search(r"\s*no\s*", string.lower(), re.IGNORECASE):
             return False
         elif re.search(r"\s*si\s*", string.lower(), re.IGNORECASE):
@@ -119,6 +167,7 @@ def get_and_format_AgenticoSNPSAP_data():
 
     df: pd.DataFrame = asyncio.run(AgenticoSNPSAP())
     print(df.columns)
+    # renombramos las columnas
     df = df.rename(columns={
         "Departamento": "entidad",
         "Fecha de registro": "fecha_publicacion",
@@ -127,15 +176,21 @@ def get_and_format_AgenticoSNPSAP_data():
     })
     df["presupuesto"] = df["presupuesto"].map(format_presupuesto)
     df["compatibilidad"] = df["compatibilidad"].map(format_compatibilidad)
+    # Limitamos la cadena de texto a 255, que es el maximo que permite la tabla
     df["entidad"] = df["entidad"].astype('str').map(lambda x: x[:255])
     df["convocatoria"] = df["convocatoria"].astype('str').map(lambda x: x[:255])
     df["descripcion"] = df["descripcion"].astype('str').map(lambda x: x[:255])
+    # Convertimos las fechas string a datetime
     df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%Y", errors="coerce")
     df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%Y", errors="coerce")
     df["fecha_publicacion"] = pd.to_datetime(df["fecha_publicacion"], format="%d/%m/%Y", errors="coerce")
+    # Manejamos valores nulos de las fechas para que la base de datos lo maneje bien
     df[["fecha_inicio", "fecha_final", "fecha_publicacion"]] = df[["fecha_inicio", "fecha_final", "fecha_publicacion"]].map(lambda x: None if pd.isna(x) else x) #datetime.strptime("01/01/1900", "%d/%m/%Y")
     contenido = df.to_dict('records')
+    # Azure solo permite documentos de 10 en 10.
     contenido = [extract_key_words_azure(contenido=contenido[seccion:seccion+10]) for seccion in range(0, len(df), 10)]
+    # se aplana la lista
     contenido = [entry for iteracion in contenido for entry in iteracion]
+    # embebimos las palabras clave
     contenido = embbed_key_words(contenido)
     return contenido

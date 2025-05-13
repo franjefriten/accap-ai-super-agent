@@ -41,7 +41,7 @@ import numpy as np
 from docling.document_converter import DocumentConverter
 
 from pydantic import BaseModel, Field
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Tuple
 
 from url_to_llm_text.get_html_text import get_page_source   # you can also use your own code or other services to get the page source
 from url_to_llm_text.get_llm_input_text import get_processed_text   # pass html source text to get llm ready text
@@ -70,6 +70,8 @@ if os.path.exists(".env"):
 
 
 class CallSchema(BaseModel):
+    """Esquema pydantic de los datos que se deben obtener
+    en una consulta, usado con el modelo de lenguaje"""
     #title: str = Field(..., validation_alias="nombre", description="Title of the AEI entry")
     start_date: str = Field(..., validation_alias="fecha_inicio", description="Fecha de inicio del período de aplicabilidad de la convocatoria")
     end_date: str = Field(..., validation_alias="fecha_final", description="Fecha de finalización del período de aplicabilidad de la convocatoria")
@@ -86,6 +88,10 @@ class CallSchema(BaseModel):
 
 
 class LegacySSLAdapter(HTTPAdapter):
+    """Existen servicios que emplean certificados SSL "Legacy"
+    y no permiten descargas seguras. Empleamos esto para traspasar
+    eso.
+    """
     def init_poolmanager(self, *args, **kwargs):
         context = create_urllib3_context()
         context.options |= 0x4  # OP_LEGACY_SERVER_CONNECT
@@ -96,45 +102,40 @@ session = requests.Session()
 session.mount('https://', LegacySSLAdapter())
 
 
-def get_words(page, line):
-    result = []
-    for word in page.words:
-        if _in_span(word, line.spans):
-            result.append(word)
-    return result
-
-
-def _in_span(word, spans):
-    for span in spans:
-        if word.span.offset >= span.offset and (
-            word.span.offset + word.span.length
-        ) <= (span.offset + span.length):
-            return True
-    return False
-
-def safe_json_loads(json_str):
+def safe_json_loads(json_str: str):
+    """Función usada para reparar cadenas de texto que van a ser convertidas
+    a JSON con json.loads. El LLM devuelve a veces cadenas estilo json sin cerrar
+    
+    Keyword arguments:
+        json_str: cadena de texto estilo JSON a ser reparada, si es necesario
+    Return (str): cadena de texto reparada
+    """
+    
     try:
         return json.loads(json_str)
     except json.JSONDecodeError as e:
-        # Get the position where parsing failed
+        # Obtener la posición donde ocurre el error
         error_pos = e.pos
         
-        # Find the last unclosed quote before the error position
+        # Hallar las últimas no cerradas
         last_quote_pos = json_str.rfind('"', 0, error_pos)
         
-        # Check if we're inside an unclosed string
-        if last_quote_pos > 0 and json_str[last_quote_pos-1] != '\\':  # Not an escaped quote
-            # Insert closing quote only at the exact unterminated string
+        # Comprobar si estamos dentro de una cadena no cerrada
+        if last_quote_pos > 0 and json_str[last_quote_pos-1] != '\\':  # Comprobamos que no sea unas comillas no escapadas
+            # Insertar comillas de cierre solo en el lugar del error
             repaired = json_str[:error_pos] + '"' + json_str[error_pos:]
         else:
-            # Handle other types of truncation (objects/arrays)
+            # En caso de tratarse de lista o dict cerrado
             repaired = json_str[:error_pos]
-            open_braces = repaired.count('{') - repaired.count('}')
-            open_brackets = repaired.count('[') - repaired.count(']')
-            repaired += '}' * open_braces
-            repaired += ']' * open_brackets
+            # 1, si falta el signo de cierre, 0 si no
+            llaves_abiertas = repaired.count('{') - repaired.count('}')
+            # 1, si falta el signo de cierre, 0 si no
+            corchetes_abiertos = repaired.count('[') - repaired.count(']')
+            repaired += '}' * llaves_abiertas
+            repaired += ']' * corchetes_abiertos
         
         try:
+            # La cadena debería estar reparada
             return json.loads(repaired)
         except json.JSONDecodeError:
             # Final fallback - return None or raise custom error
@@ -142,35 +143,40 @@ def safe_json_loads(json_str):
 
 def check_link_behavior(url: str) -> str:
     """
-    Determines what happens when accessing a URL:
-    - 'download': Forces PDF download
-    - 'view': Opens PDF in browser
-    - 'redirect': Redirects to another URL 
-    - 'error': Error occurred
-    - 'unknown': Not a PDF
+    Determina que pasa al acceder a una dirección
+    - 'download': Fuerza una descarga (generalmente, PDF)
+    - 'view': Abre un PDF en el navegador
+    - 'redirect': Redirige a otra URL 
+    - 'error': Error ocurrido
+    - 'unknown': Idealmente, no un pdf
     """
     session = requests.Session()
     session.mount('https://', HTTPAdapter())
     
     try:
+        # Si la URL apunta a un pdf, es una visión.
         if url.endswith("pdf"):
             return 'view'
 
-        # First try HEAD request (doesn't download content)
+        # El HEAD es lo primero que se debe ver
         response = session.head(url, allow_redirects=True, timeout=5)
         
-        # Check for direct PDF responses
+        # Comprobar si se trata de una respuesta PDF
         if 'application/pdf' in response.headers.get('Content-Type', ''):
+            # 'attachment' indica disparar una descarga
             if 'attachment' in response.headers.get('Content-Disposition', ''):
                 return 'download'
+            # Indica una visualización en la página
+            elif 'inline' in response.headers.get('Content-Disposition', ''):
+                return 'view'
             else:
                 return 'view'
         
-        # Check for redirects
+        # En caso de redirigir
         if response.url != url:
             return ('redirect', response.url)
         
-        # Fallback to GET if HEAD fails (some servers block HEAD)
+        # Si HEAD falla, emplear GET directamente (algunos servers bloquean HEAD)
         response = session.get(url, stream=True, timeout=5)
         
         if 'application/pdf' in response.headers.get('Content-Type', ''):
@@ -198,30 +204,30 @@ def download_pdf(url, driver, options=None):
         #pdf = driver.find_element(By.XPATH, "//a[contains(@href, 'pdf') or contains(@href, 'documento')]")
         #download_pdf(pdf.get_attribute('href'), driver)
 
-def convert_table_to_json(table_data):
+def convert_table_to_json(table_data) -> list[dict]:
     """
-    Transform Document Intelligence table structure into column-value JSON
+    Transformar tabla de DocumentIntelligence a JSON columna-valor
     
-    Input: 
-        [{'kind': 'columnHeader', 'rowIndex': 0, 'columnIndex': 0, 'content': 'Año'},
-         {'rowIndex': 1, 'columnIndex': 0, 'content': '2023'}]
+    Keywords arguments: 
+        tabla de datos de DocumentIntelligence (DocumentTable)
          
-    Output:
-        [{'Año': '2023'}]
+    Output (list[dict]):
+        JSON con los datos de la table
     """
-    # Step 1: Extract headers
+    # Extracción de cabeceras
     print(table_data)
     headers = {}
     max_col = max(cell['columnIndex'] for cell in table_data)
     
     for cell in table_data:
-        if cell.get('kind') == 'columnHeader':
-            headers[cell['columnIndex']] = cell['content']
+        if cell.get('kind') == 'columnHeader': # Si es encabezado
+            headers[cell['columnIndex']] = cell['content'] # nombre de columna
     
-    # Step 2: Group by rows
+    # Agrupar por filas
     rows = {}
     for cell in table_data:
-        if cell.get('kind') != 'columnHeader':  # Skip headers
+        if cell.get('kind') != 'columnHeader':  # Saltamos las cebeceras
+            # indices
             row_idx = cell['rowIndex']
             col_idx = cell['columnIndex']
             
@@ -230,38 +236,52 @@ def convert_table_to_json(table_data):
             else:
                 rows[row_idx][col_idx] = cell['content']
     
-    # Step 3: Map to header names
+    # Mapear nombres de cabeceras
+    # limpiar entradas sin cabeceras
     result = []
     for row in rows.values():
         json_row = {}
         for col_idx, content in row.items():
-            if col_idx in headers:  # Only include columns with headers
+            if col_idx in headers:  # Solo incluir columnas con cabeceras
                 json_row[headers[col_idx]] = content.strip()
-        if json_row:  # Skip empty rows
+        if json_row:  # Saltarse filas vacías
             result.append(json_row)
     
     return result
 
 
-def analyze_layout(pdf):
+def analyze_layout(pdf: os.PathLike) -> Tuple[List[Dict], str]:
+    """analiza el layout de un documento pdf para obtener datos
+    especificos, con tablas, contenido y pares columna-valor
+    
+    Keyword arguments:
+        pdf: ruta a pdf
+    Return:
+        Tupla con una lista de diccionarios, y una cadena de texto de contenido
+    """
+    
+    # endpoint de DocumentIntelligence
     endpoint = os.getenv("AZURE_DOCUMENT_ANALYZER_ENDPOINT")
+    # apikey de DocumentIntelligence
     key = os.getenv("AZURE_DOCUMENT_ANALYZER_API_KEY")
 
     document_intelligence_client = DocumentIntelligenceClient(
         endpoint=endpoint, credential=AzureKeyCredential(key)
     )
 
+    # La versión gratuita de DocumentIntelligence solo permite
+    # docs hasta 4 MB
     MAX_BYTES = 4 * 1024 * 1024
 
     with open(pdf, "rb") as doc:
-        # Read exactly MAX_BYTES (truncates if larger)
+        # truncar el archivo hasta los primeros 4 MB
         file_content = doc.read(MAX_BYTES)
         
-        # Verify if we hit the limit
+        # Verificar si se ha llegado al límite
         if len(file_content) == MAX_BYTES:
-            remaining = doc.read(1)  # Check for any remaining bytes
+            remaining = doc.read(1)  
             if remaining:
-                raise ValueError(f"File exceeds {MAX_BYTES} bytes limit")
+                raise ValueError(f"Archivo excede el límite de {MAX_BYTES} bytes")
 
         poller = document_intelligence_client.begin_analyze_document(
             "prebuilt-layout", 
@@ -271,98 +291,41 @@ def analyze_layout(pdf):
         )
 
     result: AnalyzeResult = poller.result()
+    # Obtener tablas si hay
     if result.tables:
         table_data = []
         for table in result.tables: 
             table_data.append(convert_table_to_json(table['cells']))
+    # Si no hay
     else:
         table_data = []
+    # Obtener valores key-value
     if result.key_value_pairs:
         kv_data = [kv_data.append(kv.as_dict()) for kv in result.key_value_pairs]
+    # Si no hay
     else:
         kv_data = []
+    # Contenido del doc
     if result.content:
         content = result.content
+    # Si no hay
     else:
         content = ""
-        #for table_idx, table in enumerate(result.tables):
-        #     print(
-        #         f"Table # {table_idx} has {table.row_count} rows and "
-        #         f"{table.column_count} columns"
-        #     )
-        #     if table.bounding_regions:
-        #         for region in table.bounding_regions:
-        #             print(
-        #                 f"Table # {table_idx} location on page: {region.page_number} is {region.polygon}"
-        #             )
-            # for cell in table.cells:
-            #     print(
-            #         f"...Cell[{cell.row_index}][{cell.column_index}] has text '{cell.content}'"
-            #     )
-            #     if cell.bounding_regions:
-            #         for region in cell.bounding_regions:
-            #             print(
-            #                 f"...content on page {region.page_number} is within bounding polygon '{region.polygon}'"
-            #             )
     
     return ([*kv_data, *table_data], content)
 
-    # if result.styles and any([style.is_handwritten for style in result.styles]):
-    #     print("Document contains handwritten content")
-    # else:
-    #     print("Document does not contain handwritten content")
 
-    # for page in result.pages:
-    #     # print(f"----Analyzing layout from page #{page.page_number}----")
-    #     # print(
-    #     #     f"Page has width: {page.width} and height: {page.height}, measured with unit: {page.unit}"
-    #     # )
-
-    #     if page.lines:
-    #         for line_idx, line in enumerate(page.lines):
-    #             words = get_words(page, line)
-    #             print(
-    #                 f"...Line # {line_idx} has word count {len(words)} and text '{line.content}' "
-    #                 f"within bounding polygon '{line.polygon}'"
-    #             )
-
-    #             for word in words:
-    #                 print(
-    #                     f"......Word '{word.content}' has a confidence of {word.confidence}"
-    #                 )
-
-    #     if page.selection_marks:
-    #         for selection_mark in page.selection_marks:
-    #             print(
-    #                 f"Selection mark is '{selection_mark.state}' within bounding polygon "
-    #                 f"'{selection_mark.polygon}' and has a confidence of {selection_mark.confidence}"
-    #             )
-
-    # if result.tables:
-    #     for table_idx, table in enumerate(result.tables):
-    #         print(
-    #             f"Table # {table_idx} has {table.row_count} rows and "
-    #             f"{table.column_count} columns"
-    #         )
-    #         if table.bounding_regions:
-    #             for region in table.bounding_regions:
-    #                 print(
-    #                     f"Table # {table_idx} location on page: {region.page_number} is {region.polygon}"
-    #                 )
-    #         for cell in table.cells:
-    #             print(
-    #                 f"...Cell[{cell.row_index}][{cell.column_index}] has text '{cell.content}'"
-    #             )
-    #             if cell.bounding_regions:
-    #                 for region in cell.bounding_regions:
-    #                     print(
-    #                         f"...content on page {region.page_number} is within bounding polygon '{region.polygon}'"
-    #                     )
-
-    # print("----------------------------------------")
-
-
-def query_pdf_data(document_tables, document_data, information_avaialble):
+def query_pdf_data(document_tables: List[Dict], document_data: str, information_avaialble: Dict) -> str:
+    """Obtener información de un documento con LLM.
+    
+    Keyword arguments:
+        document_tables: tablas en formato JSON procesado con DocumentIntelligence
+        document_data: contenido del pdf procesado con DocumentIntelligence
+        information_available: información que tenemos actualmente de la convocatoria con espacios a rellenar
+    Return: 
+        Cadena de texto de estilo JSON con toda la información posible
+    """
+    
     client = AzureOpenAI(
         azure_endpoint=os.getenv("AZURE_AI_AGENT_ENDPOINT"),
         api_key=os.getenv("AZURE_AI_AGENT_API_KEY"),
@@ -404,7 +367,17 @@ def query_pdf_data(document_tables, document_data, information_avaialble):
     return response.choices[0].message.content
 
 
-def extract_data_from_page(text, schema):
+def extract_data_from_page(text: str, schema: List[Dict]) -> str:
+    """Este función se emplea para extraer datos de una página
+    web mediante un LLM.
+    
+    Keyword arguments:
+        text: texto de la página
+        schema: JSON de un esquema pydantic de la convocatoria para el modelo LLM
+    Return:
+        cadena de texto estilo JSON 
+    """
+    
     client = AzureOpenAI(
         azure_endpoint=os.getenv("AZURE_AI_AGENT_ENDPOINT"),
         api_key=os.getenv("AZURE_AI_AGENT_API_KEY"),
@@ -439,12 +412,17 @@ def extract_data_from_page(text, schema):
     )
     return response.choices[0].message.content
 
-async def _CrawlAEI():
+async def _CrawlAEI() -> List[Dict]:
+    """Función para inspeccionar la página de convocatorias
+    de la Agencia Estatal de Investigación mediante crawl4ai,
+    emplea un llm.
+    """
+    
     
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
         URLS = dict(json.load(urlsfile))
-    URLS = URLS["AEI"][:-1]
+    url = URLS["AEI"][:-1]
     
     filter_chain = FilterChain([
         # Only follow URLs with specific patterns
@@ -496,12 +474,13 @@ async def _CrawlAEI():
     contenido = []
     async with AsyncWebCrawler(config=browser_config) as crawler:
         #if not isinstance(convocatorias, list): # a instancia es una url
+        # cargar nuevas páginas
         load_more_js = [
             "window.scrollTo(0, document.body.scrollHeight);",
             # The "More" link at page bottom
             "document.querySelector('a.page-link')?.click();"  
         ]
-        session_id = "hn_session"
+        session_id = "hn_session" # para mantenerse en la misma sesión de playwright
         for i in range(3):
             run_config = CrawlerRunConfig(
                 deep_crawl_strategy=deep_crawl_strategy,
@@ -514,8 +493,11 @@ async def _CrawlAEI():
                 wait_until="load",
                 page_timeout=10000
             )
-            result = await crawler.arun(url=URLS, config=run_config)
-            contenido.append([{**json.loads(res.extracted_content)[0], "url": os.path.join(URLS, res.url)} for res in result[1:] if res.extracted_content is not None])
+            result = await crawler.arun(url=url, config=run_config)
+            # formateamos los datos en json despues de obtener el resultado del crawler, ponemos además el enlace a la convocatoria
+            contenido.append([{**json.loads(res.extracted_content)[0], "url": os.path.join(url, res.url)} for res in result[1:] if res.extracted_content is not None])
+            # inspeccionar las primeras páginas, a partir de un punto, todas las convocatorias
+            # estan cerradas.
             if i == 3: #not len(result) > 1:
                 logger.info("Busqueda finalizada")
                 break
@@ -526,25 +508,29 @@ async def _CrawlAEI():
                 wait_for="""js:() => {
                     return document.querySelectorAll('div.item-list ul li').length > 10;
                 }""",
-                # Mark that we do not re-navigate, but run JS in the same session:
+                # No renavegamos y nos mantenemos en la sesión
                 js_only=True,
                 session_id=session_id
             )
-            # Re-use the same crawler session
+            # Re usar la misma sesión en el crawler
             result2 = await crawler.arun(
-                url=URLS,  # same URL but continuing session
+                url=url,  # same URL but continuing session
                 config=next_page_conf
             )
 
     return contenido
 
 
-async def AgenticoAEI():
-
+async def AgenticoAEI() -> List[Dict]:
+    """Emplea selenium y azure ai para inspeccionar
+    la página de la Agencia Estatal de Investigación
+    """
+    
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
         URLS = dict(json.load(urlsfile))
     url = URLS["AEI"]
+    #quitamos logging de debug e info
     logging.getLogger("openai").setLevel(logging.WARNING)
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.getLogger("httpcore").setLevel(logging.WARNING)
@@ -583,6 +569,7 @@ async def AgenticoAEI():
 
     contenido = []
 
+    # configuracion varia
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')  # Run in headless mode
     options.add_argument('--disable-gpu')
@@ -607,26 +594,29 @@ async def AgenticoAEI():
         
         wait.until(lambda driver: len(driver.find_elements(By.XPATH, '//div[contains(@class, "item-list")]//li')) >= 5)
 
-        # Get all call links on current page
+        # Obtener todas las convocatorias y posteriormente sus URL's
         call_elements = driver.find_elements(By.XPATH, '//div[contains(@class, "item-list")]//li//a[contains(@href, "convocatorias")]')
         call_urls = [elem.get_attribute('href') for elem in call_elements]
 
         for call_url in call_urls:
             print(f"Scraping: {call_url}")
-
+            # Se abre otra ventana para la información específica
+            # de cada consulta
             driver.execute_script("window.open('');")
             driver.switch_to.window(driver.window_handles[1])
             driver.get(call_url)
 
             try:
-                # Wait for main content to load
+                # para el contenido específico
                 wait.until(EC.presence_of_element_located((By.XPATH, '//div[@role="main"]')))
                 
                 nombre = driver.find_elements(By.XPATH, '//h1')[1].text
 
-
+                # tabla con los datos específicos
                 table = driver.find_element(By.XPATH, '//table[contains(@class, "table-striped")]')
+                # HTML de la tabla
                 page_source = table.get_attribute('innerHTML')
+                # texto adaptado para un LLM y de mejores resultados
                 llm_text = await get_processed_text(page_source, call_url)
                 chat_prompt[0]['content'][0]['text'] += llm_text
                 completion = client.chat.completions.create(  
@@ -641,6 +631,8 @@ async def AgenticoAEI():
                     stream=False  
                 )
                 call_data = completion.choices[0].message.content
+                # gpt-4o devuelve el formato con comillas de código
+                # se emplea regex para separarlo
                 call_data = re.sub(r"```json\s*|```", "", (call_data).strip())
                 call_data = dict(json.loads(call_data))
                 
@@ -653,31 +645,38 @@ async def AgenticoAEI():
                     for doc in documents:
                         if 'bases' in doc.text.lower():
                             call_data['bases'] = doc.get_attribute('href')
-                #         if 'convocatoria' in doc.text.lower() and download_pdfs == True:
-                #             convocatoria_url = doc.get_attribute('href')
-                #             try:
-                #                 driver.execute_script("window.open('');")
-                #                 driver.switch_to.window(driver.window_handles[2])
-                #                 driver.get(convocatoria_url)
-                #                 store_folder = os.path.join("./downloads", call_url.split("/")[-1])
-                #                 if not os.path.isdir(store_folder):
-                #                     os.makedirs(store_folder)
-                #                 prefs["download.default_directory"] = store_folder
-                #                 options.add_experimental_option('prefs', prefs)
-                #                 pdfs_convocatoria = driver.find_elements(By.XPATH, '//a[@type="application/pdf"]')
-                #                 for pdf in pdfs_convocatoria:
-                #                     pdf.click()
-                #                     # pdf_url = pdf.get_attribute('href')
-                #                     # pdf_name = pdf_url.split("/")[-1]
-                #                     # pdf_path = os.path.join(store_folder, pdf_name)
-                #                     # if not os.path.isfile(pdf_path):
-                #                     #     with session.get(pdf_url, stream=True, timeout=10) as r:
-                #                     #         r.raise_for_status()
-                #                     #         with open(pdf_path, 'wb') as f:
-                #                     #             for chunk in r.iter_content(chunk_size=8192):
-                #                     #                 f.write(chunk)
-                #             except Exception as e:
-                #                 print(f"Error opening convocatoria URL: {str(e)}")
+                            # La obtención de documentos está rota debido a que la página emplea
+                            # certificados Legacy SSL, no se ha podido emplear inspección de docs
+                            # se deja el código comentado por si acaso se pudiera resolver
+                        # if 'convocatoria' in doc.text.lower() and download_pdfs == True:
+                        #     convocatoria_url = doc.get_attribute('href')
+                        #     try:
+                        #         driver.execute_script("window.open('');")
+                        #         # Nueva ventana para la sección de las bases
+                        #         driver.switch_to.window(driver.window_handles[2])
+                        #         driver.get(convocatoria_url)
+                        #         store_folder = os.path.join("./downloads", call_url.split("/")[-1])
+                        #         # Un archivo distinto para cada convocatoria 
+                        #         if not os.path.isdir(store_folder):
+                        #             os.makedirs(store_folder)
+                        #         # Actualizamos preferencias para el directorio de descarga por defecto al directorio anterior
+                        #         prefs["download.default_directory"] = store_folder
+                        #         options.add_experimental_option('prefs', prefs)
+                        #         pdfs_convocatoria = driver.find_elements(By.XPATH, '//a[@type="application/pdf"]')
+                        #         for pdf in pdfs_convocatoria:
+                        #             pdf.click()
+                        #             pdf_url = pdf.get_attribute('href')
+                        #             pdf_name = pdf_url.split("/")[-1]
+                        #             pdf_path = os.path.join(store_folder, pdf_name)
+                        #             # Si no existe el archivo, se descarga
+                        #             if not os.path.isfile(pdf_path):
+                        #                 with session.get(pdf_url, stream=True, timeout=10) as r:
+                        #                     r.raise_for_status()
+                        #                     with open(pdf_path, 'wb') as f:
+                        #                         for chunk in r.iter_content(chunk_size=8192):
+                        #                             f.write(chunk)
+                        #     except Exception as e:
+                        #         print(f"Error opening convocatoria URL: {str(e)}")
                     contenido.append(call_data)
                 except NoSuchElementException:
                     call_data['bases'] = None
@@ -686,16 +685,16 @@ async def AgenticoAEI():
             except Exception as e:
                 print(f"Error scraping {call_url}: {str(e)}")
             finally:
-                driver.close()
-                driver.switch_to.window(driver.window_handles[0])
-                time.sleep(2)  # Be polite
-        # Try to go to next page
+                driver.close() # Cerrar ventana de convocatoria
+                driver.switch_to.window(driver.window_handles[0]) # Volver a la ventana original
+                time.sleep(2)  # Dar tiempo al driver para similar comportamiento humano
+        # Ir a la siguiente página
         try:
             next_btn = driver.find_element(By.XPATH, '//a[contains(@class, "page-link") and contains(text(), "Siguiente")]')
             if 'disabled' in next_btn.get_attribute('class'):
                 break
             next_btn.click()
-            time.sleep(3)  # Wait for page load
+            time.sleep(3)  # Esperamos para ser educados
         except NoSuchElementException:
             break
 
@@ -703,8 +702,14 @@ async def AgenticoAEI():
     return contenido
 
 
-async def AgenticoSNPSAP():
-    pdf_filename = "listado5_6_2025.pdf" #f"listado{datetime.today().month}_{datetime.today().day}_{datetime.today().year}.pdf" 
+async def AgenticoSNPSAP() -> pd.DataFrame:
+    """Esta función emplea selenium y LLM para obtener datos
+    desde el Sistema Nacional de Publicidad de Subvenciones y Ayudas Publicas.
+    Los devuelve en formato de JSON
+    """
+    # Obtenemos el pdf de hoy con todas las tablas de las convocatorias más
+    # recientes
+    pdf_filename = f"listado{datetime.today().month}_{datetime.today().day}_{datetime.today().year}.pdf" 
     LOG_FILE = "crawler/logger.txt"
     
     with open("crawler/urls.json", "rb") as urlsfile:
@@ -716,8 +721,8 @@ async def AgenticoSNPSAP():
         api_key=os.getenv("AZURE_AI_AGENT_API_KEY"),
         api_version="2025-01-01-preview",
     )
-        
-    # Configure Firefox options for automatic PDF downloading
+
+     # Configuracion varia para el webdriver   
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')  # Run in headless mode
     options.add_argument('--disable-gpu')
@@ -732,10 +737,10 @@ async def AgenticoSNPSAP():
         "download.prompt_for_download": False,
         "download.directory_upgrade": True,
         "plugins.plugins_disabled": ["Chrome PDF Viewer"],
-        "pdfjs.disabled": True  # For older Chrome versions
+        "pdfjs.disabled": True 
     }
     
-
+    # Si no se descargó con anterioridad, se descarga
     if pdf_filename not in os.listdir("./downloads/pdf"):
         prefs["download.default_directory"] = os.path.abspath("./downloads/pdf")
         options.add_experimental_option('prefs', prefs)
@@ -761,15 +766,19 @@ async def AgenticoSNPSAP():
             driver.quit()
     
     input_doc_path = Path(os.path.join('downloads/pdf', pdf_filename))
+    # Docling, para inspeccionar y obtener las tablas
     doc_converter = DocumentConverter()
     conv_res = doc_converter.convert(input_doc_path)
     df = pd.DataFrame()
+    # Iterar por cada tabla obtenida con Docling
     for table_ix, table in enumerate(conv_res.document.tables):
         table_df: pd.DataFrame = table.export_to_dataframe()
         df = pd.concat([df, table_df], ignore_index=True, axis=0)
         logging.info(f"Data extraída de tabla {table_ix}")
     df["url"] = list(map(lambda x: os.path.join(base_url, x), df["Código BDNS"]))
+    # atributos de la tabla del pdf que necesitamos
     df = df[["Código BDNS", "Departamento", "Fecha de registro", "Título", "url"]]
+    # atributos que buscamos
     df[[
         "presupuesto",
         "fecha_inicio",
@@ -802,32 +811,49 @@ async def AgenticoSNPSAP():
     for i, url in enumerate(df["url"]):
         try:
             store_folder = os.path.join("./downloads", df.loc[i, "Código BDNS"])
+            # si no existe el directorio, se crea
             if not os.path.isdir(store_folder):
                 os.makedirs(store_folder)
+            # actualizamos el directorio de descarga, chrome precisa que la ruta
+            # sea absoluta para poder cambiar la ruta por defecto
             prefs["download.default_directory"] = os.path.abspath(store_folder)
             options.add_experimental_option('prefs', prefs)           
             driver = webdriver.Chrome(options=options)
             wait = WebDriverWait(driver, 20)
             driver.get(url)
             text = driver.find_element(By.TAG_NAME, 'main').get_attribute('innerHTML')
+            # Procesamos el HTML para darselo al LLM
             text = await get_processed_text(text, url)
+            # Extraemos los datos de tabla de una convocatoria de SNPSAP
+            # y empleamos regex para quitar el markdown que emplea gpt-4o
             table_data = extract_data_from_page(text, str(CallSchema.model_json_schema()))
             table_data = re.sub(r"```json\s*|```", "", (table_data).strip())
             table_data = dict(json.loads(table_data))
+            # Obtenemos los campos con valor vacío para rellenarlo
+            # con información sacada de las bases
             table_data_missing = {k: v for k, v in table_data.items() if v == ""}
             bases = table_data["bases"]
+            # descargamos el pdf de las bases
             download_pdf(bases, driver, options)
             pdf_data = {}
             for file in os.listdir(store_folder):
+                # Si no es un archivo pdf, lo ignoramos
                 if not file.endswith(".pdf"):
                     continue
                 pdf_path = os.path.join(store_folder, file)
+                # Obtenemos la info del pdf con DocumentIntelligence
                 pdf_jsondata, pdf_content = analyze_layout(pdf_path)
+                # Obtenemos el resultado JSON del LLM
                 pdf_data = query_pdf_data(json.dumps(pdf_jsondata), pdf_content, table_data)
-                pdf_data = re.sub(r"```json\s*|```", "", (pdf_data).strip())+"\""
+                # Empleamos regex para quitar el markdown
+                pdf_data = re.sub(r"```json\s*|```", "", (pdf_data).strip())+"\"" # Un error muy común que hace el LLM, no sé porque sucede
+                # Limpiamos la cadena de texto y volcamos en un diccionario
                 pdf_data = safe_json_loads(pdf_data)
+                # Juntamos datos los datos que tenemos y los datos faltantes, a veces el LLM
+                # saca valores que no queremos y sin sentido
                 table_data = {**table_data, **pdf_data[table_data_missing.keys()]}   
             call_data = table_data
+            # annadimos todos los datos al dataframe
             df.loc[i, call_data.keys()] = call_data.values()                 
         except (WebDriverException, NoSuchElementException) as e:
             print(f"Error al descargar el PDF: {e}")

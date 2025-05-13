@@ -32,6 +32,8 @@ import json
 import logging
 import logging.config
 import re
+from datetime import datetime
+from typing import List, Dict
 
 import pandas as pd
 import numpy as np
@@ -49,6 +51,7 @@ if os.path.exists(".env"):
     load_dotenv(".env")
 
 async def write_log(log_file="crawler/logger.txt", result=None, regex: str = None):
+    """Función para escribir asíncronamente registros del comportamiento del programa"""
     async with aio_open(log_file, "a", encoding="utf-8") as f:
         for res in result:
             if re.match(regex, res.url):
@@ -57,12 +60,16 @@ async def write_log(log_file="crawler/logger.txt", result=None, regex: str = Non
                     await f.write(res.url)
     
 
-async def cienciaGob():
+async def cienciaGob() -> List[Dict]:
+    """Extraemos los datos de la página del ministerio de ciencia
+    mediante crawl4ai y el uso de xpath y selectores css como
+    método clásico
+    """
     
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
         URLS = dict(json.load(urlsfile))
-    URLS = URLS["cienciaGob"][:-1]
+    base_url = URLS["cienciaGob"][:-1]
     
     filter_chain = FilterChain([
         # Only follow URLs with specific patterns
@@ -84,7 +91,6 @@ async def cienciaGob():
         logger=logger,
         filter_chain=filter_chain
     )
-    # TODO: extraer presupuesto
     schema = {
         "name": "Convocatoria",
         "baseSelector": "//div[@role='main']",    # Repeated elements
@@ -150,6 +156,7 @@ async def cienciaGob():
     contenido = []
     async with AsyncWebCrawler(config=browser_config) as crawler:
         #if not isinstance(convocatorias, list): # a instancia es una url
+        # iteramos solo las primeras páginas de la página
         i = 1
         while True:
             try:
@@ -159,7 +166,7 @@ async def cienciaGob():
                     extraction_strategy=extraction_strategy,
                     cache_mode=CacheMode.BYPASS,
                 )
-                result = await crawler.arun(url=URLS+str(i), config=run_config)
+                result = await crawler.arun(url=base_url+str(i), config=run_config)
                 if i > 1: #not len(result) > 1:
                     logger.info("Busqueda finalizada")
                     break
@@ -174,7 +181,10 @@ async def cienciaGob():
 
 
 async def AEI():
-    
+    """Extraemos los datos de la página de la Agencia Estatal de Investigación
+    mediante crawl4ai y el uso de xpath y selectores css como
+    método clásico
+    """
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
         URLS = dict(json.load(urlsfile))
@@ -200,7 +210,6 @@ async def AEI():
         logger=logger,
         filter_chain=filter_chain
     )
-    # TODO: extraer presupuesto
     schema = {
         "name": "Convocatoria",
         "baseSelector": "//div[@role='main']",    # Repeated elements
@@ -266,12 +275,12 @@ async def AEI():
     contenido = []
     async with AsyncWebCrawler(config=browser_config) as crawler:
         #if not isinstance(convocatorias, list): # a instancia es una url
+        # Pulsar el botón para cargar más
         load_more_js = [
             "window.scrollTo(0, document.body.scrollHeight);",
-            # The "More" link at page bottom
             "document.querySelector('a.page-link')?.click();"  
         ]
-        session_id = "hn_session"
+        session_id = "hn_session" # Para mantenerse en la misma sesión
         for i in range(3):
             run_config = CrawlerRunConfig(
                 deep_crawl_strategy=deep_crawl_strategy,
@@ -287,6 +296,8 @@ async def AEI():
             result = await crawler.arun(url=URLS, config=run_config)
             contenido.append([{**json.loads(res.extracted_content)[0], "url": os.path.join(URLS, res.url)} for res in result[1:] if res.extracted_content is not None])
             if i == 3: #not len(result) > 1:
+                # Buscamos solo las primeras páginas
+                # El resto suelen estar ya cerradas
                 logger.info("Busqueda finalizada")
                 break
             logger.info("Cargando siguiente pagina")
@@ -300,16 +311,21 @@ async def AEI():
                 js_only=True,
                 session_id=session_id
             )
-            # Re-use the same crawler session
+            # Reusar la misma sesión
             result2 = await crawler.arun(
-                url=URLS,  # same URL but continuing session
+                url=URLS,
                 config=next_page_conf
             )
 
     return contenido
 
 
-def AEI_selenium():
+def AEI_selenium() -> List[Dict]:
+    """Extraemos los datos de la página de la Agencia Estatal de Investigación
+    mediante selenium y el uso de xpath y selectores css como
+    método clásico
+    """
+    
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
         URLS = dict(json.load(urlsfile))
@@ -332,19 +348,19 @@ def AEI_selenium():
         
         wait.until(EC.presence_of_element_located((By.XPATH, '//div[contains(@class, "item-list")]//li')))
 
-        # Get all call links on current page
+        # Obtenemos todos los links de la página
+        # y sus respectivos enlaces
         call_elements = driver.find_elements(By.XPATH, '//div[contains(@class, "item-list")]//li//a[contains(@href, "convocatorias")]')
         call_urls = [elem.get_attribute('href') for elem in call_elements]
 
         for call_url in call_urls:
             print(f"Scraping: {call_url}")
-
+            # Abrimos otra ventana para la información de la convocatoria
             driver.execute_script("window.open('');")
             driver.switch_to.window(driver.window_handles[1])
             driver.get(call_url)
 
             try:
-                # Wait for main content to load
                 wait.until(EC.presence_of_element_located((By.XPATH, '//div[@role="main"]')))
 
                 call_data = {
@@ -359,7 +375,7 @@ def AEI_selenium():
                     'bases': ''
                 }
 
-                # Extract data from tables
+                # Extraer data de la tabla mediante XPATH
                 table = driver.find_element(By.XPATH, '//table[contains(@class, "table-striped")]')
                 rows = table.find_elements(By.TAG_NAME, 'tr')
                 for row in rows:
@@ -383,6 +399,7 @@ def AEI_selenium():
                         continue
                         
                 try:
+                    # obtener el enlace de las bases
                     docs_section = driver.find_element(By.XPATH, '//aside[@role="complementary"]//ul')
                     documents = docs_section.find_elements(By.TAG_NAME, 'a')
                     for doc in documents:
@@ -394,10 +411,10 @@ def AEI_selenium():
             except Exception as e:
                 print(f"Error scraping {call_url}: {str(e)}")
             finally:
-                driver.close()
-                driver.switch_to.window(driver.window_handles[0])
-                time.sleep(2)  # Be polite
-        # Try to go to next page
+                driver.close() # cerra página de la convocatoria
+                driver.switch_to.window(driver.window_handles[0]) # volver a la lista de convocatorias
+                time.sleep(2)  # Ser educado
+        # Ir a la siguiente página
         try:
             next_btn = driver.find_element(By.XPATH, '//a[contains(@class, "page-link") and contains(text(), "Siguiente")]')
             if 'disabled' in next_btn.get_attribute('class'):
@@ -411,11 +428,16 @@ def AEI_selenium():
     return contenido
 
 
-async def turismoGob():
+async def turismoGob() -> List[Dict]:
+    """Extraemos los datos de la página del ministerio de turismo
+    mediante selenium y el uso de xpath y selectores css como
+    método clásico
+    """
+    
     LOG_FILE = "crawler/logger.txt"
     with open("crawler/urls.json", "rb") as urlsfile:
         URLS = dict(json.load(urlsfile))
-    URLS = URLS["turismoGob"]    
+    url = URLS["turismoGob"]    
 
     filter_chain = FilterChain([
         # Only follow URLs with specific patterns
@@ -491,9 +513,11 @@ async def turismoGob():
                 #js_only=True,
                 #session_id="hn_session"
             )
-            result1 = await crawler.arun(url=URLS, config=run_config)
+            result1 = await crawler.arun(url=url, config=run_config)
+            # codificamos a formato de json
             contenido = [{**json.loads(res.extracted_content)[0], "url": res.url} for res in result1[1:]]
             for entrada in contenido:
+                # Obtenemos la descripcion de la convocatoria
                 r = requests.get(os.path.join(entrada["url"], "DescripcionGeneral/Paginas/Index.aspx"))
                 if r.status_code != 200:
                     r = requests.get(os.path.join(entrada["url"], "DescripcionGeneral/Paginas/descripcion.aspx"))
@@ -508,8 +532,14 @@ async def turismoGob():
     return contenido
 
 
-async def SNPSAP():
-    pdf_filename = "listado4_11_2025.pdf" #f"listado{datetime.today().month}_{datetime.today().day}_{datetime.today().year}.pdf" 
+async def SNPSAP() -> pd.DataFrame:
+    """Extraemos los datos de la página de la Servicio Nacional
+    de Publicidad de Subvenciones y Ayudas Públicas
+    mediante selenium y el uso de xpath y selectores css como
+    método clásico"""
+    # Obtenemos el pdf de hoy con todas las tablas de las convocatorias más
+    # recientes
+    pdf_filename = f"listado{datetime.today().month}_{datetime.today().day}_{datetime.today().year}.pdf" 
     LOG_FILE = "crawler/logger.txt"
     
     with open("crawler/urls.json", "rb") as urlsfile:
@@ -528,35 +558,37 @@ async def SNPSAP():
     
         driver = webdriver.Firefox(options=firefox_options)
 
-        # Open the target webpage
         driver.get(base_url)
 
-        # Wait until a PDF link appears (Modify XPath if necessary)
         try:
             pdf_link = WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.XPATH, "//a[@class='mat-focus-indicator mat-icon-button mat-button-base']"))
             )
 
-            # Click the link to start the download
+            # Clicar en descargar
             pdf_link.click()
 
             print("PDF download initiated successfully!")
 
-            # Wait a few seconds for the file to download
+            # Esperar a la descarga
             time.sleep(10)
 
         except Exception as e:
             print("Error: PDF link not found.", str(e))
     
     input_doc_path = Path(os.path.join('downloads/pdf', pdf_filename))
+    # Docling: obtenemos las tablas del documento con la info basica de las convocatorias
     doc_converter = DocumentConverter()
     conv_res = doc_converter.convert(input_doc_path)
     df = pd.DataFrame()
     for table_ix, table in enumerate(conv_res.document.tables):
+        # inspeccionamos cada tabla
         table_df: pd.DataFrame = table.export_to_dataframe()
         df = pd.concat([df, table_df], ignore_index=True, axis=0)
         logging.info(f"Data extraída de tabla {table_ix}")
+    # Construimos las urls de cada convocatoria
     df["url"] = list(map(lambda x: os.path.join(base_url, x), df["Código BDNS"]))
+    # Creamos las columnas vacias para cada dato faltante
     df[["presupuesto", "fecha_inicio", "fecha_final", "finalidad", "localidad", "tipo", "bases", "beneficiario"]] = pd.DataFrame(
         data=[],
         columns=["presupuesto", "fecha_inicio", "fecha_final", "finalidad", "localidad", "tipo", "bases", "beneficiario"],
@@ -642,7 +674,3 @@ async def SNPSAP():
                 logger.error(f"Error: {e}")
     
     return df
-
-
-if __name__ == "__main__":
-    print(asyncio.run(AEI()))

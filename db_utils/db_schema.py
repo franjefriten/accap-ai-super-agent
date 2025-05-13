@@ -34,11 +34,21 @@ class CallData(Base):
 
     @classmethod
     def init_table(cls, engine):
-        """Initialize the table in the database."""
+        """Inicializa la tabla de la base de datos.
+        Además, crea la extensión de vector de pgvector para
+        guardar los embeddings, y una función procedural de postgres
+        para comparar listas de pgvectores (no empleada por coste computacional)-
+        Pensada para ser ejecutada como método de clase
+
+        Keyword arguments:
+
+        contenido: engine
+            motor para las consultas
+        """
 
         @event.listens_for(engine, "connect")
         def setup_vector(dbapi_connection, _):
-            # 1. Create extension FIRST
+            # Se crea la extensión con un contextualizador de psycopg
             with dbapi_connection.cursor() as cursor:
                 cursor.execute("CREATE EXTENSION IF NOT EXISTS vector")
                 cursor.execute(
@@ -64,13 +74,15 @@ class CallData(Base):
                     $$ LANGUAGE plpgsql;
                     """
                 )
-                dbapi_connection.commit()  # Commit within the same connection
+                dbapi_connection.commit()  # Commit los cambios en la conexión
 
-            # 2. THEN register
+            # Registrar el vector
             register_vector(dbapi_connection)
 
+        # Si no existe la tabla en la bbdd
         if not inspect(engine).has_table(cls.__tablename__):
             cls.metadata.create_all(engine)
             print(f"Table {cls.__tablename__} created.")
+        # Si existe
         else:
             print(f"Table {cls.__tablename__} already exists.")

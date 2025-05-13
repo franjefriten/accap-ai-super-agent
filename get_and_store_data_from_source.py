@@ -19,13 +19,16 @@ def send_to_db(contenido: list[dict]):
     Se utiliza SQLAlchemy para la conexión y manipulación de la base de datos.
     
     Keyword arguments:
-    argument -- description
-    Return: return_description
+
+    contenido: list[dict]
+        lista de entradas de convocatorias ya procesadas para ser guardadas
+   
+    Return: None
     """
     
     engine = create_engine(URI_TO_DB)
     Session = sessionmaker(bind=engine)
-
+    # Si no existe la tabla, se crea y el vector de embeddings
     CallData.init_table(engine)
 
     with Session() as session:
@@ -33,7 +36,6 @@ def send_to_db(contenido: list[dict]):
         session.execute(text('CREATE EXTENSION IF NOT EXISTS vector;'))
         session.commit()
 
-        # Assuming `contenido` is a list of dictionaries with the data to be inserted
         for entry in contenido:
             call_data = CallData(
                 nombre=entry.get("convocatoria", None),
@@ -63,6 +65,17 @@ def fetch_all_data_and_store_in_db(
     source: Literal["cienciaGob", "turismoGob", "SNPSAP", "AEI"],
     tipo: Literal["agentico", "clasico"]
 ):
+    """Esta función está pensada para ser ejecutada por línea de comandos.
+    Realiza la captación y procesado de datos según que fuente se escoja por terminal.
+    Llama a una función para volcar datos en la base de datos
+    
+    Keyword arguments:
+        source: fuente, solo se permiten las dejadas en la pista de dato
+        tipo: emplear el agente agentico o clasico, agentico obtiene más datos pero suele tardar más
+    
+    Return: None
+    """
+    
     if tipo == "clasico":
         match source:
             case "cienciaGob":
