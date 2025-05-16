@@ -531,14 +531,14 @@ async def AgenticoAEI() -> List[Dict]:
         URLS = dict(json.load(urlsfile))
     url = URLS["AEI"]
     #quitamos logging de debug e info
-    logging.getLogger("openai").setLevel(logging.WARNING)
-    logging.getLogger("httpx").setLevel(logging.WARNING)
-    logging.getLogger("httpcore").setLevel(logging.WARNING)
-    logging.getLogger("azure").setLevel(logging.WARNING)
-    logging.getLogger("transformers").setLevel(logging.WARNING)
-    logging.getLogger("urllib3").setLevel(logging.WARNING)
-    logging.getLogger("selenium").setLevel(logging.WARNING)
-    download_pdfs = True
+    #logging.getLogger("openai").setLevel(logging.WARNING)
+    #logging.getLogger("httpx").setLevel(logging.WARNING)
+    #logging.getLogger("httpcore").setLevel(logging.WARNING)
+    #logging.getLogger("azure").setLevel(logging.WARNING)
+    #logging.getLogger("transformers").setLevel(logging.WARNING)
+    #logging.getLogger("urllib3").setLevel(logging.WARNING)
+    #logging.getLogger("selenium").setLevel(logging.WARNING)
+    #download_pdfs = True
     # Problemas con los certificados de seguridad
     # certificados anticuados
 

@@ -3,6 +3,8 @@ import re, os, json
 from datetime import datetime
 from typing import List, Dict
 
+from sqlalchemy import Null
+
 import pandas as pd
 import numpy as np
 
@@ -53,7 +55,7 @@ def get_and_format_AgenticoAEI_data() -> List[Dict]:
     Formatear y guardar datos de la Agencia
     Espacial de Investigación con el sistema agéntico
     """
-    def extract_dates(entry: Dict):
+    def format_publicacion(entry: Dict):
         """Formatear distintos formatos de fecha.
         O cuando las fechas están mal cpatadas
         
@@ -61,24 +63,11 @@ def get_and_format_AgenticoAEI_data() -> List[Dict]:
             entry: entrada de una convocatoria
         Return: entry 
         """
-        
-        pat = r"\d{1,2}\/\d{2}\/\d{2}"
-        fechas = re.findall(pat, entry["plazos"])
-        if len(fechas) >= 2:
-            entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y")
-            entry["fecha_final"] = datetime.strptime(fechas[1], "%d/%m/%y")
-            entry.pop("plazos")
-            return entry
-        elif len(fechas) == 1:
-            entry["fecha_inicio"] = datetime.strptime(fechas[0], "%d/%m/%y")
-            entry["fecha_final"] = datetime.strptime(fechas[0], "%d/%m/%y")
-            entry.pop("plazos")
-            return entry
-        else:
-            entry["fecha_inicio"] = None
-            entry["fecha_final"] = None
-            entry.pop("plazos")
-            return entry
+        if not hasattr(entry, "fecha_publicacion"):
+            entry["fecha_publicacion"] = None
+        if entry["fecha_publicacion"] == Null:
+            entry["fecha_publicacion"] = None
+        return entry
 
     def format_presupuesto(entry: Dict):
         """Formatear el presupuesto. La mayoría de veces
@@ -89,19 +78,63 @@ def get_and_format_AgenticoAEI_data() -> List[Dict]:
             entry: entrada de una convocatoria
         Return: entry 
         """
-        
-        if entry["presupuesto"] != "":
-            entry["presupuesto"] = int("".join(re.findall(r"[\d\.\,]", entry["presupuesto"])[:-3]).replace(".", "")) 
+
+        if not hasattr(entry, "presupuesto"):
+            entry["presupuesto"] = None  
         else:
-            entry["presupuesto"] = None
+            if entry["presupuesto"] != "":
+                entry["presupuesto"] = int("".join(re.findall(r"[\d\.\,]", entry["presupuesto"])[:-3]).replace(".", "")) 
+            else:
+                entry["presupuesto"] = None
+        return entry
+
+    def format_compatibilidad(entry: dict):
+        """Formatear el atributo de compatiblidad. Se debe introducir en la
+        base de datos como un buleano y se debe formatear como tal
+        
+        Keyword arguments:
+            entry: entrada de convocatoria con compatibilidad en forma de (NO, no, Si, si, SI, No)
+        Return: entrada con compatibilidad codificada
+        """
+        if not hasattr(entry, "compatibilidad"):
+            entry["compatibilidad"] = None
+        else:
+            if re.search(r"\s*no\s*", entry["compatibilidad"].lower(), re.IGNORECASE):
+                entry["compatibilidad"] = False
+            elif re.search(r"\s*si\s*", entry["compatibilidad"].lower(), re.IGNORECASE):
+                entry["compatibilidad"] = True
+            else:
+                entry["compatibilidad"] = None
         return entry
     
+    def parse_date(entry: Dict) -> Dict:
+        """Formatear fechas para formato correcto"""
+        fechas = ["fecha_inicio", "fecha_final", "fecha_publicacion"]
+        for fecha in fechas:
+            if entry[fecha] is None:
+                entry[fecha] = None
+            else:
+                entry[fecha] = datetime.strptime(entry[fecha], "%d/%m/%Y")
+        return entry
+
     # Obtenemos datos
     contenido = asyncio.run(AgenticoAEI())
     #contenido = [entry for iteracion in contenido for entry in iteracion if sum([v != '' for k, v in entry.items()]) > 3]
     contenido = list(
         map(
-            extract_dates,
+            format_compatibilidad,
+            contenido
+        )
+    )
+    contenido = list(
+        map(
+            format_publicacion,
+            contenido
+        )
+    )
+    contenido = list(
+        map(
+            parse_date,
             contenido
         )
     )
@@ -118,7 +151,7 @@ def get_and_format_AgenticoAEI_data() -> List[Dict]:
     # se aplana la lista
     contenido = [entry for iteracion in contenido for entry in iteracion]
     # El limite de la base de datos es 255 caracteres de texto
-    contenido = [{k: v[:255] if k == "beneficiario" else v for k, v in entry.items()} for entry in contenido]
+    contenido = [{k: v[:255] if k in ("beneficiario", "descripcion", "entidad", "convocatoria", "localidad", "tipo") else v for k, v in entry.items()} for entry in contenido]
     # embebimos las palabras clave
     contenido = embbed_key_words(contenido)
     return contenido
@@ -180,6 +213,7 @@ def get_and_format_AgenticoSNPSAP_data() -> List[Dict]:
     df["entidad"] = df["entidad"].astype('str').map(lambda x: x[:255])
     df["convocatoria"] = df["convocatoria"].astype('str').map(lambda x: x[:255])
     df["descripcion"] = df["descripcion"].astype('str').map(lambda x: x[:255])
+    df["beneficiario"] = df["beneficiario"].astype('str').map(lambda x: x[:255])
     # Convertimos las fechas string a datetime
     df["fecha_inicio"] = pd.to_datetime(df["fecha_inicio"], format="%d/%m/%Y", errors="coerce")
     df["fecha_final"] = pd.to_datetime(df["fecha_final"], format="%d/%m/%Y", errors="coerce")
