@@ -548,25 +548,6 @@ async def AgenticoAEI() -> List[Dict]:
         api_version="2025-01-01-preview",
     )
 
-    chat_prompt = [
-        {
-            "role": "system",
-            "content": [
-                {
-                    "type": "text",
-                    "text": 
-                        """
-                        Eres un asistente de web scraping. Tu tarea es extraer información específica de las páginas web.
-                        Esta es la información que necesitas extraer:
-                        """ + str(CallSchema.model_json_schema()) + """
-                        Proporcione la información en formato JSON y deje los datos no encontrados como '' en la entrada.
-                        Aquí está el texto:
-                        """
-                }
-            ]
-        }
-    ]
-
     contenido = []
 
     # configuracion varia
@@ -599,6 +580,24 @@ async def AgenticoAEI() -> List[Dict]:
         call_urls = [elem.get_attribute('href') for elem in call_elements]
 
         for call_url in call_urls:
+            chat_prompt = [
+                {
+                    "role": "system",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": 
+                                """
+                                Eres un asistente de web scraping. Tu tarea es extraer información específica de las páginas web.
+                                Esta es la información que necesitas extraer:
+                                """ + str(CallSchema.model_json_schema()) + """
+                                Proporcione la información en formato JSON y deje los datos no encontrados como '' en la entrada.
+                                Aquí está el texto:
+                                """
+                        }
+                    ]
+                }
+            ]
             print(f"Scraping: {call_url}")
             # Se abre otra ventana para la información específica
             # de cada consulta
