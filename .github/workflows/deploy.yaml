@@ -5,10 +5,6 @@ on:
     branches:
       - master  # or your deploy branch
 
-env:
-  DOCKER_IMAGE_NAME: franjefriten/streamlit_app
-  DOCKER_TAB: latest
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -29,7 +25,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.DOCKER_IMAGE_NAME }}:${{ env.DOCKER_TAG }}
+          tags: usuario/streamlit_app:latest
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
