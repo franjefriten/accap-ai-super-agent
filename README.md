@@ -26,6 +26,7 @@ A partir de aquí, se dan opciones
 Métodos:
   * clasico: Webscrapping clásico
   * agentico: Webscrapping mediante un modelo de IA
+  * 
 Fuentes:
   * SNPSAP: Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas
   * cienciaGob: Ministerio de Ciencia e Investigación (solo admite clásico)
