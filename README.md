@@ -19,6 +19,7 @@ Para rellenar con registros la base de datos PostgreSQL, ejecútese en una termi
 ~$ virtualenv venv
 ~$ source ./venv/bin/activate
 (venv)~$ pip install -r requirements2.txt
+(venv)~$ pip install --no-deps crawl4ai==0.5.0.post8
 (venv)~$ python3 get_and_store_data_from_source.py
 ```
 
@@ -26,7 +27,7 @@ A partir de aquí, se dan opciones
 Métodos:
   * clasico: Webscrapping clásico
   * agentico: Webscrapping mediante un modelo de IA
-  * 
+
 Fuentes:
   * SNPSAP: Sistema Nacional de Publicidad de Subvenciones y Ayudas Públicas
   * cienciaGob: Ministerio de Ciencia e Investigación (solo admite clásico)
