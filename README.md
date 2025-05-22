@@ -14,14 +14,6 @@ docker compose up -d --build
 Y accedase a `localhost:8080`
 
 ### OBTENCIÓN DE DATOS
-Para rellenar con registros la base de datos PostgreSQL, ejecútese en una terminal los siguientes comandos desde una terminal.
-```
-~$ virtualenv venv
-~$ source ./venv/bin/activate
-(venv)~$ pip install -r requirements2.txt
-(venv)~$ pip install --no-deps crawl4ai==0.5.0.post8
-(venv)~$ python3 get_and_store_data_from_source.py
-```
 
 A partir de aquí, se dan opciones
 Métodos:
@@ -33,6 +25,23 @@ Fuentes:
   * cienciaGob: Ministerio de Ciencia e Investigación (solo admite clásico)
   * turismoGob: Ministerio de Turismo e Industria (solo admite clásico)
   * AEI: Agencia Estatal de Investigación
+
+Para rellenar con registros la base de datos PostgreSQL, existen dos opciones.
+
+*OPCIÓN 1*
+El sistema tiene habilitados dos botones para obtener datos desde 
+AEI agentico y SNPSAP agentico, que son las principales.
+
+*OPCIÓN 2*
+Ejecútese en una terminal los siguientes comandos desde una terminal.
+```
+~$ virtualenv venv
+~$ source ./venv/bin/activate
+(venv)~$ pip install -r requirements2.txt
+(venv)~$ pip install --no-deps crawl4ai==0.5.0.post8
+(venv)~$ python3 get_and_store_data_from_source.py
+```
+y seleccione las opciones que aparece en pantalla
 
 ## AUTORÍA
 Francisco Jesús Frías Tenza
