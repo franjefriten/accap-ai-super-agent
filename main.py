@@ -24,6 +24,10 @@ from transformers.utils import logging as transfomers_logging
 
 import streamlit as st
 
+from crawler.agentico.get_and_format_data import *
+from crawler.clasico.get_and_format_data import *
+from get_and_store_data_from_source import send_to_db
+
 from dotenv import load_dotenv
 load_dotenv()
 URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@db:5432/{os.getenv("POSTGRES_DB")}"
@@ -124,6 +128,22 @@ errors = [
 ]
 
 st.title("ACCAP")
+# Create three buttons in the same row
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    button1 = st.button(
+        "SNPSAP (agentico)",
+        help="Obtiene datos de SNPSAP por medios agenticos",
+        on_click=lambda : send_to_db(get_and_format_AgenticoSNPSAP_data(), uri_type="db")
+    )
+
+with col2:
+    button2 = st.button(
+        "AEI (agentico)",
+        help="Obtiene datos de AEI por medios agenticos",
+        on_click=lambda : send_to_db(get_and_format_AgenticoSNPSAP_data(), uri_type="db")
+    )
 
 # mensaje inicial
 if "messages" not in st.session_state:

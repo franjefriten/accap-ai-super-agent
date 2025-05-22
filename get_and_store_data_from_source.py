@@ -10,10 +10,9 @@ from typing import Annotated, Literal
 
 from dotenv import load_dotenv
 load_dotenv()
-URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@localhost:5432/{os.getenv("POSTGRES_DB")}"
 
 
-def send_to_db(contenido: list[dict]):
+def send_to_db(contenido: list[dict], uri_type: Literal["localhost", "db"]):
     """Función general para guardar los datos en la base de datos.
     Se conecta a la base de datos PostgreSQL y guarda los datos extraídos y formateados.
     Se utiliza SQLAlchemy para la conexión y manipulación de la base de datos.
@@ -22,9 +21,19 @@ def send_to_db(contenido: list[dict]):
 
     contenido: list[dict]
         lista de entradas de convocatorias ya procesadas para ser guardadas
+    uri_type: "localhost" o "db"
+        se refiere a si se envía desde fuera de docker (localhost) o desde
+        dentro del contenedor docker (db)
    
     Return: None
     """
+    if uri_type.lower() == "localhost":
+        URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@localhost:5432/{os.getenv("POSTGRES_DB")}"
+    elif uri_type.lower() == "db":
+        URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@db:5432/{os.getenv("POSTGRES_DB")}"
+    else:
+        raise Exception
+        
     
     engine = create_engine(URI_TO_DB)
     Session = sessionmaker(bind=engine)
@@ -80,19 +89,19 @@ def fetch_all_data_and_store_in_db(
         match source:
             case "cienciaGob":
                 contenido_cienciaGob = get_and_format_cienciaGob_data()
-                send_to_db(contenido_cienciaGob)
+                send_to_db(contenido_cienciaGob, uri_type='localhost')
                 print("cienciaGob contenido volcado")
             case "turismoGob":
                 contenido_turismoGob = get_and_format_turismoGob_data()
-                send_to_db(contenido_turismoGob)
+                send_to_db(contenido_turismoGob, uri_type='localhost')
                 print("turismoGob contenido volcado")
             case "SNPSAP":
                 contenido_SNPSAP = get_and_format_SNPSAP_data()
-                send_to_db(contenido_SNPSAP)
+                send_to_db(contenido_SNPSAP, uri_type='localhost')
                 print("SNPSAP contenido volcado")
             case "AEI":
                 contenido_AEI = get_and_format_AEI_data()
-                send_to_db(contenido_AEI)
+                send_to_db(contenido_AEI, uri_type='localhost')
                 print("AEI contenido volcado")
     elif tipo == "agentico":
         match source:
@@ -102,15 +111,17 @@ def fetch_all_data_and_store_in_db(
                 print("opcion no disponible")
             case "SNPSAP":
                 contenido_SNPSAP = get_and_format_AgenticoSNPSAP_data()
-                send_to_db(contenido_SNPSAP)
+                send_to_db(contenido_SNPSAP, uri_type='localhost')
                 print("SNPSAP contenido volcado")
             case "AEI":
                 contenido_AEI = get_and_format_AgenticoAEI_data()
-                send_to_db(contenido_AEI)
+                send_to_db(contenido_AEI, uri_type='localhost')
                 print("AEI contenido volcado")
 
 
 if __name__ == "__main__":
+    if not os.path.exists("./downloads/pdf"):
+        os.makedirs(name="./downloads/pdf")
     source = input("Fuente (cienciaGob, turismoGob, SNPSAP, AEI): \n")
     tipo = input("Tipo (clasico, agentico): \n")
     if tipo not in ["clasico", "agentico"]:
