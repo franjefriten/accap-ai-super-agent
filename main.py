@@ -27,11 +27,16 @@ import streamlit as st
 from crawler.agentico.get_and_format_data import *
 from crawler.clasico.get_and_format_data import *
 from get_and_store_data_from_source import send_to_db
+from db_utils.db_schema import CallData
 
 from dotenv import load_dotenv
 load_dotenv()
 URI_TO_DB = f"postgresql+psycopg://{os.getenv("POSTGRES_USER")}:{os.getenv("POSTGRES_PASSWORD")}@db:5432/{os.getenv("POSTGRES_DB")}"
 MAX_ATTEMPTS = 5
+engine = create_engine(URI_TO_DB)
+Session = sessionmaker(bind=engine)
+# Si no existe la tabla, se crea y el vector de embeddings
+CallData.init_table(engine)
 
 # hash_funcs = {
 #     list: lambda x: hash(tuple(getattr(obj, "name", obj) for obj in x))

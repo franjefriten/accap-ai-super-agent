@@ -10,7 +10,7 @@
 services:
   app:
     container_name: streamlit_app
-    image: franjefriten/streamlit_app:latest
+    build: .
     volumes:
       - ./.env:/app/.env
     depends_on:
