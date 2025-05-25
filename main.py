@@ -210,7 +210,6 @@ if "agente" not in st.session_state:
 # el chat para mantenerlo visible
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
         # Muestra el dataset de los datos
         # de anteriores consultas si existe
         if message.get("df") is not None:
@@ -270,7 +269,7 @@ if query := st.chat_input("Haz tu consulta"):
                         "greet": greet
                     })
 
-                if isinstance(response, list): # Si es una lista, suele ser una lista de dict (records)
+                elif isinstance(response, list): # Si es una lista, suele ser una lista de dict (records)
                     df = pd.DataFrame.from_records(response)
                         
                     st.markdown(mensaje)
@@ -290,7 +289,7 @@ if query := st.chat_input("Haz tu consulta"):
                         "greet": greet
                     })
 
-                if isinstance(response, dict): # Si es un dict, suele ser solo un record
+                elif isinstance(response, dict): # Si es un dict, suele ser solo un record
                     df = pd.DataFrame().from_records([response])
 
                     st.markdown(mensaje)
@@ -310,7 +309,7 @@ if query := st.chat_input("Haz tu consulta"):
                         "greet": greet
                     })
 
-                else: # En caso cualquiera, suele ser una cadena de texto no controlable
+                elif isinstance(response, str): # En caso cualquiera, suele ser una cadena de texto no controlable
                 # Un número, entradas en texto plano, un aviso, etc.
                     st.markdown(response)
                     st.session_state.messages.append({
