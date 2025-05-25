@@ -28,11 +28,13 @@ Fuentes:
 
 Para rellenar con registros la base de datos PostgreSQL, existen dos opciones.
 
-*OPCIÓN 1*
+**OPCIÓN 1**
 El sistema tiene habilitados dos botones para obtener datos desde 
-AEI agentico y SNPSAP agentico, que son las principales.
+AEI agentico y SNPSAP agentico, que son las principales. Es importante recordar
+que es *imprescindible* pulsar uno de estos botones primero para captar información
+con la que consultar. Puede tardar hasta un minuto o más para obtener todo el proceso
 
-*OPCIÓN 2*
+**OPCIÓN 2**
 Ejecútese en una terminal los siguientes comandos desde una terminal.
 ```
 ~$ virtualenv venv
@@ -41,7 +43,7 @@ Ejecútese en una terminal los siguientes comandos desde una terminal.
 (venv)~$ pip install --no-deps crawl4ai==0.5.0.post8
 (venv)~$ python3 get_and_store_data_from_source.py
 ```
-y seleccione las opciones que aparece en pantalla
+y seleccione las opciones que aparece en pantalla por la terminal.
 
 ## AUTORÍA
 Francisco Jesús Frías Tenza
