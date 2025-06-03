@@ -102,7 +102,7 @@ transfomers_logging.set_verbosity_warning()
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 # mensajes para comunicarse con el usuario
-mensajes = [
+salutes = [
     "Aquí tienes la información que he encontrado:",
     "Estas son las convocatorias que he encontrado:",
     "Aquí tienes los resultados de tu consulta:",
@@ -212,8 +212,9 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         # Muestra el dataset de los datos
         # de anteriores consultas si existe
-        if message.get("df") is not None:
-            df: pd.DataFrame = message["df"]
+        st.markdown(message.get("salute", ""))
+        if isinstance(message.get("content"), pd.DataFrame):
+            df: pd.DataFrame = message["content"]
             # Para seleccionar columnas
             selected_cols = st.multiselect(
                 "Select columns to display:",
@@ -222,8 +223,9 @@ for message in st.session_state.messages:
                 key=f"cols_{len(st.session_state.messages)}"
             )
             st.dataframe(df[selected_cols])
-        if message.get("greet") is not None:
-            st.markdown(message["greet"])
+        elif isinstance(message.get("content"), (str, int)):
+            st.markdown(message["content"])
+        st.markdown(message.get("greet", ""))
         
 # Si no existe la consulta, se crea como un chat_input
 if query := st.chat_input("Haz tu consulta"):
@@ -240,20 +242,33 @@ if query := st.chat_input("Haz tu consulta"):
             time.sleep(2)
             # Escogemos un greet y un mensaje aleatorio 
             greet = np.random.choice(greets)
-            mensaje = np.random.choice(mensajes)
+            salute = np.random.choice(salutes)
             try:
                 response = st.session_state.agente.run(query)
             except (ProgrammingError, OperationalError) as e: # La IA realiza una consulta errónea o que no se ajusta al esquema de la bbdd
-                st.write(np.random.choice(errors)) 
+                error_msg = np.random.choice(errors)
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "salute": "",
+                    "content": error_msg,
+                    "greet": greet
+                })
             except Exception as e: # Error desconocido, por lo general, al realizar una conexión a la bbdd
-                st.write("Ha ocurrido un error que no puedo identificar")
+                error_msg = "Ha ocurrido un error que no puedo identificar"
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "salute": "",
+                    "content": error_msg,
+                    "greet": greet
+                })
             else:
                 # La respuesta puede ser devuelta en varios formatos
                 # no solo en la herramienta
+                
                 if isinstance(response, pd.DataFrame): # Si es un dataframe de pandas
                     df = response
                         
-                    st.markdown(mensaje)
+                    st.markdown(salute)
                     # filtro de columnas
                     cols = st.multiselect(
                         "Columnas a mostrar",
@@ -264,15 +279,15 @@ if query := st.chat_input("Haz tu consulta"):
                         
                     st.session_state.messages.append({
                         "role": "assistant",
-                        "content": mensaje,
-                        "df": df,
+                        "salute": salute,
+                        "content": df,
                         "greet": greet
                     })
 
                 elif isinstance(response, list): # Si es una lista, suele ser una lista de dict (records)
                     df = pd.DataFrame.from_records(response)
                         
-                    st.markdown(mensaje)
+                    st.markdown(salute)
                     # filtro de columnas
                     cols = st.multiselect(
                         "Columnas a mostrar",
@@ -284,15 +299,15 @@ if query := st.chat_input("Haz tu consulta"):
                         
                     st.session_state.messages.append({
                         "role": "assistant",
-                        "content": mensaje,
-                        "df": df,
+                        "salute": salute,
+                        "content": df,
                         "greet": greet
                     })
 
                 elif isinstance(response, dict): # Si es un dict, suele ser solo un record
                     df = pd.DataFrame().from_records([response])
 
-                    st.markdown(mensaje)
+                    st.markdown(salute)
                     # filtro de columnas
                     cols = st.multiselect(
                         "Columnas a mostrar",
@@ -304,20 +319,26 @@ if query := st.chat_input("Haz tu consulta"):
                         
                     st.session_state.messages.append({
                         "role": "assistant",
-                        "content": mensaje,
-                        "df": df,
+                        "salute": salute,
+                        "content": df,
                         "greet": greet
                     })
 
-                elif isinstance(response, str): # En caso cualquiera, suele ser una cadena de texto no controlable
+                elif isinstance(response, (str, int)): # En caso cualquiera, suele ser una cadena de texto no controlable
                 # Un número, entradas en texto plano, un aviso, etc.
                     st.markdown(response)
                     st.session_state.messages.append({
                         "role": "assistant",
+                        "salute": "",
                         "content": response,
                         "greet": greet
                     })
                     st.markdown(greet)
-                
-            
-
+                else:
+                    st.markdown("No he podido entender la respuesta del modelo, por favor, inténtalo de nuevo.")
+                    st.session_state.messages.append({
+                        "role": "assistant",
+                        "salute": "",
+                        "content": "No he podido entender la respuesta del modelo, por favor, inténtalo de nuevo.",
+                        "greet": ""
+                    })
